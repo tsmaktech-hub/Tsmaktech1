@@ -1,19 +1,22 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 export default function AdBanner() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (!containerRef.current) return;
-
-    // Clear any existing content to prevent duplicate ad frames on HMR or re-renders
-    containerRef.current.innerHTML = '';
-
+    // Dynamically create the ad script element
     const script = document.createElement('script');
     script.src = 'https://pl30431597.effectivecpmnetwork.com/f6/d0/49/f6d0499625ffe1f7ca9b85398be5c5ea.js';
     script.async = true;
+    script.type = 'text/javascript';
 
-    containerRef.current.appendChild(script);
+    // Append to document.body so that the script executes globally and renders ad placements/overlays correctly
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up the script element on component unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   return (
@@ -23,11 +26,13 @@ export default function AdBanner() {
           Advertisement
         </span>
         <div 
-          ref={containerRef} 
           className="w-full flex justify-center items-center min-h-[90px] overflow-hidden rounded-xl bg-white border border-zinc-100 p-4 shadow-sm"
           id="ad-banner-container"
-        />
+        >
+          <span className="text-xs text-zinc-400">Sponsored Content</span>
+        </div>
       </div>
     </div>
   );
 }
+
