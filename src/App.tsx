@@ -31,7 +31,6 @@ import { Tutorial } from './types';
 import { TsmakLogo } from './components/Logo';
 import PortfolioPage from './pages/PortfolioPage';
 import GetStartedPage from './pages/GetStartedPage';
-import AdBanner from './components/AdBanner';
 
 const HERO_IMAGES = [
   '/hero.jpg',
@@ -946,7 +945,6 @@ export default function App() {
           </div>
         </div>
       </motion.footer>
-      <AdBanner />
     </div>
   );
 }
