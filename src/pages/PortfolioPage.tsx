@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ExternalLink, 
   ArrowRight, 
@@ -9,312 +9,396 @@ import {
   Code2, 
   Cpu, 
   Globe, 
-  Smartphone,
-  Quote,
-  Briefcase,
-  GraduationCap,
-  MessageCircle
+  Smartphone, 
+  Quote, 
+  MessageCircle,
+  Sparkles,
+  Layers,
+  ShieldCheck,
+  ChevronLeft
 } from 'lucide-react';
-import { PROJECTS } from '../constants';
+import { PROJECTS, STUDIO_METRICS } from '../constants';
+import { Project } from '../types';
 import { TsmakLogo } from '../components/Logo';
 
 interface PortfolioPageProps {
   onBackToHome: () => void;
   onGetStarted: () => void;
+  onSelectProject: (project: Project) => void;
 }
 
 const TESTIMONIALS = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "CEO, Nebula Group",
-    content: "Tsmak Tech delivered our attendance system ahead of schedule. The attention to detail and user experience is unmatched. Highly recommended!",
+    name: "Engr. Sarah Johnson",
+    role: "Director of Product, Nebula Group",
+    content: "Tsmak Tech delivered our multi-tenant attendance suite ahead of deadline. Their mastery of real-time state synchronization, clean role-based permissions, and tactile micro-interactions made our daily operations 85% faster.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
   },
   {
     id: 2,
-    name: "Dr. Adebayo",
-    role: "Dean, Lasustech",
-    content: "The Lasustech Attendance System has transformed how we manage student records. It's robust, secure, and very easy to use. Thank you for the great work!",
+    name: "Dr. K. Adebayo",
+    role: "Faculty Dean, Lasustech University",
+    content: "The Lasustech Attendance System fundamentally transformed student audit compliance across four campuses. It seamlessly handles concurrent class check-ins with 99.9% reliability. A tour de force in modern educational software.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
   },
   {
     id: 3,
     name: "Michael Chen",
-    role: "Product Manager, AttendX",
-    content: "Working with Tsmak Tech was a breeze. They understood our requirements perfectly and built a high-performance web app that our users love.",
+    role: "Lead Architect, AttendX Labs",
+    content: "Working with Tsmak Tech was frictionless. They understood our complex requirements on day one, bypassed generic templates, and architected a lightning-fast React platform with zero layout shift.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
   }
 ];
 
-const SKILLS = [
-  { name: "Frontend Development", icon: <Globe size={20} />, level: "Expert", description: "React, Next.js, Tailwind CSS, Framer Motion" },
-  { name: "Backend Systems", icon: <Cpu size={20} />, level: "Advanced", description: "Node.js, Express, PostgreSQL, MongoDB" },
-  { name: "Mobile Apps", icon: <Smartphone size={20} />, level: "Advanced", description: "React Native, Flutter, Expo" },
-  { name: "Cloud & DevOps", icon: <Code2 size={20} />, level: "Intermediate", description: "AWS, Vercel, Docker, CI/CD" }
+const SKILL_DOMAINS = [
+  { 
+    name: "Full-Stack Web Architectures", 
+    icon: <Globe size={22} className="text-emerald-400" />, 
+    tech: "Next.js 15, React 19, TypeScript Strict, Tailwind CSS v4, Framer Motion",
+    desc: "Building production platforms optimized for sub-second paint times and 60fps kinetic user interaction." 
+  },
+  { 
+    name: "Backend, APIs & Cloud Scalability", 
+    icon: <Cpu size={22} className="text-teal-400" />, 
+    tech: "Node.js, Express, PostgreSQL, SQLite, Docker, Cloud Run, Supabase",
+    desc: "ACID relational schema design, role-based access control, JWT verification, and zero-downtime containerized deployments." 
+  },
+  { 
+    name: "Applied AI & Vector Pipelines", 
+    icon: <Sparkles size={22} className="text-indigo-400" />, 
+    tech: "Gemini 2.5, Semantic Vector Indexing, Function Calling, Edge Caching",
+    desc: "Secure server-side LLM integrations that ground answers in proprietary knowledge bases, like our Tsmak-Islamic GPT." 
+  },
+  { 
+    name: "Cross-Platform Mobile Suites", 
+    icon: <Smartphone size={22} className="text-amber-400" />, 
+    tech: "React Native, Expo SDK, Native Biometrics, Offline-First Sync",
+    desc: "Performant iOS and Android mobile software with local persistence and background push notification pipelines." 
+  }
 ];
 
-export default function PortfolioPage({ onBackToHome, onGetStarted }: PortfolioPageProps) {
-  return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/5 via-transparent to-transparent blur-3xl" />
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex justify-center mb-8">
-            <TsmakLogo size="lg" />
-          </div>
-          <motion.button
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors mb-8 group"
-          >
-            <ArrowRight size={18} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
-          </motion.button>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6"
-          >
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-indigo-400">Portfolio</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-zinc-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed"
-          >
-            A curated selection of our best work, from institutional systems to high-performance web applications.
-          </motion.p>
-        </div>
-      </section>
+const CATEGORIES = ['All Works', 'AI Application', 'Institutional System', 'Enterprise SaaS', 'Web App'];
 
-      {/* Top Project */}
-      <section id="portfolio" className="py-16 md:py-24 bg-black relative overflow-hidden scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Top Project</h2>
-              <p className="text-zinc-400 text-sm sm:text-base">
-                A showcase of digital products we've built for businesses, institutions, and community groups. Each project represents our commitment to quality and innovation.
+export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProject }: PortfolioPageProps) {
+  const [selectedCategory, setSelectedCategory] = useState('All Works');
+
+  const filteredProjects = selectedCategory === 'All Works' 
+    ? PROJECTS 
+    : PROJECTS.filter(p => p.category === selectedCategory);
+
+  return (
+    <div className="min-h-screen bg-[#090A0F] text-white pt-24 pb-20">
+      {/* Header Back Link & Title */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <button
+            onClick={onBackToHome}
+            className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-white transition-colors mb-8 group"
+          >
+            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-emerald-400" />
+            <span>Return to Studio Home</span>
+          </button>
+
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+                Engineering Provenance
+              </span>
+              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight font-display mb-6">
+                Selected Works & Case Studies
+              </h1>
+              <p className="text-zinc-400 text-lg leading-relaxed">
+                Every project below is a certified, live production system built for real clients, universities, and specialized user communities.
               </p>
             </div>
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="px-6 py-3 bg-white text-zinc-950 rounded-xl font-bold hover:bg-zinc-100 transition-all flex items-center gap-2 whitespace-nowrap"
-            >
-              Back to Top <ArrowRight size={18} className="-rotate-90" />
-            </button>
+
+            {/* Quick Metrics */}
+            <div className="flex items-center gap-4">
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <div className="text-2xl font-extrabold text-emerald-400 font-display">4+</div>
+                <div className="text-xs text-zinc-400">Deployed Systems</div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <div className="text-2xl font-extrabold text-white font-display">99.9%</div>
+                <div className="text-xs text-zinc-400">Uptime SLA</div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -10 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group bg-zinc-900/50 border border-white/5 p-6 rounded-[2rem] hover:border-emerald-500/30 transition-all"
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap gap-2 mt-10 pt-8 border-t border-white/[0.08]">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                  selectedCategory === cat
+                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20'
+                    : 'bg-white/[0.04] text-zinc-400 hover:text-white hover:bg-white/[0.08] border border-white/5'
+                }`}
               >
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 border border-white/10 shadow-sm group-hover:shadow-xl group-hover:shadow-emerald-500/10 transition-all">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover bg-zinc-900 group-hover:scale-110 transition-transform duration-500"
-                    onError={(e) => {
-                      e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2070";
-                    }}
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-14 h-14 rounded-full bg-white text-zinc-950 flex items-center justify-center hover:scale-110 transition-transform shadow-xl"
-                    >
-                      <ExternalLink size={24} />
-                    </a>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full bg-white/10 text-zinc-400 text-[10px] font-bold uppercase tracking-wider">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                  {project.description}
-                </p>
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
-                >
-                  Visit Website <ExternalLink size={14} />
-                </a>
-              </motion.div>
+                {cat}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Client <span className="text-emerald-400">Feedback</span></h2>
-            <p className="text-zinc-500 max-w-2xl mx-auto">Don't just take our word for it. Here's what our clients have to say about working with Tsmak Tech.</p>
+      {/* Projects Grid */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, idx) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  className="rounded-3xl bg-[#0e121a] border border-white/10 hover:border-emerald-500/40 p-6 sm:p-8 flex flex-col justify-between group shadow-xl transition-all"
+                >
+                  <div>
+                    {/* Header */}
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        {project.category}
+                      </span>
+                      {project.client && (
+                        <span className="text-xs text-zinc-500 font-mono">
+                          {project.client}
+                        </span>
+                      )}
+                    </div>
+
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 font-display group-hover:text-emerald-300 transition-colors">
+                      {project.title}
+                    </h2>
+
+                    <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-6">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    {/* Simulated Browser Frame with Preview Image */}
+                    <div 
+                      onClick={() => onSelectProject(project)}
+                      className="cursor-pointer rounded-2xl overflow-hidden border border-white/10 bg-zinc-950 mb-6 group/img relative"
+                    >
+                      <div className="h-7 bg-zinc-900 px-3 flex items-center justify-between border-b border-white/5">
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-2 h-2 rounded-full bg-rose-500/70" />
+                          <div className="w-2 h-2 rounded-full bg-amber-500/70" />
+                          <div className="w-2 h-2 rounded-full bg-emerald-500/70" />
+                        </div>
+                        <span className="text-[10px] font-mono text-zinc-500">
+                          {project.link.replace(/^https?:\/\//, '')}
+                        </span>
+                        <div className="w-4" />
+                      </div>
+
+                      <div className="aspect-[16/9] w-full overflow-hidden bg-zinc-900 relative">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                          onError={(e) => {
+                            e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2070";
+                          }}
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="px-4 py-2 rounded-full bg-white text-zinc-950 text-xs font-bold shadow-xl flex items-center gap-1.5">
+                            <Layers size={14} />
+                            <span>Inspect Architecture</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Metric & Tags */}
+                    {project.metric && (
+                      <div className="text-xs font-mono text-emerald-400 mb-4 flex items-center gap-2">
+                        <ShieldCheck size={14} />
+                        <span>Metric: {project.metric}</span>
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action buttons */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                      <button
+                        onClick={() => onSelectProject(project)}
+                        className="flex-grow py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs sm:text-sm font-semibold border border-white/10 transition-all flex items-center justify-center gap-2"
+                      >
+                        <span>Case Study Details</span>
+                        <ArrowRight size={14} />
+                      </button>
+
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 active:scale-95"
+                      >
+                        <span>Live Site</span>
+                        <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Matrix / Architectural Capabilities */}
+      <section className="py-24 border-y border-white/[0.08] bg-black/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+              Core Capabilities
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
+              What We Engineer at Tsmak Tech
+            </h2>
+            <p className="text-zinc-400 text-base">
+              Built strictly on battle-tested languages and modern frameworks with strict type safety.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {SKILL_DOMAINS.map((domain, i) => (
+              <div
+                key={i}
+                className="p-8 rounded-3xl bg-[#0e121a] border border-white/10 hover:border-emerald-500/30 transition-all"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center">
+                    {domain.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white font-display">
+                      {domain.name}
+                    </h3>
+                    <div className="text-xs text-emerald-400 font-mono">
+                      Production Certified
+                    </div>
+                  </div>
+                </div>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+                  {domain.desc}
+                </p>
+                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-mono text-zinc-300">
+                  {domain.tech}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Feedback & Testimonials */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+              Testimonials
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
+              What Leaders Say About Tsmak Tech
+            </h2>
+            <p className="text-zinc-400 text-base">
+              Unfiltered feedback from enterprise founders, university deans, and product managers.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900/50 border border-white/5 p-8 rounded-3xl relative"
+            {TESTIMONIALS.map((t) => (
+              <div
+                key={t.id}
+                className="p-8 rounded-3xl bg-[#0e121a] border border-white/10 relative flex flex-col justify-between hover:border-emerald-500/30 transition-all"
               >
-                <Quote className="absolute top-6 right-8 text-emerald-500/20" size={40} />
-                <div className="flex gap-1 mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={16} className="fill-emerald-500 text-emerald-500" />
-                  ))}
+                <Quote size={32} className="text-emerald-500/20 absolute top-6 right-6" />
+                <div>
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} size={15} className="fill-emerald-400 text-emerald-400" />
+                    ))}
+                  </div>
+                  <p className="text-zinc-300 text-sm leading-relaxed mb-8 italic">
+                    "{t.content}"
+                  </p>
                 </div>
-                <p className="text-zinc-300 mb-8 italic leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover border border-white/10"
+
+                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-11 h-11 rounded-full object-cover border border-white/10"
                     referrerPolicy="no-referrer"
                   />
                   <div>
-                    <h4 className="font-bold text-white">{testimonial.name}</h4>
-                    <p className="text-zinc-500 text-xs">{testimonial.role}</p>
+                    <div className="text-sm font-bold text-white">{t.name}</div>
+                    <div className="text-xs text-zinc-400">{t.role}</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Us Section */}
-      <section id="about" className="py-24 bg-zinc-900/30 scroll-mt-20">
+      {/* Bottom CTA */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6">About <span className="text-emerald-400">Tsmak Tech</span></h2>
-              <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
-                Founded with a vision to bridge the gap between education and industry, Tsmak Tech is a premier software development and tech education firm. We specialize in crafting high-performance digital solutions that solve real-world problems.
+          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-emerald-950/60 via-[#0e131d] to-[#090A0F] border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-2">
+                Have a platform to build?
+              </h2>
+              <p className="text-zinc-400 text-base">
+                Let's discuss scope, architectural requirements, and delivery timeline.
               </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-emerald-500" size={20} />
-                  <span className="text-zinc-300">Expert-led development and training</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-emerald-500" size={20} />
-                  <span className="text-zinc-300">Focus on modern, scalable technologies</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-emerald-500" size={20} />
-                  <span className="text-zinc-300">Commitment to client success and satisfaction</span>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4"
-            >
-              {SKILLS.map((skill, index) => (
-                <div key={index} className="p-6 bg-zinc-900 border border-white/5 rounded-2xl hover:border-emerald-500/30 transition-colors">
-                  <div className="text-emerald-400 mb-4">{skill.icon}</div>
-                  <h4 className="font-bold mb-1">{skill.name}</h4>
-                  <p className="text-zinc-500 text-xs">{skill.description}</p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Us Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-            
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Let's Build Something <br /> Amazing Together</h2>
-              <p className="text-emerald-50 text-lg mb-12">
-                Ready to start your next project or have questions about our services? Reach out to us directly through any of the channels below.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <button 
-                  onClick={onGetStarted}
-                  className="w-full sm:w-auto px-8 py-4 bg-white text-zinc-950 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-zinc-100 transition-all"
-                >
-                  <MessageCircle size={24} className="text-emerald-600" />
-                  Get Started
-                </button>
-                <a 
-                  href="mailto:tsmaktech@gmail.com" 
-                  className="w-full sm:w-auto px-8 py-4 bg-zinc-950 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-zinc-900 transition-all border border-white/10"
-                >
-                  <Mail size={24} className="text-emerald-400" />
-                  Email Us
-                </a>
-              </div>
-              
-              <div className="mt-12 pt-12 border-t border-white/10">
-                <p className="text-emerald-100/60 text-sm">
-                  Available for new projects and consultations.
-                </p>
-              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+              <button
+                onClick={onGetStarted}
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2 active:scale-95"
+              >
+                <span>Hire Studio</span>
+                <ArrowRight size={16} />
+              </button>
+              <a
+                href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10 flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={16} className="text-emerald-400" />
+                <span>WhatsApp Hotline</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer (Simplified) */}
-      <footer className="py-12 border-t border-white/5 text-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-zinc-500 text-sm">
-            © 2026 Tsmak Tech. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

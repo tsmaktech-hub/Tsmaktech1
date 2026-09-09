@@ -23,4 +23,11 @@ export interface Project {
   link: string;
   image: string;
   tags: string[];
+  category?: string;
+  client?: string;
+  year?: string;
+  metric?: string;
+  highlights?: string[];
+  architecture?: string;
 }
+

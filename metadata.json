@@ -1,5 +1,6 @@
 {
   "name": "Tsmak-Tech Website",
-  "description": "A comprehensive tech education platform teaching you how to build web apps, websites, mobile applications, and more.",
-  "requestFramePermissions": []
+  "description": "Production-grade tech studio and engineering academy building world-class web applications, mobile platforms, and AI systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
