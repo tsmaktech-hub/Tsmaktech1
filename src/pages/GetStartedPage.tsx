@@ -64,15 +64,15 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
           <div className="flex justify-between items-center h-20">
             <button 
               onClick={onBack}
-              className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group text-sm font-mono"
+              className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group text-sm font-mono cursor-pointer"
             >
-              <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-emerald-400" />
+              <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-pink-400" />
               <span>Back to Home</span>
             </button>
             <div className="flex items-center gap-2.5">
               <TsmakLogo size="sm" />
               <div className="text-lg font-bold tracking-tight font-display">
-                Tsmak <span className="text-emerald-400">Tech</span>
+                Tsmak <span className="text-pink-400">Tech</span>
               </div>
             </div>
             <div className="w-20" />
@@ -84,7 +84,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
         <div className="w-full max-w-3xl">
           {/* Track Switcher */}
           <div className="text-center mb-10">
-            <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+            <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
               Engagement Portal
             </span>
             <h1 className="text-3xl sm:text-5xl font-bold font-display text-white mb-4">
@@ -98,9 +98,9 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
               <button
                 type="button"
                 onClick={() => setTrack('client')}
-                className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+                className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   track === 'client'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-lg shadow-emerald-500/20'
+                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-lg shadow-purple-500/25'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -110,9 +110,9 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
               <button
                 type="button"
                 onClick={() => setTrack('student')}
-                className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+                className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   track === 'student'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-lg shadow-emerald-500/20'
+                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-lg shadow-purple-500/25'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -125,7 +125,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
           {/* Form Container */}
           <motion.div
             layout
-            className="rounded-[2.5rem] bg-[#0e121a] border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
+            className="rounded-[2.5rem] bg-[#0c0e20] border border-purple-500/20 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
           >
             {track === 'client' ? (
               <form onSubmit={handleClientSubmit} className="space-y-6">
@@ -145,7 +145,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="Sarah Connor"
-                        className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-emerald-400 transition-colors"
+                        className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors"
                       />
                     </div>
                   </div>
@@ -165,7 +165,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                         placeholder="+1 555 0192 or name@company.com"
-                        className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-emerald-400 transition-colors"
+                        className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors"
                       />
                     </div>
                   </div>
@@ -179,7 +179,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   <select
                     value={projectType}
                     onChange={(e) => setProjectType(e.target.value)}
-                    className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 px-4 text-white text-sm focus:outline-none focus:border-emerald-400 transition-colors"
+                    className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 px-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors"
                   >
                     <option value="Web Application / SaaS">Web Application / High-Concurrency SaaS</option>
                     <option value="Attendance / Institutional System">Institutional Attendance & Records System</option>
@@ -200,9 +200,9 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                         type="button"
                         key={t}
                         onClick={() => setTimeline(t)}
-                        className={`py-3 px-3 rounded-xl text-xs font-semibold border transition-all text-center ${
+                        className={`py-3 px-3 rounded-xl text-xs font-semibold border transition-all text-center cursor-pointer ${
                           timeline === t
-                            ? 'bg-emerald-500/15 border-emerald-500 text-emerald-300'
+                            ? 'bg-pink-500/15 border-pink-500 text-pink-300'
                             : 'bg-white/[0.02] border-white/5 text-zinc-400 hover:text-white'
                         }`}
                       >
@@ -222,14 +222,14 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Tell us about the key features, users, or integrations you require..."
-                    className="w-full bg-[#090b12] border border-white/10 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-emerald-400 transition-colors resize-none"
+                    className="w-full bg-[#090b12] border border-white/10 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors resize-none"
                   />
                 </div>
 
                 {/* Action button */}
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm flex items-center justify-center gap-2 btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-sm flex items-center justify-center gap-2 btn-launchpad-glow btn-shine active:scale-95 transition-all cursor-pointer shadow-lg shadow-purple-500/25"
                 >
                   <Send size={16} />
                   <span>Send Requirements via WhatsApp Hotline</span>
@@ -241,7 +241,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
               </form>
             ) : (
               <div className="text-center py-6 space-y-6">
-                <div className="w-16 h-16 rounded-3xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-3xl bg-purple-500/15 text-pink-400 flex items-center justify-center mx-auto mb-4 border border-purple-500/20">
                   <MessageCircle size={32} />
                 </div>
 
@@ -254,15 +254,15 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                 </p>
 
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 max-w-md mx-auto text-left space-y-2 text-xs font-mono text-zinc-300">
-                  <div className="flex items-center gap-2 text-emerald-400">
+                  <div className="flex items-center gap-2 text-pink-400">
                     <CheckCircle2 size={15} />
                     <span>Free weekly masterclasses on modern full-stack</span>
                   </div>
-                  <div className="flex items-center gap-2 text-emerald-400">
+                  <div className="flex items-center gap-2 text-pink-400">
                     <CheckCircle2 size={15} />
                     <span>Direct troubleshooting & unblocking with mentors</span>
                   </div>
-                  <div className="flex items-center gap-2 text-emerald-400">
+                  <div className="flex items-center gap-2 text-pink-400">
                     <CheckCircle2 size={15} />
                     <span>Real-world client project case breakdowns</span>
                   </div>
@@ -272,7 +272,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   href={COMMUNITY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-sm btn-launchpad-glow btn-shine active:scale-95 transition-all cursor-pointer shadow-lg shadow-purple-500/25"
                 >
                   <MessageCircle size={18} />
                   <span>Join Official WhatsApp Community Group</span>
@@ -285,7 +285,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                       href={`https://wa.me/${WHATSAPP_NUMBER}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-emerald-400 hover:underline"
+                      className="text-pink-400 hover:underline"
                     >
                       Chat with Founder directly
                     </a>

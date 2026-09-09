@@ -59,25 +59,25 @@ const TESTIMONIALS = [
 const SKILL_DOMAINS = [
   { 
     name: "Full-Stack Web Architectures", 
-    icon: <Globe size={22} className="text-emerald-400" />, 
+    icon: <Globe size={22} className="text-purple-400" />, 
     tech: "Next.js 15, React 19, TypeScript Strict, Tailwind CSS v4, Framer Motion",
     desc: "Building production platforms optimized for sub-second paint times and 60fps kinetic user interaction." 
   },
   { 
     name: "Backend, APIs & Cloud Scalability", 
-    icon: <Cpu size={22} className="text-teal-400" />, 
+    icon: <Cpu size={22} className="text-pink-400" />, 
     tech: "Node.js, Express, PostgreSQL, SQLite, Docker, Cloud Run, Supabase",
     desc: "ACID relational schema design, role-based access control, JWT verification, and zero-downtime containerized deployments." 
   },
   { 
     name: "Applied AI & Vector Pipelines", 
-    icon: <Sparkles size={22} className="text-indigo-400" />, 
+    icon: <Sparkles size={22} className="text-blue-400" />, 
     tech: "Gemini 2.5, Semantic Vector Indexing, Function Calling, Edge Caching",
     desc: "Secure server-side LLM integrations that ground answers in proprietary knowledge bases, like our Tsmak-Islamic GPT." 
   },
   { 
     name: "Cross-Platform Mobile Suites", 
-    icon: <Smartphone size={22} className="text-amber-400" />, 
+    icon: <Smartphone size={22} className="text-purple-400" />, 
     tech: "React Native, Expo SDK, Native Biometrics, Offline-First Sync",
     desc: "Performant iOS and Android mobile software with local persistence and background push notification pipelines." 
   }
@@ -100,15 +100,15 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-white transition-colors mb-8 group"
+            className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-white transition-colors mb-8 group cursor-pointer"
           >
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-emerald-400" />
+            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-pink-400" />
             <span>Return to Studio Home</span>
           </button>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <div className="max-w-3xl">
-              <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+              <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
                 Engineering Provenance
               </span>
               <h1 className="text-4xl sm:text-6xl font-bold tracking-tight font-display mb-6">
@@ -124,9 +124,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
               <div className="p-1 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center">
                 <button
                   onClick={() => setViewMode('3d')}
-                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                     viewMode === '3d'
-                      ? 'bg-emerald-500 text-zinc-950 shadow-md'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-500/25'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -134,9 +134,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                     viewMode === 'grid'
-                      ? 'bg-emerald-500 text-zinc-950 shadow-md'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-500/25'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -146,7 +146,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
 
               <div className="flex items-center gap-3">
                 <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
-                  <div className="text-xl font-extrabold text-emerald-400 font-display">4+</div>
+                  <div className="text-xl font-extrabold text-pink-400 font-display">4+</div>
                   <div className="text-[10px] text-zinc-400 uppercase font-mono">Systems</div>
                 </div>
                 <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
@@ -174,9 +174,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20'
+                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-md shadow-purple-500/20'
                     : 'bg-white/[0.04] text-zinc-400 hover:text-white hover:bg-white/[0.08] border border-white/5'
                 }`}
               >
@@ -204,13 +204,13 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 >
                   <TiltCard
                     tiltAngle={6}
-                    glareColor="rgba(16, 185, 129, 0.15)"
-                    className="rounded-3xl bg-[#0e121a] border border-white/10 hover:border-emerald-500/40 p-6 sm:p-8 flex flex-col justify-between group shadow-xl transition-all h-full"
+                    glareColor="rgba(236, 72, 153, 0.15)"
+                    className="rounded-3xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/40 p-6 sm:p-8 flex flex-col justify-between group shadow-xl transition-all h-full"
                   >
                   <div>
                     {/* Header */}
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30">
                         {project.category}
                       </span>
                       {project.client && (
@@ -220,7 +220,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                       )}
                     </div>
 
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 font-display group-hover:text-emerald-300 transition-colors">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 font-display group-hover:text-pink-300 transition-colors">
                       {project.title}
                     </h2>
 
@@ -239,7 +239,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                         <div className="flex items-center gap-1.5">
                           <div className="w-2 h-2 rounded-full bg-rose-500/70" />
                           <div className="w-2 h-2 rounded-full bg-amber-500/70" />
-                          <div className="w-2 h-2 rounded-full bg-emerald-500/70" />
+                          <div className="w-2 h-2 rounded-full bg-pink-500/70" />
                         </div>
                         <span className="text-[10px] font-mono text-zinc-500">
                           {project.link.replace(/^https?:\/\//, '')}
@@ -268,7 +268,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
 
                     {/* Metric & Tags */}
                     {project.metric && (
-                      <div className="text-xs font-mono text-emerald-400 mb-4 flex items-center gap-2">
+                      <div className="text-xs font-mono text-pink-400 mb-4 flex items-center gap-2">
                         <ShieldCheck size={14} />
                         <span>Metric: {project.metric}</span>
                       </div>
@@ -299,7 +299,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs sm:text-sm font-bold btn-emerald-glow btn-shine transition-all flex items-center justify-center gap-2 cursor-pointer"
+                        className="py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-xs sm:text-sm font-bold btn-launchpad-glow btn-shine transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-purple-500/25"
                       >
                         <span>Live Site</span>
                         <ExternalLink size={14} />
@@ -318,7 +318,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
       <section className="py-24 border-y border-white/[0.08] bg-black/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+            <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
               Core Capabilities
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
@@ -333,7 +333,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             {SKILL_DOMAINS.map((domain, i) => (
               <div
                 key={i}
-                className="p-8 rounded-3xl bg-[#0e121a] border border-white/10 hover:border-emerald-500/30 transition-all"
+                className="p-8 rounded-3xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center">
@@ -343,7 +343,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                     <h3 className="text-lg font-bold text-white font-display">
                       {domain.name}
                     </h3>
-                    <div className="text-xs text-emerald-400 font-mono">
+                    <div className="text-xs text-pink-400 font-mono">
                       Production Certified
                     </div>
                   </div>
@@ -364,7 +364,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+            <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
               Testimonials
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
@@ -379,13 +379,13 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             {TESTIMONIALS.map((t) => (
               <div
                 key={t.id}
-                className="p-8 rounded-3xl bg-[#0e121a] border border-white/10 relative flex flex-col justify-between hover:border-emerald-500/30 transition-all"
+                className="p-8 rounded-3xl bg-[#0c0e20] border border-white/10 relative flex flex-col justify-between hover:border-purple-500/30 transition-all"
               >
-                <Quote size={32} className="text-emerald-500/20 absolute top-6 right-6" />
+                <Quote size={32} className="text-purple-500/20 absolute top-6 right-6" />
                 <div>
                   <div className="flex gap-1 mb-6">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} size={15} className="fill-emerald-400 text-emerald-400" />
+                      <Star key={i} size={15} className="fill-pink-400 text-pink-400" />
                     ))}
                   </div>
                   <p className="text-zinc-300 text-sm leading-relaxed mb-8 italic">
@@ -414,7 +414,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
       {/* Bottom CTA */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-emerald-950/60 via-[#0e131d] to-[#090A0F] border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-purple-950/60 via-[#0e1024] to-[#090A0F] border border-purple-500/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-2">
                 Have a platform to build?
@@ -426,7 +426,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
               <button
                 onClick={onGetStarted}
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm transition-all btn-emerald-glow btn-shine flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-sm transition-all btn-launchpad-glow btn-shine flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-lg shadow-purple-500/25"
               >
                 <span>Hire Studio</span>
                 <ArrowRight size={16} />
@@ -435,9 +435,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10 btn-glass-hover flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10 hover:border-pink-500/30 btn-glass-hover flex items-center justify-center gap-2 cursor-pointer"
               >
-                <MessageCircle size={16} className="text-emerald-400" />
+                <MessageCircle size={16} className="text-pink-400" />
                 <span>WhatsApp Hotline</span>
               </a>
             </div>

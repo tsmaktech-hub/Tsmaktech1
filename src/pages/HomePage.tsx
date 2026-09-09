@@ -125,7 +125,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
             <div>
-              <span className="text-[11px] font-mono font-bold tracking-widest text-emerald-400 uppercase mb-1.5 block">
+              <span className="text-[11px] font-mono font-bold tracking-widest text-pink-400 uppercase mb-1.5 block">
                 3D Interactive Gallery
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-white tracking-tight font-display">
@@ -136,7 +136,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             <div className="flex items-center gap-3">
               <button
                 onClick={() => onNavigate('portfolio')}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors group px-3 py-1.5 rounded-lg hover:bg-emerald-500/10 btn-glass-hover"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-pink-400 hover:text-pink-300 transition-colors group px-3 py-1.5 rounded-lg hover:bg-pink-500/10 btn-glass-hover cursor-pointer"
               >
                 <span>Full Portfolio Details</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -167,7 +167,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-[11px] font-mono font-bold tracking-widest text-emerald-400 uppercase mb-2 block">
+            <span className="text-[11px] font-mono font-bold tracking-widest text-pink-400 uppercase mb-2 block">
               Core Capabilities
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight font-display mb-3">
@@ -183,7 +183,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 onClick={() => setDualMode('studio')}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   dualMode === 'studio'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20 btn-shine'
+                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-md shadow-purple-500/20 btn-shine'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -193,7 +193,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 onClick={() => setDualMode('academy')}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   dualMode === 'academy'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20 btn-shine'
+                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-md shadow-purple-500/20 btn-shine'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -214,7 +214,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 className="grid md:grid-cols-3 gap-5"
               >
                 {/* Visual Card 1 */}
-                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group h-full">
+                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group h-full">
                   <div>
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
                       <img
@@ -223,7 +223,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-emerald-400 font-mono text-[9px] font-bold">
+                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-pink-400 font-mono text-[9px] font-bold">
                         Institutional
                       </div>
                     </div>
@@ -236,14 +236,14 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-emerald-400">
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-pink-400">
                     <span>PostgreSQL • ACID</span>
                     <CheckCircle2 size={13} />
                   </div>
                 </TiltCard>
 
                 {/* Visual Card 2 */}
-                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group h-full">
+                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group h-full">
                   <div>
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
                       <img
@@ -252,7 +252,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-amber-400 font-mono text-[9px] font-bold">
+                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-purple-400 font-mono text-[9px] font-bold">
                         AI & Vectors
                       </div>
                     </div>
@@ -265,14 +265,14 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-amber-400">
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-purple-400">
                     <span>Gemini API • Edge</span>
                     <CheckCircle2 size={13} />
                   </div>
                 </TiltCard>
 
                 {/* Visual Card 3 */}
-                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group h-full">
+                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group h-full">
                   <div>
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
                       <img
@@ -281,7 +281,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-teal-400 font-mono text-[9px] font-bold">
+                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-blue-400 font-mono text-[9px] font-bold">
                         Kinetic UI
                       </div>
                     </div>
@@ -294,7 +294,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-teal-400">
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-blue-400">
                     <span>2-4 Wk Delivery</span>
                     <CheckCircle2 size={13} />
                   </div>
@@ -310,7 +310,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 className="grid md:grid-cols-3 gap-5"
               >
                 {/* Academy Card 1 */}
-                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group h-full">
+                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group h-full">
                   <div>
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
                       <img
@@ -319,7 +319,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-emerald-400 font-mono text-[9px] font-bold">
+                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-pink-400 font-mono text-[9px] font-bold">
                         Production Stack
                       </div>
                     </div>
@@ -332,13 +332,13 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-white/5 text-[11px] text-emerald-400 font-mono">
+                  <div className="pt-3 border-t border-white/5 text-[11px] text-pink-400 font-mono">
                     Based on live client contracts
                   </div>
                 </TiltCard>
 
                 {/* Academy Card 2 */}
-                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group h-full">
+                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group h-full">
                   <div>
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
                       <img
@@ -347,7 +347,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-teal-400 font-mono text-[9px] font-bold">
+                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-blue-400 font-mono text-[9px] font-bold">
                         Live Community
                       </div>
                     </div>
@@ -364,7 +364,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                     href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pt-3 border-t border-white/5 text-[11px] text-emerald-400 font-bold flex items-center justify-between hover:underline"
+                    className="pt-3 border-t border-white/5 text-[11px] text-purple-400 font-bold flex items-center justify-between hover:underline"
                   >
                     <span>Join 500+ Builders</span>
                     <ArrowRight size={12} />
@@ -372,7 +372,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 </TiltCard>
 
                 {/* Academy Card 3 */}
-                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group h-full">
+                <TiltCard className="p-4 sm:p-5 rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group h-full">
                   <div>
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
                       <img
@@ -381,7 +381,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-indigo-400 font-mono text-[9px] font-bold">
+                      <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-purple-400 font-mono text-[9px] font-bold">
                         Career Output
                       </div>
                     </div>
@@ -416,7 +416,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             {/* Left Column */}
             <div className="lg:col-span-6 space-y-4 text-left">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-pink-400 uppercase tracking-wider">
                 <Sparkles size={13} />
                 <span>AI Architecture Pathfinder</span>
               </div>
@@ -431,7 +431,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                   <button
                     key={q}
                     onClick={() => handleAiPathfinder(q)}
-                    className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-white/[0.04] hover:bg-white/[0.1] text-zinc-300 border border-white/10 transition-all text-left truncate max-w-full btn-glass-hover cursor-pointer"
+                    className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-white/[0.04] hover:bg-white/[0.1] text-zinc-300 border border-white/10 hover:border-pink-500/30 transition-all text-left truncate max-w-full btn-glass-hover cursor-pointer"
                   >
                     + {q}
                   </button>
@@ -439,7 +439,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
               </div>
 
               {/* Input Form */}
-              <div className="p-1.5 rounded-xl bg-[#0c1017] border border-white/15 flex flex-col sm:flex-row gap-2 shadow-lg">
+              <div className="p-1.5 rounded-xl bg-[#0c0e20] border border-purple-500/25 flex flex-col sm:flex-row gap-2 shadow-lg">
                 <input
                   type="text"
                   value={searchQuery}
@@ -451,7 +451,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 <button
                   onClick={() => handleAiPathfinder()}
                   disabled={isAiLoading}
-                  className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition-all disabled:opacity-50 whitespace-nowrap flex items-center justify-center gap-1.5 active:scale-95 btn-emerald-glow btn-shine cursor-pointer"
+                  className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-xs transition-all disabled:opacity-50 whitespace-nowrap flex items-center justify-center gap-1.5 active:scale-95 btn-launchpad-glow btn-shine cursor-pointer shadow-md shadow-purple-500/25"
                 >
                   {isAiLoading ? (
                     <span>Synthesizing...</span>
@@ -471,10 +471,10 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="p-5 rounded-2xl bg-[#0c1017] border border-emerald-500/30 text-left relative shadow-xl"
+                  className="p-5 rounded-2xl bg-[#0c0e20] border border-purple-500/30 text-left relative shadow-xl"
                 >
                   <div className="flex items-center justify-between pb-2.5 border-b border-white/10 mb-2.5">
-                    <span className="text-xs font-mono text-emerald-400 flex items-center gap-2">
+                    <span className="text-xs font-mono text-pink-400 flex items-center gap-2">
                       <Terminal size={13} />
                       <span>Synthesized Spec</span>
                     </span>
@@ -495,7 +495,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                     <span className="text-xs text-zinc-500 font-mono">Ready to execute?</span>
                     <button
                       onClick={() => onNavigate('get-started')}
-                      className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+                      className="text-xs font-bold text-purple-400 hover:text-pink-300 flex items-center gap-1"
                     >
                       <span>Engage Studio</span>
                       <ArrowRight size={13} />
@@ -522,7 +522,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-[11px] font-mono font-bold tracking-widest text-emerald-400 uppercase mb-1.5 block">
+              <span className="text-[11px] font-mono font-bold tracking-widest text-pink-400 uppercase mb-1.5 block">
                 Open Access
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight font-display">
@@ -533,7 +533,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
               href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors px-3.5 py-2 rounded-xl bg-white/[0.03] border border-white/10 btn-glass-hover"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-pink-400 hover:text-pink-300 transition-colors px-3.5 py-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-pink-500/30 btn-glass-hover"
             >
               <MessageCircle size={15} />
               <span>Join WhatsApp Group for Live Coding</span>
@@ -545,7 +545,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
               <TiltCard
                 key={tutorial.id}
                 tiltAngle={6}
-                className="rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/40 transition-all p-4 flex flex-col justify-between group h-full cursor-pointer"
+                className="rounded-2xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/40 transition-all p-4 flex flex-col justify-between group h-full cursor-pointer"
                 onClick={() => onNavigate('get-started')}
               >
                 <div>
@@ -556,12 +556,12 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-emerald-400 font-mono text-[9px] font-bold">
+                    <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-pink-400 font-mono text-[9px] font-bold">
                       {tutorial.category}
                     </div>
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-emerald-500 text-zinc-950 flex items-center justify-center shadow-lg">
-                        <Play size={16} className="fill-zinc-950 ml-0.5" />
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white flex items-center justify-center shadow-lg">
+                        <Play size={16} className="fill-white ml-0.5" />
                       </div>
                     </div>
                   </div>
@@ -569,10 +569,10 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                   <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 font-mono mb-1.5">
                     <span>{tutorial.difficulty}</span>
                     <span>•</span>
-                    <span className="text-emerald-400">{tutorial.duration}</span>
+                    <span className="text-pink-400">{tutorial.duration}</span>
                   </div>
 
-                  <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors font-display">
+                  <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-pink-300 transition-colors font-display">
                     {tutorial.title}
                   </h3>
 
@@ -581,7 +581,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                   </p>
                 </div>
 
-                <div className="pt-3 mt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-emerald-400">
+                <div className="pt-3 mt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-pink-400">
                   <span>Start Learning</span>
                   <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -600,9 +600,9 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
         className="py-14 sm:py-16 bg-gradient-to-b from-transparent to-[#07080c] border-t border-white/[0.06] relative overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-[#0d121b] to-[#080a0f] border border-emerald-500/25 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-purple-950/40 via-[#0e1024] to-[#0a0c18] border border-purple-500/25 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
             <div className="space-y-1.5 text-center md:text-left">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-400">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-pink-400">
                 Direct Hotline
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-white font-display">
@@ -618,7 +618,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'd%20like%20to%20discuss%20a%20new%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-xs flex items-center justify-center gap-2 btn-launchpad-glow btn-shine active:scale-95 transition-all cursor-pointer shadow-lg shadow-purple-500/25"
               >
                 <MessageCircle size={15} />
                 <span>WhatsApp: +234 708 744 5219</span>
@@ -626,7 +626,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
 
               <button
                 onClick={() => onNavigate('get-started')}
-                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 btn-glass-hover active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 hover:border-pink-500/30 btn-glass-hover active:scale-95 cursor-pointer"
               >
                 <span>Request Project Scope</span>
                 <ArrowRight size={14} />

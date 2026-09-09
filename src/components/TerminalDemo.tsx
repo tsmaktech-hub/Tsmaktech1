@@ -72,10 +72,10 @@ export default function TerminalDemo() {
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-rose-500/80" />
             <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-            <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <div className="w-3 h-3 rounded-full bg-pink-500/80" />
           </div>
           <div className="flex items-center gap-2 text-xs text-zinc-400 pl-2">
-            <TerminalIcon size={14} className="text-emerald-400" />
+            <TerminalIcon size={14} className="text-pink-400" />
             <span>tsmak-terminal ~ zsh</span>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function TerminalDemo() {
               onClick={() => setActiveTab(i)}
               className={`px-3 py-1 rounded-lg text-xs transition-all whitespace-nowrap ${
                 activeTab === i
-                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm'
+                  ? 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-pink-200 border border-purple-500/40 shadow-sm font-semibold'
                   : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border border-transparent'
               }`}
             >
@@ -102,7 +102,7 @@ export default function TerminalDemo() {
           className="text-xs text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors"
           title="Copy output"
         >
-          {copied ? <Check size={13} className="text-emerald-400" /> : <Copy size={13} />}
+          {copied ? <Check size={13} className="text-pink-400" /> : <Copy size={13} />}
           <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
         </button>
       </div>
@@ -111,12 +111,12 @@ export default function TerminalDemo() {
       <div className="p-5 sm:p-7 space-y-3 min-h-[220px] bg-[#090b12] text-xs sm:text-sm">
         {/* Command prompt */}
         <div className="flex items-center gap-2 text-zinc-400">
-          <span className="text-emerald-400 font-bold">tsmak@studio:~$</span>
+          <span className="text-pink-400 font-bold">tsmak@studio:~$</span>
           <span className="text-white font-semibold">{currentPreset.cmd}</span>
           <motion.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
-            className="w-2 h-4 bg-emerald-400 inline-block align-middle"
+            className="w-2 h-4 bg-pink-400 inline-block align-middle"
           />
         </div>
 
@@ -133,11 +133,11 @@ export default function TerminalDemo() {
               key={idx}
               className={`leading-relaxed ${
                 line.startsWith('●') || line.startsWith('⚡') || line.startsWith('🚀') || line.startsWith('💼')
-                  ? 'text-emerald-300 font-bold'
+                  ? 'text-purple-300 font-bold'
                   : line.includes('✔')
-                  ? 'text-teal-300'
+                  ? 'text-pink-300'
                   : line.includes('✨')
-                  ? 'text-amber-300 font-semibold'
+                  ? 'text-blue-300 font-semibold'
                   : 'text-zinc-400'
               }`}
             >

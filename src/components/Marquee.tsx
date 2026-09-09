@@ -3,13 +3,13 @@ import { Sparkles, Terminal, Cpu, Database, Globe, Smartphone, ShieldCheck, Zap 
 import { TECH_STACK } from '../constants';
 
 const ICONS = [
-  <Globe key="globe" size={14} className="text-emerald-400" />,
-  <Terminal key="terminal" size={14} className="text-teal-400" />,
-  <Cpu key="cpu" size={14} className="text-indigo-400" />,
-  <Database key="database" size={14} className="text-sky-400" />,
-  <Smartphone key="phone" size={14} className="text-amber-400" />,
-  <ShieldCheck key="shield" size={14} className="text-emerald-400" />,
-  <Zap key="zap" size={14} className="text-rose-400" />,
+  <Globe key="globe" size={14} className="text-purple-400" />,
+  <Terminal key="terminal" size={14} className="text-pink-400" />,
+  <Cpu key="cpu" size={14} className="text-blue-400" />,
+  <Database key="database" size={14} className="text-purple-300" />,
+  <Smartphone key="phone" size={14} className="text-pink-400" />,
+  <ShieldCheck key="shield" size={14} className="text-blue-400" />,
+  <Zap key="zap" size={14} className="text-pink-500" />,
   <Sparkles key="sparkles" size={14} className="text-purple-400" />,
 ];
 
@@ -26,7 +26,7 @@ export default function Marquee() {
         {items.map((tech, idx) => (
           <div
             key={`${tech.name}-${idx}`}
-            className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.07] hover:border-emerald-500/40 transition-all duration-300 group cursor-default whitespace-nowrap"
+            className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.07] hover:border-purple-500/40 transition-all duration-300 group cursor-default whitespace-nowrap"
           >
             <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/[0.05] group-hover:scale-110 transition-transform">
               {ICONS[idx % ICONS.length]}

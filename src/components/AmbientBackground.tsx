@@ -40,43 +40,43 @@ export default function AmbientBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
       {/* Deep baseline background */}
-      <div className="absolute inset-0 bg-[#090A0F]" />
+      <div className="absolute inset-0 bg-[#080a12]" />
 
       {/* Lightweight GPU-accelerated cursor glow (pure radial gradient without expensive blur filters) */}
       <div
         ref={followerRef}
-        className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-40 will-change-transform"
+        className="absolute top-0 left-0 w-[550px] h-[550px] rounded-full pointer-events-none opacity-40 will-change-transform"
         style={{
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, rgba(14, 165, 233, 0.08) 35%, transparent 70%)',
-          transform: 'translate3d(-500px, -500px, 0)',
+          background: 'radial-gradient(circle, rgba(138, 43, 226, 0.14) 0%, rgba(70, 130, 180, 0.1) 35%, rgba(14, 21, 37, 0.04) 60%, transparent 75%)',
+          transform: 'translate3d(-550px, -550px, 0)',
         }}
       />
 
-      {/* Static ambient depth orbs using pure CSS gradients (0% blur overhead) */}
+      {/* Static ambient depth orbs with gentle, elegant steel-blue & blue-violet lighting */}
       <div
-        className="absolute -top-32 -left-32 w-[500px] h-[500px] pointer-events-none opacity-60"
+        className="absolute -top-32 -left-32 w-[550px] h-[550px] pointer-events-none opacity-45"
         style={{
-          background: 'radial-gradient(circle, rgba(5, 150, 105, 0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(138, 43, 226, 0.14) 0%, rgba(70, 130, 180, 0.07) 40%, transparent 70%)',
         }}
       />
       <div
-        className="absolute top-1/3 -right-32 w-[550px] h-[550px] pointer-events-none opacity-50"
+        className="absolute top-1/3 -right-32 w-[580px] h-[580px] pointer-events-none opacity-40"
         style={{
-          background: 'radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(70, 130, 180, 0.14) 0%, rgba(124, 58, 237, 0.08) 40%, transparent 70%)',
         }}
       />
       <div
-        className="absolute -bottom-32 left-1/4 w-[600px] h-[600px] pointer-events-none opacity-45"
+        className="absolute -bottom-32 left-1/4 w-[650px] h-[650px] pointer-events-none opacity-35"
         style={{
-          background: 'radial-gradient(circle, rgba(20, 184, 166, 0.09) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(70, 130, 180, 0.08) 45%, transparent 70%)',
         }}
       />
 
       {/* Fine tech grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_60%,transparent_100%)]" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-25 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_60%,transparent_100%)]" />
 
       {/* Soft vignette border */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,#090A0F_95%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,#080a12_95%)]" />
     </div>
   );
 }

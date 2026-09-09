@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 font-sans selection:bg-emerald-500/30 selection:text-emerald-400">
+    <div className="min-h-screen bg-zinc-950 font-sans selection:bg-pink-500/30 selection:text-pink-400">
       {/* Navigation */}
       <nav className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
@@ -43,25 +43,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex justify-between items-center">
             <Link to="/" className="flex items-center gap-3 group">
               <TsmakLogo />
-              <span className="text-xl font-bold tracking-tight text-white">Tsmak <span className="text-emerald-400">Tech</span></span>
+              <span className="text-xl font-bold tracking-tight text-white">Tsmak <span className="text-pink-400">Tech</span></span>
             </Link>
             
             <div className="hidden md:flex items-center gap-8">
               <Link to="/" className={cn(
                 "text-sm font-medium transition-colors",
-                location.pathname === "/" ? "text-emerald-400" : "text-zinc-400 hover:text-emerald-400"
+                location.pathname === "/" ? "text-pink-400" : "text-zinc-400 hover:text-pink-400"
               )}>Home</Link>
               
               <Link to="/portfolio" className={cn(
                 "text-sm font-medium transition-colors",
-                location.pathname === "/portfolio" ? "text-emerald-400" : "text-zinc-400 hover:text-emerald-400"
+                location.pathname === "/portfolio" ? "text-pink-400" : "text-zinc-400 hover:text-pink-400"
               )}>Portfolio</Link>
               
               {/* Services Dropdown */}
               <div className="relative services-dropdown">
                 <button 
                   onClick={() => setIsServicesOpen(!isServicesOpen)}
-                  className="text-sm font-medium text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1 py-1"
+                  className="text-sm font-medium text-zinc-400 hover:text-pink-400 transition-colors flex items-center gap-1 py-1"
                 >
                   Services <ChevronDown size={14} className={cn("transition-transform duration-300", isServicesOpen && "rotate-180")} />
                 </button>
@@ -76,14 +76,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       <Link 
                         to="/#professional-services" 
                         onClick={() => setIsServicesOpen(false)}
-                        className="block px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 transition-colors"
+                        className="block px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-pink-400 transition-colors"
                       >
                         Hire Us
                       </Link>
                       <Link 
                         to="/#tutorials" 
                         onClick={() => setIsServicesOpen(false)}
-                        className="block px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 transition-colors"
+                        className="block px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-pink-400 transition-colors"
                       >
                         Learn Development
                       </Link>
@@ -92,10 +92,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </AnimatePresence>
               </div>
 
-              <Link to="/portfolio#about" className="text-sm font-medium text-zinc-400 hover:text-emerald-400 transition-colors">About Us</Link>
+              <Link to="/portfolio#about" className="text-sm font-medium text-zinc-400 hover:text-pink-400 transition-colors">About Us</Link>
 
-              <a href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-400 hover:text-emerald-400 transition-colors">Community</a>
-              <button className="bg-white text-zinc-950 px-5 py-2 rounded-full text-sm font-medium hover:bg-zinc-200 transition-colors">
+              <a href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-400 hover:text-pink-400 transition-colors">Community</a>
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity">
                 Get Started
               </button>
             </div>
@@ -119,8 +119,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             className="md:hidden fixed top-20 right-4 w-72 z-[60] bg-black/95 backdrop-blur-xl px-6 py-8 rounded-3xl border border-white/10 shadow-2xl space-y-6"
           >
             <div className="flex flex-col gap-6">
-              <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-xl font-bold text-emerald-400">Home</Link>
-              <Link to="/portfolio" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold text-white hover:text-emerald-400 transition-colors">Portfolio</Link>
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-xl font-bold text-pink-400">Home</Link>
+              <Link to="/portfolio" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold text-white hover:text-pink-400 transition-colors">Portfolio</Link>
               
               <div className="space-y-4 services-dropdown">
                 <button 
@@ -138,21 +138,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       exit={{ height: 0, opacity: 0 }}
                       className="pl-4 flex flex-col gap-4 overflow-hidden"
                     >
-                      <Link to="/#professional-services" onClick={() => setIsMenuOpen(false)} className="text-lg text-zinc-400 hover:text-emerald-400 transition-colors">Hire Us</Link>
-                      <Link to="/#tutorials" onClick={() => setIsMenuOpen(false)} className="text-lg text-zinc-400 hover:text-emerald-400 transition-colors">Learn Development</Link>
+                      <Link to="/#professional-services" onClick={() => setIsMenuOpen(false)} className="text-lg text-zinc-400 hover:text-pink-400 transition-colors">Hire Us</Link>
+                      <Link to="/#tutorials" onClick={() => setIsMenuOpen(false)} className="text-lg text-zinc-400 hover:text-pink-400 transition-colors">Learn Development</Link>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              <Link to="/portfolio#about" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold text-white hover:text-emerald-400 transition-colors">About Us</Link>
+              <Link to="/portfolio#about" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold text-white hover:text-pink-400 transition-colors">About Us</Link>
 
               <a 
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 onClick={() => setIsMenuOpen(false)} 
-                className="text-xl font-semibold text-white hover:text-emerald-400 transition-colors"
+                className="text-xl font-semibold text-white hover:text-pink-400 transition-colors"
               >
                 Community
               </a>
@@ -175,19 +175,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-8">
                 <TsmakLogo />
-                <span className="text-2xl font-bold tracking-tight text-zinc-900">Tsmak <span className="text-emerald-600">Tech</span></span>
+                <span className="text-2xl font-bold tracking-tight text-zinc-900">Tsmak <span className="text-purple-600">Tech</span></span>
               </div>
               <p className="text-zinc-500 text-lg max-w-md mb-8 leading-relaxed">
                 Empowering the next generation of developers and businesses through world-class education and professional digital solutions.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-emerald-600 hover:text-white transition-all">
+                <a href="#" className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-purple-600 hover:text-white transition-all">
                   <Github size={20} />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-emerald-600 hover:text-white transition-all">
+                <a href="#" className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-purple-600 hover:text-white transition-all">
                   <Twitter size={20} />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-emerald-600 hover:text-white transition-all">
+                <a href="#" className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-purple-600 hover:text-white transition-all">
                   <Linkedin size={20} />
                 </a>
               </div>
@@ -196,20 +196,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-bold text-zinc-900 mb-6 uppercase text-xs tracking-widest">Platform</h4>
               <ul className="space-y-4">
-                <li><Link to="/" className="text-zinc-500 hover:text-emerald-600 transition-colors">Home</Link></li>
-                <li><Link to="/portfolio" className="text-zinc-500 hover:text-emerald-600 transition-colors">Portfolio</Link></li>
-                <li><Link to="/portfolio#about" className="text-zinc-500 hover:text-emerald-600 transition-colors">About Us</Link></li>
-                <li><Link to="/#professional-services" className="text-zinc-500 hover:text-emerald-600 transition-colors">Services</Link></li>
+                <li><Link to="/" className="text-zinc-500 hover:text-purple-600 transition-colors">Home</Link></li>
+                <li><Link to="/portfolio" className="text-zinc-500 hover:text-purple-600 transition-colors">Portfolio</Link></li>
+                <li><Link to="/portfolio#about" className="text-zinc-500 hover:text-purple-600 transition-colors">About Us</Link></li>
+                <li><Link to="/#professional-services" className="text-zinc-500 hover:text-purple-600 transition-colors">Services</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-bold text-zinc-900 mb-6 uppercase text-xs tracking-widest">Support</h4>
               <ul className="space-y-4">
-                <li><a href="#" className="text-zinc-500 hover:text-emerald-600 transition-colors">Help Center</a></li>
-                <li><a href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-emerald-600 transition-colors">Community</a></li>
-                <li><a href="#" className="text-zinc-500 hover:text-emerald-600 transition-colors">Contact</a></li>
-                <li><a href="#" className="text-zinc-500 hover:text-emerald-600 transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="text-zinc-500 hover:text-purple-600 transition-colors">Help Center</a></li>
+                <li><a href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-purple-600 transition-colors">Community</a></li>
+                <li><a href="#" className="text-zinc-500 hover:text-purple-600 transition-colors">Contact</a></li>
+                <li><a href="#" className="text-zinc-500 hover:text-purple-600 transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
           </div>

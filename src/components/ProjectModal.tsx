@@ -44,20 +44,20 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#0e121a] border border-white/10 shadow-2xl p-6 sm:p-8 md:p-10 text-white z-10"
+          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#0c0e20] border border-purple-500/20 shadow-2xl p-6 sm:p-8 md:p-10 text-white z-10"
         >
           {/* Close button */}
           <button
             onClick={onClose}
             aria-label="Close project modal"
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             <X size={20} />
           </button>
 
           {/* Header Metadata */}
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/15 text-pink-400 border border-purple-500/30">
               <Sparkles size={12} />
               {project.category || 'Case Study'}
             </span>
@@ -88,7 +88,7 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-pink-500/80" />
               </div>
               <div className="text-[11px] font-mono text-zinc-500 truncate max-w-xs px-2 py-0.5 rounded bg-black/40 border border-white/5">
                 {project.link.replace(/^https?:\/\//, '')}
@@ -114,7 +114,7 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             {project.metric && (
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08]">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-400 mb-1">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-pink-400 mb-1">
                   <ShieldCheck size={14} />
                   Performance Benchmark
                 </div>
@@ -126,7 +126,7 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
 
             {project.architecture && (
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08]">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-indigo-400 mb-1">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-400 mb-1">
                   <Layers size={14} />
                   Core Architecture
                 </div>
@@ -146,7 +146,7 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
               <ul className="space-y-2.5">
                 {project.highlights.map((h, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-zinc-300">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-2 shrink-0" />
                     <span>{h}</span>
                   </li>
                 ))}
@@ -172,7 +172,7 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-all shadow-lg shadow-emerald-600/20 active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-semibold transition-all shadow-lg shadow-purple-500/25 active:scale-95 btn-launchpad-glow btn-shine cursor-pointer"
             >
               Open Live Project
               <ExternalLink size={16} />
@@ -183,7 +183,7 @@ export default function ProjectModal({ project, onClose, onGetStarted }: Project
                 onClose();
                 onGetStarted();
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold border border-white/10 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold border border-white/10 hover:border-pink-500/30 transition-all cursor-pointer"
             >
               Build Something Similar
               <ArrowRight size={16} />

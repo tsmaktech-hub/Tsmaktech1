@@ -57,13 +57,13 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
       <div 
         className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none -z-10 opacity-70"
         style={{
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(14, 165, 233, 0.05) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(138, 43, 226, 0.12) 0%, rgba(70, 130, 180, 0.07) 40%, transparent 70%)',
         }}
       />
       <div 
-        className="absolute top-1/3 right-10 w-72 h-72 pointer-events-none -z-10 opacity-60"
+        className="absolute top-1/3 right-10 w-72 h-72 pointer-events-none -z-10 opacity-50"
         style={{
-          background: 'radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(70, 130, 180, 0.08) 0%, transparent 70%)',
         }}
       />
 
@@ -76,14 +76,14 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 mb-3.5 shadow-sm w-fit"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-violet-500/20 text-[11px] font-mono text-zinc-300 mb-3.5 shadow-sm w-fit"
             >
-              <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-emerald-500/20 text-emerald-400">
-                <Flame size={11} className="text-emerald-400 fill-emerald-400" />
+              <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-violet-500/20 text-sky-400">
+                <Flame size={11} className="text-sky-400 fill-sky-400" />
               </span>
               <span className="font-semibold text-white">Tsmak Tech Studio</span>
               <span className="text-zinc-600">•</span>
-              <span className="text-emerald-400 font-mono">Bespoke Systems</span>
+              <span className="text-sky-400 font-mono">Bespoke Systems</span>
             </motion.div>
 
             {/* Punchy Headline */}
@@ -94,7 +94,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               className="text-2xl sm:text-3xl md:text-3xl lg:text-[40px] xl:text-[44px] font-extrabold text-white tracking-tight leading-[1.12] mb-3 font-display"
             >
               Web Systems{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-violet-400">
                 Engineered to Dominate.
               </span>
             </motion.h1>
@@ -118,7 +118,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
             >
               <button
                 onClick={() => onNavigate('get-started')}
-                className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 btn-emerald-glow btn-shine group cursor-pointer shadow-lg shadow-emerald-500/20 active:scale-95 transition-all"
+                className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-violet-600 to-sky-600 hover:from-violet-500 hover:to-sky-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 btn-launchpad-glow btn-shine group cursor-pointer shadow-lg shadow-violet-950/40 active:scale-95 transition-all"
               >
                 <span>Hire Us for Your Project</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -128,9 +128,9 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                 href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20interested%20in%20a%20website%2Fsystem%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-xs sm:text-sm border border-white/10 flex items-center justify-center gap-2 btn-glass-hover btn-shine cursor-pointer transition-all active:scale-95"
+                className="px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-xs sm:text-sm border border-white/10 hover:border-sky-500/30 flex items-center justify-center gap-2 btn-glass-hover btn-shine cursor-pointer transition-all active:scale-95"
               >
-                <MessageCircle size={14} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+                <MessageCircle size={14} className="text-sky-400 group-hover:scale-110 transition-transform" />
                 <span>Direct WhatsApp</span>
               </a>
             </motion.div>
@@ -140,15 +140,15 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               {/* Trust Indicators in a clean single row */}
               <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-[11px] font-mono text-zinc-400">
                 <div className="flex items-center gap-1.5">
-                  <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
+                  <ShieldCheck size={13} className="text-violet-400 shrink-0" />
                   <span>99.9% Uptime SLA</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
+                  <CheckCircle2 size={13} className="text-sky-400 shrink-0" />
                   <span>Zero-Template Code</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Zap size={13} className="text-amber-400 shrink-0" />
+                  <Zap size={13} className="text-indigo-400 shrink-0" />
                   <span>Founder Sprint</span>
                 </div>
               </div>
@@ -162,13 +162,13 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                     onClick={() => setActivePreview(idx)}
                     className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                       activePreview === idx
-                        ? 'bg-emerald-500 text-zinc-950 font-bold shadow-md shadow-emerald-500/25 scale-[1.02]'
+                        ? 'bg-gradient-to-r from-violet-600 to-sky-600 text-white font-bold shadow-md shadow-violet-950/30 scale-[1.02]'
                         : 'bg-white/[0.04] text-zinc-400 hover:text-white border border-white/10 hover:bg-white/[0.08]'
                     }`}
                   >
                     <span
                       className={`w-1.5 h-1.5 rounded-full ${
-                        activePreview === idx ? 'bg-zinc-950 animate-pulse' : 'bg-emerald-400'
+                        activePreview === idx ? 'bg-white animate-pulse' : 'bg-sky-400'
                       }`}
                     />
                     <span>{item.label}</span>
@@ -188,27 +188,27 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               className="relative group w-full"
             >
               {/* Laser-border animated line around the container */}
-              <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-emerald-500/30 via-amber-500/30 to-teal-500/30 opacity-60 blur-sm group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-violet-500/25 via-indigo-500/25 to-sky-500/25 opacity-70 blur-sm group-hover:opacity-100 transition-opacity" />
 
               <TiltCard
                 tiltAngle={4}
-                glareColor="rgba(52, 211, 153, 0.15)"
-                className="rounded-3xl bg-[#0c1017] border border-white/20 p-2.5 sm:p-3.5 lg:p-4 shadow-2xl backdrop-blur-xl"
+                glareColor="rgba(70, 130, 180, 0.12)"
+                className="rounded-3xl bg-[#0b0e1b] border border-violet-500/20 p-2.5 sm:p-3.5 lg:p-4 shadow-2xl backdrop-blur-xl"
               >
                 {/* macOS Browser Header */}
                 <div className="flex items-center justify-between px-2 py-1.5 border-b border-white/10 mb-2">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-rose-500/90" />
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-sky-400/90" />
                     <div className="flex items-center gap-1.5 ml-2 px-2 py-0.5 rounded-md bg-black/50 border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 truncate max-w-[150px] sm:max-w-none">
-                      <span className="text-emerald-400">https://</span>
+                      <span className="text-sky-400">https://</span>
                       <span>tsmak.tech/systems/{preview.id}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-1.5">
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-mono font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-violet-500/15 text-violet-300 border border-violet-500/25 text-[10px] font-mono font-bold">
                       {preview.tag}
                     </span>
                   </div>
@@ -229,7 +229,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                     transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                     className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/20 text-white text-[10px] sm:text-[11px] font-mono font-semibold flex items-center gap-1.5 shadow-xl"
                   >
-                    <Flame size={11} className="text-orange-400 fill-orange-400" />
+                    <Flame size={11} className="text-sky-400 fill-sky-400" />
                     <span>Bespoke Code</span>
                   </motion.div>
 
@@ -237,7 +237,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                   <motion.div
                     animate={{ y: [0, 4, 0] }}
                     transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                    className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-emerald-500 text-zinc-950 text-[10px] sm:text-[11px] font-mono font-bold flex items-center gap-1.5 shadow-xl shadow-emerald-500/25"
+                    className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-gradient-to-r from-violet-600 to-sky-600 text-white text-[10px] sm:text-[11px] font-mono font-bold flex items-center gap-1.5 shadow-xl shadow-violet-950/40"
                   >
                     <Zap size={11} />
                     <span>{preview.metric}</span>
@@ -245,7 +245,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
 
                   {/* Floating Live Pill 3 (Bottom Left) */}
                   <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-zinc-300 text-[9px] sm:text-[10px] font-mono hidden sm:flex items-center gap-1.5 shadow-md">
-                    <Cpu size={11} className="text-emerald-400" />
+                    <Cpu size={11} className="text-sky-400" />
                     <span>{preview.feature}</span>
                   </div>
                 </div>

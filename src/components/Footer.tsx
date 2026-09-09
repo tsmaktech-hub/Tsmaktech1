@@ -16,15 +16,15 @@ export default function Footer({ onNavigate }: FooterProps) {
             <div className="flex items-center gap-3">
               <TsmakLogo size="sm" />
               <div className="text-xl font-bold tracking-tight text-white font-display">
-                Tsmak <span className="text-emerald-400">Tech</span>
+                Tsmak <span className="text-pink-400">Tech</span>
               </div>
             </div>
             <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
               An engineering studio & academy. Architecting mission-critical platforms, attendance ecosystems, and custom AI solutions while mentoring high-caliber developers.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
                 <span>All systems operational</span>
               </div>
             </div>
@@ -39,7 +39,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => onNavigate('portfolio')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Selected Works & Case Studies
                 </button>
@@ -47,7 +47,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => onNavigate('home', 'professional-services')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Enterprise Engineering
                 </button>
@@ -55,7 +55,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => onNavigate('get-started')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Request a Project Quote
                 </button>
@@ -65,7 +65,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://tsmakislamicgpt.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors flex items-center gap-1 text-emerald-400"
+                  className="hover:text-pink-300 transition-colors flex items-center gap-1 text-pink-400"
                 >
                   <span>Tsmak-Islamic GPT</span>
                   <ArrowRight size={11} />
@@ -83,7 +83,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => onNavigate('home', 'tutorials')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Curriculum & Syllabi
                 </button>
@@ -95,14 +95,14 @@ export default function Footer({ onNavigate }: FooterProps) {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center gap-1"
                 >
-                  <MessageCircle size={12} className="text-emerald-400" />
+                  <MessageCircle size={12} className="text-purple-400" />
                   <span>WhatsApp Community</span>
                 </a>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('get-started')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   1-on-1 Code Mentorship
                 </button>
@@ -121,7 +121,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://wa.me/2347087445219"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors text-emerald-400 flex items-center gap-1"
+                  className="hover:text-pink-300 transition-colors text-pink-400 flex items-center gap-1"
                 >
                   <span>+234 708 744 5219</span>
                 </a>
@@ -149,13 +149,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex items-center gap-6">
             <button
               onClick={() => onNavigate('home')}
-              className="hover:text-zinc-300 transition-colors"
+              className="hover:text-zinc-300 transition-colors cursor-pointer"
             >
               Privacy & Integrity
             </button>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="hover:text-emerald-400 transition-colors"
+              className="hover:text-pink-400 transition-colors cursor-pointer"
             >
               Back to Top ↑
             </button>

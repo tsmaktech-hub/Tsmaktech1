@@ -41,7 +41,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090A0F] text-zinc-100 flex flex-col selection:bg-emerald-500/25 selection:text-emerald-300 relative">
+    <div className="min-h-screen bg-[#090A0F] text-zinc-100 flex flex-col selection:bg-sky-500/25 selection:text-sky-300 relative">
       {/* Dynamic Scroll Progress Bar fixed at top of screen */}
       <ScrollProgressBar />
 
@@ -124,11 +124,11 @@ export default function App() {
           href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20reaching%20out%20from%20your%20website."
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-emerald-500 text-zinc-950 btn-emerald-glow btn-shine flex items-center justify-center group cursor-pointer"
+          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-xl shadow-purple-500/30 btn-launchpad-glow btn-shine flex items-center justify-center group cursor-pointer"
           title="Direct WhatsApp Hotline with Founder"
           aria-label="Direct WhatsApp Hotline"
         >
-          <MessageCircle size={22} className="fill-zinc-950 group-hover:scale-110 transition-transform" />
+          <MessageCircle size={22} className="text-white group-hover:scale-110 transition-transform" />
           <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
             Founder Line
           </span>

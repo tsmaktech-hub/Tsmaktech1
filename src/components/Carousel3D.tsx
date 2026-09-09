@@ -157,21 +157,21 @@ export default function Carousel3D({
                   goToSlide(idx);
                 }
               }}
-              className="absolute w-[88%] sm:w-[440px] md:w-[480px] rounded-2xl bg-[#0c1017] border border-white/15 p-3 sm:p-4 shadow-xl group cursor-pointer transition-colors hover:border-emerald-500/50 gpu-accel"
+              className="absolute w-[88%] sm:w-[440px] md:w-[480px] rounded-2xl bg-[#0b0e1b] border border-white/10 p-3 sm:p-4 shadow-xl group cursor-pointer transition-colors hover:border-sky-500/40 gpu-accel"
             >
               {/* Browser Window Header */}
               <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3">
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-rose-500/80" />
                   <div className="w-2 h-2 rounded-full bg-amber-500/80" />
-                  <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
+                  <div className="w-2 h-2 rounded-full bg-sky-400/80" />
                   <span className="text-[10px] font-mono text-zinc-400 pl-2 truncate max-w-[180px]">
                     tsmak.tech/{project.id}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                  <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-violet-500/15 text-violet-300 border border-violet-500/25">
                     {project.category}
                   </span>
                 </div>
@@ -191,7 +191,7 @@ export default function Carousel3D({
 
                 {/* Metric Overlay Badge */}
                 <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center gap-1.5 shadow-md">
-                  <Sparkles size={11} className="text-emerald-400" />
+                  <Sparkles size={11} className="text-sky-400" />
                   <span>{project.metric}</span>
                 </div>
 
@@ -203,7 +203,7 @@ export default function Carousel3D({
                         e.stopPropagation();
                         onSelectProject(project);
                       }}
-                      className="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-zinc-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/30 active:scale-95 transition-all"
+                      className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-violet-600 to-sky-600 hover:from-violet-500 hover:to-sky-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-violet-950/40 active:scale-95 transition-all"
                     >
                       <Eye size={13} />
                       <span>Inspect</span>
@@ -242,7 +242,7 @@ export default function Carousel3D({
                     e.stopPropagation();
                     onSelectProject(project);
                   }}
-                  className="p-2 rounded-lg bg-white/[0.04] hover:bg-emerald-500 hover:text-zinc-950 text-zinc-300 border border-white/10 transition-all flex-shrink-0"
+                  className="p-2 rounded-lg bg-white/[0.04] hover:bg-gradient-to-r hover:from-violet-600 hover:to-sky-600 hover:text-white text-zinc-300 border border-white/10 transition-all flex-shrink-0"
                   title="View Details"
                 >
                   <ArrowRight size={14} />
@@ -260,7 +260,7 @@ export default function Carousel3D({
                   </span>
                 ))}
                 {project.tags.length > 3 && (
-                  <span className="px-1.5 py-0.5 rounded-md text-[9px] font-mono text-emerald-400 bg-emerald-500/10">
+                  <span className="px-1.5 py-0.5 rounded-md text-[9px] font-mono text-sky-400 bg-sky-500/10">
                     +{project.tags.length - 3}
                   </span>
                 )}

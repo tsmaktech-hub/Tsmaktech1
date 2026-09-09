@@ -20,27 +20,27 @@ export const TsmakLogo = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
       <motion.div 
         animate={{ rotate: 360 }}
         transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 rounded-full border border-dashed border-emerald-500/40"
+        className="absolute inset-0 rounded-full border border-dashed border-violet-500/35"
       />
       
       {/* Middle Breathing Glow */}
       <motion.div 
         animate={{ scale: [1, 1.06, 1] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-1 rounded-full border border-emerald-500/25 shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+        className="absolute inset-1 rounded-full border border-sky-500/30 shadow-[0_0_12px_rgba(70,130,180,0.25)]"
       />
 
       {/* Inner Core */}
-      <div className="absolute inset-1.5 rounded-full bg-[#0b0e17] flex items-center justify-center overflow-hidden border border-white/10 shadow-inner">
+      <div className="absolute inset-1.5 rounded-full bg-[#0b0e1b] flex items-center justify-center overflow-hidden border border-white/10 shadow-inner">
         <span className={`${fontSizes[size]} font-black text-white tracking-tighter flex items-center`}>
-          T<span className="text-emerald-400">S</span>
+          T<span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-violet-400">S</span>
         </span>
         
         {/* Subtle Scanning Ray */}
         <motion.div 
           animate={{ top: ['-100%', '200%'] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-emerald-400/20 to-transparent pointer-events-none"
+          className="absolute left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-sky-400/20 to-transparent pointer-events-none"
         />
       </div>
       
@@ -50,7 +50,7 @@ export const TsmakLogo = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_6px_#34d399] -top-0.5 left-1/2 -translate-x-1/2 absolute" />
+        <div className="w-1.5 h-1.5 bg-sky-400 rounded-full shadow-[0_0_8px_rgba(56,189,248,0.8)] -top-0.5 left-1/2 -translate-x-1/2 absolute" />
       </motion.div>
     </div>
   );
