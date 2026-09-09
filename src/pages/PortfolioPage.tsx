@@ -289,7 +289,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                     <div className="flex items-center gap-3 pt-4 border-t border-white/10">
                       <button
                         onClick={() => onSelectProject(project)}
-                        className="flex-grow py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs sm:text-sm font-semibold border border-white/10 transition-all flex items-center justify-center gap-2"
+                        className="flex-grow py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs sm:text-sm font-semibold border border-white/10 btn-glass-hover transition-all flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <span>Case Study Details</span>
                         <ArrowRight size={14} />
@@ -299,7 +299,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 active:scale-95"
+                        className="py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs sm:text-sm font-bold btn-emerald-glow btn-shine transition-all flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <span>Live Site</span>
                         <ExternalLink size={14} />
@@ -426,7 +426,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
               <button
                 onClick={onGetStarted}
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2 active:scale-95"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm transition-all btn-emerald-glow btn-shine flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
               >
                 <span>Hire Studio</span>
                 <ArrowRight size={16} />
@@ -435,7 +435,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10 btn-glass-hover flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageCircle size={16} className="text-emerald-400" />
                 <span>WhatsApp Hotline</span>

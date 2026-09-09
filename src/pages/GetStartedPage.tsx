@@ -229,7 +229,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                 {/* Action button */}
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-95 transition-all"
+                  className="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm flex items-center justify-center gap-2 btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
                 >
                   <Send size={16} />
                   <span>Send Requirements via WhatsApp Hotline</span>
@@ -272,7 +272,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   href={COMMUNITY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm shadow-lg shadow-emerald-500/20 active:scale-95 transition-all"
+                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
                 >
                   <MessageCircle size={18} />
                   <span>Join Official WhatsApp Community Group</span>

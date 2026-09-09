@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AmbientBackground from './components/AmbientBackground';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import ProjectModal from './components/ProjectModal';
 import HomePage from './pages/HomePage';
 import PortfolioPage from './pages/PortfolioPage';
@@ -41,7 +42,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#090A0F] text-zinc-100 flex flex-col selection:bg-emerald-500/25 selection:text-emerald-300 relative">
-      {/* Ambient Mouse Particle & Light Field */}
+      {/* Dynamic Scroll Progress Bar fixed at top of screen */}
+      <ScrollProgressBar />
+
+      {/* Ambient Mouse Particle & Light Field (Ultra-low GPU overhead) */}
       <AmbientBackground />
 
       {/* Navigation Header */}
@@ -53,16 +57,16 @@ export default function App() {
         />
       )}
 
-      {/* Page Routing with Fluid Cinematic Transitions */}
+      {/* Page Routing with Fluid Transitions */}
       <main className="flex-grow">
         <AnimatePresence mode="wait">
           {currentPage === 'home' && (
             <motion.div
               key="home"
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <HomePage
                 onNavigate={handleNavigate}
@@ -74,10 +78,10 @@ export default function App() {
           {currentPage === 'portfolio' && (
             <motion.div
               key="portfolio"
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <PortfolioPage
                 onBackToHome={() => handleNavigate('home')}
@@ -93,7 +97,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
               <GetStartedPage onBack={() => handleNavigate('home')} />
             </motion.div>
@@ -111,7 +115,7 @@ export default function App() {
         }}
       />
 
-      {/* Floating Quick WhatsApp Hotline Pill */}
+      {/* Floating Quick WhatsApp Hotline Pill with Smooth Lift & Glow */}
       {currentPage !== 'get-started' && (
         <motion.a
           initial={{ opacity: 0, scale: 0.8 }}
@@ -120,11 +124,11 @@ export default function App() {
           href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20reaching%20out%20from%20your%20website."
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-emerald-500 text-zinc-950 shadow-2xl shadow-emerald-500/30 hover:scale-110 active:scale-95 transition-all flex items-center justify-center group"
+          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-emerald-500 text-zinc-950 btn-emerald-glow btn-shine flex items-center justify-center group cursor-pointer"
           title="Direct WhatsApp Hotline with Founder"
           aria-label="Direct WhatsApp Hotline"
         >
-          <MessageCircle size={22} className="fill-zinc-950" />
+          <MessageCircle size={22} className="fill-zinc-950 group-hover:scale-110 transition-transform" />
           <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
             Founder Line
           </span>
@@ -138,3 +142,4 @@ export default function App() {
     </div>
   );
 }
+

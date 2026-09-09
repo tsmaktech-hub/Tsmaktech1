@@ -114,7 +114,14 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
       <Marquee />
 
       {/* 2. 3D Perspective Fan-out Carousel (Reel 3 & 4: LightswindUI 3D Portfolio Showcase) */}
-      <section id="portfolio-showcase" className="py-12 sm:py-16 relative bg-black/20 border-b border-white/[0.06]">
+      <motion.section 
+        id="portfolio-showcase" 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.55 }}
+        className="py-12 sm:py-16 relative bg-black/20 border-b border-white/[0.06]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
             <div>
@@ -129,7 +136,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             <div className="flex items-center gap-3">
               <button
                 onClick={() => onNavigate('portfolio')}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors group"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors group px-3 py-1.5 rounded-lg hover:bg-emerald-500/10 btn-glass-hover"
               >
                 <span>Full Portfolio Details</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -144,13 +151,20 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             onNavigateGetStarted={() => onNavigate('get-started')}
           />
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. Visual Execution Pipeline ("Get started 👇" - Reel 2 Effect) */}
       <VisualWorkflow onNavigateGetStarted={() => onNavigate('get-started')} />
 
       {/* 4. Visual Dual Discipline (Studio vs Academy) with Imagery */}
-      <section id="professional-services" className="py-14 sm:py-18 relative scroll-mt-20">
+      <motion.section 
+        id="professional-services" 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.55 }}
+        className="py-14 sm:py-18 relative scroll-mt-20"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-[11px] font-mono font-bold tracking-widest text-emerald-400 uppercase mb-2 block">
@@ -167,9 +181,9 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             <div className="inline-flex items-center p-1 rounded-full bg-white/[0.04] border border-white/10 mt-5">
               <button
                 onClick={() => setDualMode('studio')}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all ${
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   dualMode === 'studio'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20'
+                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20 btn-shine'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -177,13 +191,13 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
               </button>
               <button
                 onClick={() => setDualMode('academy')}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all ${
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   dualMode === 'academy'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20'
+                    ? 'bg-emerald-500 text-zinc-950 shadow-md shadow-emerald-500/20 btn-shine'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                For Engineers (The Academy)
+                For Learners (The Academy)
               </button>
             </div>
           </div>
@@ -388,10 +402,16 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             )}
           </AnimatePresence>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. AI Pathfinder Workbench */}
-      <section className="py-14 sm:py-16 bg-black/40 border-y border-white/[0.08] relative overflow-hidden">
+      <motion.section 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.55 }}
+        className="py-14 sm:py-16 bg-black/40 border-y border-white/[0.08] relative overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             {/* Left Column */}
@@ -411,7 +431,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                   <button
                     key={q}
                     onClick={() => handleAiPathfinder(q)}
-                    className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-white/[0.04] hover:bg-white/[0.09] text-zinc-300 border border-white/10 transition-all text-left truncate max-w-full"
+                    className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-white/[0.04] hover:bg-white/[0.1] text-zinc-300 border border-white/10 transition-all text-left truncate max-w-full btn-glass-hover cursor-pointer"
                   >
                     + {q}
                   </button>
@@ -431,7 +451,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 <button
                   onClick={() => handleAiPathfinder()}
                   disabled={isAiLoading}
-                  className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition-all disabled:opacity-50 whitespace-nowrap flex items-center justify-center gap-1.5 active:scale-95"
+                  className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition-all disabled:opacity-50 whitespace-nowrap flex items-center justify-center gap-1.5 active:scale-95 btn-emerald-glow btn-shine cursor-pointer"
                 >
                   {isAiLoading ? (
                     <span>Synthesizing...</span>
@@ -488,10 +508,17 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. Visual Knowledge & Free Weekly Tutorials with Rich Imagery */}
-      <section id="tutorials" className="py-14 sm:py-18 scroll-mt-20">
+      <motion.section 
+        id="tutorials" 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.55 }}
+        className="py-14 sm:py-18 scroll-mt-20"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
@@ -506,7 +533,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
               href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors px-3.5 py-2 rounded-xl bg-white/[0.03] border border-white/10 btn-glass-hover"
             >
               <MessageCircle size={15} />
               <span>Join WhatsApp Group for Live Coding</span>
@@ -562,10 +589,16 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 7. Bottom Action Channel */}
-      <section className="py-14 sm:py-16 bg-gradient-to-b from-transparent to-[#07080c] border-t border-white/[0.06] relative overflow-hidden">
+      <motion.section 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.55 }}
+        className="py-14 sm:py-16 bg-gradient-to-b from-transparent to-[#07080c] border-t border-white/[0.06] relative overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-[#0d121b] to-[#080a0f] border border-emerald-500/25 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
             <div className="space-y-1.5 text-center md:text-left">
@@ -585,7 +618,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
                 href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'd%20like%20to%20discuss%20a%20new%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-emerald-500/25 active:scale-95 transition-all"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
               >
                 <MessageCircle size={15} />
                 <span>WhatsApp: +234 708 744 5219</span>
@@ -593,7 +626,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
 
               <button
                 onClick={() => onNavigate('get-started')}
-                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 transition-all active:scale-95"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 btn-glass-hover active:scale-95 cursor-pointer"
               >
                 <span>Request Project Scope</span>
                 <ArrowRight size={14} />
@@ -601,7 +634,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

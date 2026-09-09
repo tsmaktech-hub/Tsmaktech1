@@ -147,15 +147,15 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
               href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 py-2 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/5 border border-white/10 flex items-center gap-1.5 transition-all"
+              className="px-3.5 py-2 rounded-full text-xs font-semibold text-zinc-300 hover:text-white border border-white/10 flex items-center gap-1.5 btn-glass-hover cursor-pointer"
             >
-              <MessageCircle size={14} className="text-emerald-400" />
+              <MessageCircle size={14} className="text-emerald-400 group-hover:scale-110 transition-transform" />
               <span>Community</span>
             </a>
 
             <button
               onClick={() => handleLinkClick('get-started')}
-              className="relative group px-5 py-2 rounded-full text-xs font-bold text-zinc-950 bg-white hover:bg-emerald-400 transition-all duration-300 shadow-md hover:shadow-emerald-500/25 flex items-center gap-1.5 active:scale-95"
+              className="relative group px-5 py-2 rounded-full text-xs font-bold text-zinc-950 bg-white hover:bg-emerald-400 transition-all duration-300 shadow-md hover:shadow-emerald-500/25 flex items-center gap-1.5 active:scale-95 btn-shine btn-emerald-glow cursor-pointer"
             >
               <span>Get Started</span>
               <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
@@ -166,7 +166,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={() => handleLinkClick('get-started')}
-              className="px-3 py-1.5 rounded-full text-xs font-bold text-zinc-950 bg-white hover:bg-emerald-400 transition-all"
+              className="px-3.5 py-1.5 rounded-full text-xs font-bold text-zinc-950 bg-emerald-400 btn-shine btn-emerald-glow"
             >
               Start
             </button>

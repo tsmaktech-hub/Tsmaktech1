@@ -53,9 +53,19 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
 
   return (
     <section className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background Radial Glow */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-500/12 via-teal-500/8 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-72 h-72 bg-amber-500/8 rounded-full blur-[100px] pointer-events-none -z-10" />
+      {/* Background Radial Glow using zero-cost CSS radial gradients */}
+      <div 
+        className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none -z-10 opacity-70"
+        style={{
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(14, 165, 233, 0.05) 40%, transparent 70%)',
+        }}
+      />
+      <div 
+        className="absolute top-1/3 right-10 w-72 h-72 pointer-events-none -z-10 opacity-60"
+        style={{
+          background: 'radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%)',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -66,7 +76,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-emerald-500/15 border border-amber-500/30 text-[11px] font-mono text-zinc-200 mb-5 backdrop-blur-md shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-emerald-500/15 border border-amber-500/30 text-[11px] font-mono text-zinc-200 mb-5 shadow-sm"
             >
               <span className="flex items-center justify-center w-4 h-4 rounded-full bg-orange-500/20 text-orange-400">
                 <Flame size={11} className="animate-pulse fill-orange-400" />
@@ -101,7 +111,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               Bespoke high-concurrency SaaS, institutional attendance suites, and domain AI platforms — built with zero templates and extreme visual craft.
             </motion.p>
 
-            {/* Direct Action Buttons */}
+            {/* Direct Action Buttons with Enhanced Hover Effects */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -110,7 +120,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
             >
               <button
                 onClick={() => onNavigate('get-started')}
-                className="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-95 transition-all group"
+                className="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 btn-emerald-glow btn-shine group cursor-pointer"
               >
                 <span>Hire Us for Your Project</span>
                 <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
@@ -120,9 +130,9 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                 href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20interested%20in%20a%20website%2Fsystem%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-xs sm:text-sm border border-white/10 flex items-center justify-center gap-2 backdrop-blur-md transition-all active:scale-95"
+                className="px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-xs sm:text-sm border border-white/10 flex items-center justify-center gap-2 btn-glass-hover btn-shine cursor-pointer"
               >
-                <MessageCircle size={15} className="text-emerald-400" />
+                <MessageCircle size={15} className="text-emerald-400 group-hover:scale-110 transition-transform" />
                 <span>Direct WhatsApp</span>
               </a>
             </motion.div>

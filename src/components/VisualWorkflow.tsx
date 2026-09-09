@@ -151,7 +151,7 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
           <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto">
             <button
               onClick={onNavigateGetStarted}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-emerald-500/25 active:scale-95 transition-all"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 btn-emerald-glow btn-shine active:scale-95 transition-all cursor-pointer"
             >
               <span>Request Project Quote</span>
               <ArrowRight size={14} />
@@ -161,7 +161,7 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
               href="https://wa.me/2347087445219?text=Hello%20Tsmak%2C%20I%20want%20to%20get%20started%20on%20a%20new%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 transition-all active:scale-95"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 btn-glass-hover active:scale-95 cursor-pointer"
             >
               <MessageCircle size={14} className="text-emerald-400" />
               <span>WhatsApp +234 708 744 5219</span>

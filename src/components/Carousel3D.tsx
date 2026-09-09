@@ -87,7 +87,6 @@ export default function Carousel3D({
         scale: 1,
         rotateY: 0,
         opacity: 1,
-        filter: 'brightness(1)',
         pointerEvents: 'auto' as const,
       };
     } else if (normalizedOffset === 1) {
@@ -97,7 +96,6 @@ export default function Carousel3D({
         scale: 0.82,
         rotateY: -28,
         opacity: 0.65,
-        filter: 'brightness(0.7)',
         pointerEvents: 'auto' as const,
       };
     } else if (normalizedOffset === -1) {
@@ -107,7 +105,6 @@ export default function Carousel3D({
         scale: 0.82,
         rotateY: 28,
         opacity: 0.65,
-        filter: 'brightness(0.7)',
         pointerEvents: 'auto' as const,
       };
     } else {
@@ -117,7 +114,6 @@ export default function Carousel3D({
         scale: 0.65,
         rotateY: normalizedOffset > 0 ? -45 : 45,
         opacity: 0,
-        filter: 'brightness(0.4)',
         pointerEvents: 'none' as const,
       };
     }
@@ -126,9 +122,9 @@ export default function Carousel3D({
   const activeProject = projects[currentIndex];
 
   return (
-    <div className="relative w-full py-8 select-none">
+    <div className="relative w-full py-6 select-none">
       {/* Top Controls Bar */}
-      <div className="flex items-center justify-between max-w-4xl mx-auto px-4 mb-6">
+      <div className="flex items-center justify-between max-w-4xl mx-auto px-4 mb-5">
         <div className="flex items-center gap-2.5">
           <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
@@ -140,7 +136,7 @@ export default function Carousel3D({
           {/* Play / Pause Autoplay */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="p-1.5 px-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-400 hover:text-white transition-all text-xs flex items-center gap-1.5"
+            className="p-1.5 px-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-400 hover:text-white transition-all text-xs flex items-center gap-1.5 btn-glass-hover"
             title={isPlaying ? 'Pause Auto-rotation' : 'Resume Auto-rotation'}
           >
             {isPlaying ? <Pause size={13} /> : <Play size={13} />}
@@ -150,14 +146,14 @@ export default function Carousel3D({
           {/* Prev / Next Arrows */}
           <button
             onClick={prevSlide}
-            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95"
+            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95 btn-glass-hover cursor-pointer"
             aria-label="Previous project"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             onClick={nextSlide}
-            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95"
+            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95 btn-glass-hover cursor-pointer"
             aria-label="Next project"
           >
             <ChevronRight size={16} />
@@ -168,7 +164,7 @@ export default function Carousel3D({
       {/* 3D Perspective Stage */}
       <div
         style={{ perspective: 1200 }}
-        className="relative h-[400px] sm:h-[440px] md:h-[470px] max-w-4xl mx-auto flex items-center justify-center overflow-hidden px-4"
+        className="relative h-[390px] sm:h-[430px] md:h-[460px] max-w-4xl mx-auto flex items-center justify-center overflow-hidden px-4"
         onTouchStart={(e) => setDragStartX(e.touches[0].clientX)}
         onTouchEnd={(e) => {
           if (dragStartX !== null) {
@@ -191,7 +187,6 @@ export default function Carousel3D({
                 scale: style.scale,
                 rotateY: style.rotateY,
                 opacity: style.opacity,
-                filter: style.filter,
               }}
               transition={{
                 type: 'spring',
@@ -208,7 +203,7 @@ export default function Carousel3D({
                   goToSlide(idx);
                 }
               }}
-              className="absolute w-[88%] sm:w-[440px] md:w-[480px] rounded-2xl bg-[#0c1017] border border-white/15 p-3 sm:p-4 shadow-xl backdrop-blur-xl group cursor-pointer transition-colors hover:border-emerald-500/50"
+              className="absolute w-[88%] sm:w-[440px] md:w-[480px] rounded-2xl bg-[#0c1017] border border-white/15 p-3 sm:p-4 shadow-xl group cursor-pointer transition-colors hover:border-emerald-500/50 gpu-accel"
             >
               {/* Browser Window Header */}
               <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3">
