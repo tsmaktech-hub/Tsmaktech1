@@ -20,6 +20,8 @@ import {
 import { PROJECTS, STUDIO_METRICS } from '../constants';
 import { Project } from '../types';
 import { TsmakLogo } from '../components/Logo';
+import TiltCard from '../components/TiltCard';
+import Carousel3D from '../components/Carousel3D';
 
 interface PortfolioPageProps {
   onBackToHome: () => void;
@@ -85,6 +87,7 @@ const CATEGORIES = ['All Works', 'AI Application', 'Institutional System', 'Ente
 
 export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProject }: PortfolioPageProps) {
   const [selectedCategory, setSelectedCategory] = useState('All Works');
+  const [viewMode, setViewMode] = useState<'3d' | 'grid'>('3d');
 
   const filteredProjects = selectedCategory === 'All Works' 
     ? PROJECTS 
@@ -116,18 +119,54 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
               </p>
             </div>
 
-            {/* Quick Metrics */}
-            <div className="flex items-center gap-4">
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-2xl font-extrabold text-emerald-400 font-display">4+</div>
-                <div className="text-xs text-zinc-400">Deployed Systems</div>
+            {/* Quick Metrics & View Mode Switcher */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="p-1 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center">
+                <button
+                  onClick={() => setViewMode('3d')}
+                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                    viewMode === '3d'
+                      ? 'bg-emerald-500 text-zinc-950 shadow-md'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  3D Carousel
+                </button>
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                    viewMode === 'grid'
+                      ? 'bg-emerald-500 text-zinc-950 shadow-md'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  Grid View
+                </button>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-2xl font-extrabold text-white font-display">99.9%</div>
-                <div className="text-xs text-zinc-400">Uptime SLA</div>
+
+              <div className="flex items-center gap-3">
+                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+                  <div className="text-xl font-extrabold text-emerald-400 font-display">4+</div>
+                  <div className="text-[10px] text-zinc-400 uppercase font-mono">Systems</div>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+                  <div className="text-xl font-extrabold text-white font-display">99.9%</div>
+                  <div className="text-[10px] text-zinc-400 uppercase font-mono">Uptime</div>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* If 3D Mode is active, show the 3D Carousel right here */}
+          {viewMode === '3d' && (
+            <div className="mt-8 pt-6 border-t border-white/[0.08]">
+              <Carousel3D
+                projects={PROJECTS}
+                onSelectProject={onSelectProject}
+                onNavigateGetStarted={onGetStarted}
+              />
+            </div>
+          )}
 
           {/* Category Filter Pills */}
           <div className="flex flex-wrap gap-2 mt-10 pt-8 border-t border-white/[0.08]">
@@ -161,8 +200,13 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: idx * 0.05 }}
-                  className="rounded-3xl bg-[#0e121a] border border-white/10 hover:border-emerald-500/40 p-6 sm:p-8 flex flex-col justify-between group shadow-xl transition-all"
+                  className="h-full"
                 >
+                  <TiltCard
+                    tiltAngle={6}
+                    glareColor="rgba(16, 185, 129, 0.15)"
+                    className="rounded-3xl bg-[#0e121a] border border-white/10 hover:border-emerald-500/40 p-6 sm:p-8 flex flex-col justify-between group shadow-xl transition-all h-full"
+                  >
                   <div>
                     {/* Header */}
                     <div className="flex items-center justify-between gap-2 mb-4">
@@ -262,8 +306,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                       </a>
                     </div>
                   </div>
-                </motion.div>
-              ))}
+                </TiltCard>
+              </motion.div>
+            ))}
             </AnimatePresence>
           </div>
         </div>

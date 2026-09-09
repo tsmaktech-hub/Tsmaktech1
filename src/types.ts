@@ -2,8 +2,8 @@ export interface Tutorial {
   id: string;
   title: string;
   description: string;
-  category: 'Web App' | 'Website' | 'Mobile App' | 'Backend';
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  category: string;
+  difficulty: string;
   duration: string;
   image: string;
 }
