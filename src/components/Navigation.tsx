@@ -143,12 +143,6 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
 
           {/* Right Action Cluster */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Live Status indicator */}
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/[0.08] border border-emerald-500/20 text-[11px] text-emerald-300 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for Q3</span>
-            </div>
-
             <a
               href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
               target="_blank"

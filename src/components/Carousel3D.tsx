@@ -126,41 +126,41 @@ export default function Carousel3D({
   const activeProject = projects[currentIndex];
 
   return (
-    <div className="relative w-full py-12 select-none">
+    <div className="relative w-full py-8 select-none">
       {/* Top Controls Bar */}
-      <div className="flex items-center justify-between max-w-5xl mx-auto px-4 mb-8">
-        <div className="flex items-center gap-3">
-          <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
+      <div className="flex items-center justify-between max-w-4xl mx-auto px-4 mb-6">
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
             3D Interactive Showcase ({currentIndex + 1} / {total})
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           {/* Play / Pause Autoplay */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-400 hover:text-white transition-all text-xs flex items-center gap-1.5"
+            className="p-1.5 px-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-400 hover:text-white transition-all text-xs flex items-center gap-1.5"
             title={isPlaying ? 'Pause Auto-rotation' : 'Resume Auto-rotation'}
           >
-            {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-            <span className="hidden sm:inline font-mono">{isPlaying ? 'Pause' : 'Auto'}</span>
+            {isPlaying ? <Pause size={13} /> : <Play size={13} />}
+            <span className="hidden sm:inline font-mono text-[11px]">{isPlaying ? 'Pause' : 'Auto'}</span>
           </button>
 
           {/* Prev / Next Arrows */}
           <button
             onClick={prevSlide}
-            className="p-2.5 rounded-xl bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95"
+            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95"
             aria-label="Previous project"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={16} />
           </button>
           <button
             onClick={nextSlide}
-            className="p-2.5 rounded-xl bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95"
+            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95"
             aria-label="Next project"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={16} />
           </button>
         </div>
       </div>
@@ -168,7 +168,7 @@ export default function Carousel3D({
       {/* 3D Perspective Stage */}
       <div
         style={{ perspective: 1200 }}
-        className="relative h-[480px] sm:h-[540px] md:h-[580px] max-w-5xl mx-auto flex items-center justify-center overflow-hidden px-4"
+        className="relative h-[400px] sm:h-[440px] md:h-[470px] max-w-4xl mx-auto flex items-center justify-center overflow-hidden px-4"
         onTouchStart={(e) => setDragStartX(e.touches[0].clientX)}
         onTouchEnd={(e) => {
           if (dragStartX !== null) {
@@ -208,28 +208,28 @@ export default function Carousel3D({
                   goToSlide(idx);
                 }
               }}
-              className="absolute w-[90%] sm:w-[540px] md:w-[620px] rounded-[2rem] bg-[#0c1017] border border-white/15 p-4 sm:p-6 shadow-2xl backdrop-blur-xl group cursor-pointer transition-colors hover:border-emerald-500/50"
+              className="absolute w-[88%] sm:w-[440px] md:w-[480px] rounded-2xl bg-[#0c1017] border border-white/15 p-3 sm:p-4 shadow-xl backdrop-blur-xl group cursor-pointer transition-colors hover:border-emerald-500/50"
             >
               {/* Browser Window Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                  <span className="text-[11px] font-mono text-zinc-400 pl-2 truncate max-w-[200px]">
+              <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-rose-500/80" />
+                  <div className="w-2 h-2 rounded-full bg-amber-500/80" />
+                  <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
+                  <span className="text-[10px] font-mono text-zinc-400 pl-2 truncate max-w-[180px]">
                     tsmak.tech/{project.id}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                <div className="flex items-center gap-1.5">
+                  <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                     {project.category}
                   </span>
                 </div>
               </div>
 
               {/* Full Image Visual Area */}
-              <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-zinc-950 mb-4 border border-white/10 group">
+              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-white/10 group">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -241,23 +241,23 @@ export default function Carousel3D({
                 />
 
                 {/* Metric Overlay Badge */}
-                <div className="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-black/80 backdrop-blur-md border border-white/15 text-white text-xs font-mono flex items-center gap-2 shadow-lg">
-                  <Sparkles size={13} className="text-emerald-400" />
+                <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center gap-1.5 shadow-md">
+                  <Sparkles size={11} className="text-emerald-400" />
                   <span>{project.metric}</span>
                 </div>
 
                 {/* Quick Inspect Button on Image Hover */}
                 {isCenter && (
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectProject(project);
                       }}
-                      className="px-4 py-2 rounded-xl bg-emerald-500 text-zinc-950 font-bold text-xs flex items-center gap-1.5 shadow-xl shadow-emerald-500/30 active:scale-95 transition-all"
+                      className="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-zinc-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/30 active:scale-95 transition-all"
                     >
-                      <Eye size={14} />
-                      <span>Inspect Architecture</span>
+                      <Eye size={13} />
+                      <span>Inspect</span>
                     </button>
                     {project.link && (
                       <a
@@ -265,9 +265,9 @@ export default function Carousel3D({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-bold text-xs flex items-center gap-1.5 backdrop-blur-md transition-all active:scale-95"
+                        className="px-3.5 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white font-bold text-xs flex items-center gap-1.5 backdrop-blur-md transition-all active:scale-95"
                       >
-                        <ExternalLink size={14} />
+                        <ExternalLink size={13} />
                         <span>Live Site</span>
                       </a>
                     )}
@@ -276,13 +276,13 @@ export default function Carousel3D({
               </div>
 
               {/* Title & Micro Description (Low text, high visual punch) */}
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white font-display flex items-center gap-2">
+                  <h3 className="text-base font-bold text-white font-display flex items-center gap-2">
                     <span>{project.title}</span>
-                    <span className="text-xs text-zinc-500 font-mono">({project.year})</span>
+                    <span className="text-[11px] text-zinc-500 font-mono">({project.year})</span>
                   </h3>
-                  <p className="text-xs text-zinc-400 mt-1 line-clamp-1">
+                  <p className="text-[11px] text-zinc-400 mt-0.5 line-clamp-1">
                     {project.description}
                   </p>
                 </div>
@@ -293,26 +293,26 @@ export default function Carousel3D({
                     e.stopPropagation();
                     onSelectProject(project);
                   }}
-                  className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-emerald-500 hover:text-zinc-950 text-zinc-300 border border-white/10 transition-all flex-shrink-0"
+                  className="p-2 rounded-lg bg-white/[0.04] hover:bg-emerald-500 hover:text-zinc-950 text-zinc-300 border border-white/10 transition-all flex-shrink-0"
                   title="View Details"
                 >
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </button>
               </div>
 
               {/* Tech Pills */}
-              <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/5">
+              <div className="flex flex-wrap gap-1.5 mt-2.5 pt-2.5 border-t border-white/5">
                 {project.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 rounded-md text-[10px] font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
+                    className="px-2 py-0.5 rounded-md text-[9px] font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
                   >
                     {tag}
                   </span>
                 ))}
                 {project.tags.length > 3 && (
-                  <span className="px-2 py-0.5 rounded-md text-[10px] font-mono text-emerald-400 bg-emerald-500/10">
-                    +{project.tags.length - 3} more
+                  <span className="px-1.5 py-0.5 rounded-md text-[9px] font-mono text-emerald-400 bg-emerald-500/10">
+                    +{project.tags.length - 3}
                   </span>
                 )}
               </div>

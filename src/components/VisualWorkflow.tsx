@@ -63,70 +63,70 @@ const STEPS = [
 
 export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowProps) {
   return (
-    <section className="py-24 sm:py-32 relative bg-black/40 border-y border-white/[0.06] overflow-hidden">
+    <section className="py-14 sm:py-18 relative bg-black/40 border-y border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase mb-3 block">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="text-[11px] font-mono font-bold tracking-widest text-emerald-400 uppercase mb-2 block">
             Execution Velocity
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight font-display mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight font-display mb-3">
             From Concept to Shipped Product 👇
           </h2>
-          <p className="text-zinc-400 text-base sm:text-lg">
+          <p className="text-zinc-400 text-xs sm:text-sm">
             A battle-tested 4-step deployment cycle designed for speed, visual excellence, and zero downtime.
           </p>
         </div>
 
         {/* Visual 4-Step Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10">
           {STEPS.map((item, idx) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={item.step}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ delay: idx * 0.08 }}
                 className="h-full"
               >
                 <TiltCard
-                  tiltAngle={8}
+                  tiltAngle={6}
                   glareColor="rgba(16, 185, 129, 0.12)"
-                  className="rounded-3xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/40 transition-all p-5 flex flex-col justify-between h-full group"
+                  className="rounded-2xl bg-[#0c1017] border border-white/10 hover:border-emerald-500/40 transition-all p-3.5 sm:p-4 flex flex-col justify-between h-full group"
                 >
                   <div>
                     {/* Visual Thumbnail */}
-                    <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-zinc-900 mb-4 border border-white/10">
+                    <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-900 mb-3 border border-white/10">
                       <img
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md text-emerald-400 font-mono text-[11px] font-bold border border-white/10">
+                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-emerald-400 font-mono text-[10px] font-bold border border-white/10">
                         {item.step}
                       </div>
-                      <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-zinc-300 font-mono text-[10px] border border-white/10">
+                      <div className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-md text-zinc-300 font-mono text-[9px] border border-white/10">
                         {item.tag}
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-bold text-white font-display group-hover:text-emerald-300 transition-colors">
+                    <h3 className="text-base font-bold text-white font-display group-hover:text-emerald-300 transition-colors">
                       {item.title}
                     </h3>
-                    <div className="text-xs font-mono text-emerald-400 font-semibold mb-2">
+                    <div className="text-[11px] font-mono text-emerald-400 font-semibold mb-1.5">
                       {item.short}
                     </div>
-                    <p className="text-xs text-zinc-400 leading-relaxed">
+                    <p className="text-[11px] text-zinc-400 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                  <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-zinc-400">
                     <span>Target: Zero-Friction</span>
-                    <CheckCircle2 size={13} className="text-emerald-400" />
+                    <CheckCircle2 size={12} className="text-emerald-400" />
                   </div>
                 </TiltCard>
               </motion.div>
@@ -135,35 +135,35 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
         </div>
 
         {/* Visual "Get Started" Action Dock */}
-        <div className="p-8 sm:p-10 rounded-[2.5rem] bg-gradient-to-r from-emerald-950/40 via-[#0e141d] to-[#090b10] border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-          <div className="space-y-2 text-center md:text-left">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400">
+        <div className="p-5 sm:p-7 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-[#0e141d] to-[#090b10] border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-5 shadow-xl">
+          <div className="space-y-1 text-center md:text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-400">
               Instant Engagement
             </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-display">
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
               Ready to begin Step 01?
             </h3>
-            <p className="text-sm text-zinc-400 max-w-xl">
+            <p className="text-xs text-zinc-400 max-w-xl">
               Discuss your system requirements directly with founder <span className="text-emerald-400 font-semibold">Tsmak</span> on WhatsApp or submit your project scope.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto">
             <button
               onClick={onNavigateGetStarted}
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 active:scale-95 transition-all"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-emerald-500/25 active:scale-95 transition-all"
             >
               <span>Request Project Quote</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={14} />
             </button>
 
             <a
               href="https://wa.me/2347087445219?text=Hello%20Tsmak%2C%20I%20want%20to%20get%20started%20on%20a%20new%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-sm flex items-center justify-center gap-2 border border-white/10 transition-all active:scale-95"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 transition-all active:scale-95"
             >
-              <MessageCircle size={16} className="text-emerald-400" />
+              <MessageCircle size={14} className="text-emerald-400" />
               <span>WhatsApp +234 708 744 5219</span>
             </a>
           </div>
