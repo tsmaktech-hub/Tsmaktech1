@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  ChevronLeft, 
-  ChevronRight, 
   ExternalLink, 
   Sparkles, 
-  Play, 
-  Pause, 
   ArrowRight,
-  Eye,
-  Layers,
-  CheckCircle2
+  Eye
 } from 'lucide-react';
 import { Project } from '../types';
 
@@ -119,48 +113,8 @@ export default function Carousel3D({
     }
   };
 
-  const activeProject = projects[currentIndex];
-
   return (
-    <div className="relative w-full py-6 select-none">
-      {/* Top Controls Bar */}
-      <div className="flex items-center justify-between max-w-4xl mx-auto px-4 mb-5">
-        <div className="flex items-center gap-2.5">
-          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
-            3D Interactive Showcase ({currentIndex + 1} / {total})
-          </span>
-        </div>
-
-        <div className="flex items-center gap-1.5">
-          {/* Play / Pause Autoplay */}
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="p-1.5 px-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-400 hover:text-white transition-all text-xs flex items-center gap-1.5 btn-glass-hover"
-            title={isPlaying ? 'Pause Auto-rotation' : 'Resume Auto-rotation'}
-          >
-            {isPlaying ? <Pause size={13} /> : <Play size={13} />}
-            <span className="hidden sm:inline font-mono text-[11px]">{isPlaying ? 'Pause' : 'Auto'}</span>
-          </button>
-
-          {/* Prev / Next Arrows */}
-          <button
-            onClick={prevSlide}
-            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95 btn-glass-hover cursor-pointer"
-            aria-label="Previous project"
-          >
-            <ChevronLeft size={16} />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="p-2 rounded-lg bg-white/[0.05] hover:bg-emerald-500 hover:text-zinc-950 text-white border border-white/10 transition-all active:scale-95 btn-glass-hover cursor-pointer"
-            aria-label="Next project"
-          >
-            <ChevronRight size={16} />
-          </button>
-        </div>
-      </div>
-
+    <div className="relative w-full py-4 select-none">
       {/* 3D Perspective Stage */}
       <div
         style={{ perspective: 1200 }}
@@ -314,22 +268,6 @@ export default function Carousel3D({
             </motion.div>
           );
         })}
-      </div>
-
-      {/* Indicator Dots */}
-      <div className="flex items-center justify-center gap-2 mt-8">
-        {projects.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => goToSlide(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              idx === currentIndex
-                ? 'w-8 bg-emerald-400 shadow-md shadow-emerald-400/40'
-                : 'w-2 bg-white/20 hover:bg-white/40'
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
       </div>
     </div>
   );
