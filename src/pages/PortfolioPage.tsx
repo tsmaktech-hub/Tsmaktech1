@@ -106,25 +106,25 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             <span>Return to Studio Home</span>
           </button>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8">
             <div className="max-w-3xl">
-              <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-3 block">
+              <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 sm:mb-3 block">
                 Engineering Provenance
               </span>
-              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight font-display mb-6">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-3 sm:mb-4">
                 Selected Works & Case Studies
               </h1>
-              <p className="text-zinc-400 text-lg leading-relaxed">
+              <p className="text-zinc-400 text-xs sm:text-base lg:text-lg leading-relaxed">
                 Every project below is a certified, live production system built for real clients, universities, and specialized user communities.
               </p>
             </div>
 
             {/* Quick Metrics & View Mode Switcher */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <div className="p-1 rounded-xl bg-white/[0.04] border border-white/10 flex items-center">
                 <button
                   onClick={() => setViewMode('3d')}
-                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
                     viewMode === '3d'
                       ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-zinc-400 hover:text-white'
@@ -134,7 +134,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
                     viewMode === 'grid'
                       ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-zinc-400 hover:text-white'
@@ -144,14 +144,14 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 </button>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
-                  <div className="text-xl font-extrabold text-blue-400 font-display">4+</div>
-                  <div className="text-[10px] text-zinc-400 uppercase font-mono">Systems</div>
+              <div className="flex items-center gap-2.5 sm:gap-3">
+                <div className="px-3 py-2 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                  <div className="text-lg sm:text-xl font-extrabold text-blue-400 font-display">4+</div>
+                  <div className="text-[9px] sm:text-[10px] text-zinc-400 uppercase font-mono">Systems</div>
                 </div>
-                <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
-                  <div className="text-xl font-extrabold text-white font-display">99.9%</div>
-                  <div className="text-[10px] text-zinc-400 uppercase font-mono">Uptime</div>
+                <div className="px-3 py-2 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                  <div className="text-lg sm:text-xl font-extrabold text-white font-display">99.9%</div>
+                  <div className="text-[9px] sm:text-[10px] text-zinc-400 uppercase font-mono">Uptime</div>
                 </div>
               </div>
             </div>

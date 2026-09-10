@@ -117,30 +117,26 @@ export default function App() {
         }}
       />
 
-      {/* Floating Quick WhatsApp Hotline Pill with Smooth Lift & Glow */}
-      {currentPage !== 'get-started' && (
-        <motion.a
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1 }}
-          href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20reaching%20out%20from%20your%20website."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-xl shadow-purple-500/30 btn-launchpad-glow btn-shine flex items-center justify-center group cursor-pointer"
-          title="Direct WhatsApp Hotline with Founder"
-          aria-label="Direct WhatsApp Hotline"
-        >
-          <MessageCircle size={22} className="text-white group-hover:scale-110 transition-transform" />
-          <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
-            Founder Line
-          </span>
-        </motion.a>
-      )}
+      {/* Floating Quick WhatsApp Hotline Pill */}
+      <motion.a
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1 }}
+        href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20reaching%20out%20from%20your%20website."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 p-3 sm:p-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-900/40 flex items-center justify-center group cursor-pointer transition-all active:scale-95 border border-white/10"
+        title="Direct WhatsApp Hotline with Founder"
+        aria-label="Direct WhatsApp Hotline"
+      >
+        <MessageCircle size={22} className="text-white group-hover:scale-110 transition-transform" />
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
+          Founder Line
+        </span>
+      </motion.a>
 
-      {/* Shared High-Craft Footer */}
-      {currentPage !== 'get-started' && (
-        <Footer onNavigate={handleNavigate} />
-      )}
+      {/* Shared High-Craft Footer - Visible on All Pages */}
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }

@@ -186,26 +186,28 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
             </p>
 
             {/* Interactive Toggle */}
-            <div className="inline-flex items-center p-1 rounded-full bg-white/[0.04] border border-white/10 mt-5">
+            <div className="inline-flex items-center p-1 rounded-full bg-white/[0.04] border border-white/10 mt-5 max-w-full">
               <button
                 onClick={() => setDualMode('studio')}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3.5 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   dualMode === 'studio'
                     ? 'bg-blue-600 text-white shadow-sm'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                For Companies (The Studio)
+                <span className="hidden sm:inline">For Companies (The Studio)</span>
+                <span className="sm:hidden">The Studio</span>
               </button>
               <button
                 onClick={() => setDualMode('academy')}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3.5 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   dualMode === 'academy'
                     ? 'bg-blue-600 text-white shadow-sm'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                For Learners (The Academy)
+                <span className="hidden sm:inline">For Learners (The Academy)</span>
+                <span className="sm:hidden">The Academy</span>
               </button>
             </div>
           </div>
@@ -541,7 +543,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
               href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors px-3.5 py-2 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20"
+              className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 w-full sm:w-auto text-center"
             >
               <MessageCircle size={15} />
               <span>Join WhatsApp Group for Live Coding</span>
@@ -608,25 +610,25 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
         className="py-14 sm:py-16 bg-black/20 border-t border-white/[0.06] relative overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#0c101c] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-            <div className="space-y-1.5 text-center md:text-left">
+          <div className="p-5 sm:p-8 rounded-2xl bg-[#0c101c] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div className="space-y-1.5 text-center md:text-left w-full md:w-auto">
               <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-blue-400">
                 Direct Hotline
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-white font-display">
                 Discuss Your System with Founder
               </h2>
-              <p className="text-zinc-300 text-xs sm:text-sm max-w-lg">
+              <p className="text-zinc-300 text-xs sm:text-sm max-w-lg mx-auto md:mx-0">
                 Direct WhatsApp consultation with Tsmak Tech. Usually responds within 2 hours.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
               <a
                 href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'd%20like%20to%20discuss%20a%20new%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-2 active:scale-95 transition-colors cursor-pointer shadow-sm"
+                className="w-full sm:w-auto px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-2 active:scale-95 transition-colors cursor-pointer shadow-sm text-center"
               >
                 <MessageCircle size={15} />
                 <span>WhatsApp: +234 708 744 5219</span>
@@ -634,7 +636,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
 
               <button
                 onClick={() => onNavigate('get-started')}
-                className="w-full sm:w-auto px-5 py-3 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 active:scale-95 cursor-pointer transition-colors"
+                className="w-full sm:w-auto px-5 py-3 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 active:scale-95 cursor-pointer transition-colors text-center"
               >
                 <span>Request Project Scope</span>
                 <ArrowRight size={14} />

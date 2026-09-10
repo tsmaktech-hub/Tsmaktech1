@@ -126,11 +126,11 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-5"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-5"
             >
               <button
                 onClick={() => onNavigate('get-started')}
-                className="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm active:scale-95"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm active:scale-95"
               >
                 <span>Hire Us for Your Project</span>
                 <ArrowRight size={14} />
@@ -140,17 +140,17 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                 href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20interested%20in%20a%20website%2Fsystem%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs sm:text-sm border border-white/10 hover:border-white/20 flex items-center justify-center gap-2 cursor-pointer transition-colors active:scale-95"
+                className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs sm:text-sm border border-white/10 hover:border-white/20 flex items-center justify-center gap-2 cursor-pointer transition-colors active:scale-95"
               >
                 <MessageCircle size={14} className="text-blue-400" />
                 <span>Direct WhatsApp</span>
               </a>
             </motion.div>
 
-            {/* Compact Trust Bar & System Switcher */}
-            <div className="pt-3.5 border-t border-white/[0.08] flex flex-col gap-2.5">
-              {/* Trust Indicators in a clean single row */}
-              <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-[11px] font-mono text-zinc-400">
+            {/* Compact Trust Bar */}
+            <div className="pt-3.5 border-t border-white/[0.08]">
+              {/* Trust Indicators in a clean responsive row */}
+              <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[10px] sm:text-[11px] font-mono text-zinc-400">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck size={13} className="text-blue-400 shrink-0" />
                   <span>99.9% Uptime SLA</span>
@@ -164,34 +164,11 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                   <span>Founder Sprint</span>
                 </div>
               </div>
-
-              {/* Interactive System Preview Pills */}
-              <div className="flex flex-wrap items-center gap-1.5 mt-0.5">
-                <span className="text-[10px] font-mono text-zinc-400 mr-1 uppercase tracking-wider">Preview:</span>
-                {PREVIEWS.map((item, idx) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setActivePreview(idx)}
-                    className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-mono transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
-                      activePreview === idx
-                        ? 'bg-blue-600 text-white font-medium border border-blue-500 shadow-sm'
-                        : 'bg-white/[0.04] text-zinc-400 hover:text-white border border-white/10 hover:bg-white/[0.08]'
-                    }`}
-                  >
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full ${
-                        activePreview === idx ? 'bg-white' : 'bg-blue-400'
-                      }`}
-                    />
-                    <span>{item.label}</span>
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
 
           {/* Right Column: Computer / Browser Mockup beside text on laptop and desktop */}
-          <div className="md:col-span-6 lg:col-span-6 flex flex-col justify-center w-full max-w-lg md:max-w-none mx-auto">
+          <div className="md:col-span-6 lg:col-span-6 flex flex-col justify-center w-full max-w-lg md:max-w-none mx-auto mt-6 md:mt-0">
             {/* 3D Floating Interactive Browser Mockup with Tilt Effect */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 16 }}
@@ -206,18 +183,18 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               >
                 {/* macOS Browser Header */}
                 <div className="flex items-center justify-between px-2 py-1.5 border-b border-white/10 mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                    <div className="flex items-center gap-1.5 ml-2 px-2 py-0.5 rounded-md bg-black/40 border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 truncate max-w-[150px] sm:max-w-none">
-                      <span className="text-blue-400">https://</span>
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shrink-0" />
+                    <div className="flex items-center gap-1.5 ml-1.5 sm:ml-2 px-2 py-0.5 rounded-md bg-black/40 border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 truncate max-w-[120px] sm:max-w-none">
+                      <span className="text-blue-400 hidden sm:inline">https://</span>
                       <span>tsmak.tech/systems/{preview.id}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1.5">
-                    <span className="px-2.5 py-0.5 rounded-full bg-white/[0.06] text-zinc-300 border border-white/10 text-[10px] font-mono font-medium">
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className="px-2 sm:px-2.5 py-0.5 rounded-full bg-white/[0.06] text-zinc-300 border border-white/10 text-[9px] sm:text-[10px] font-mono font-medium">
                       {preview.tag}
                     </span>
                   </div>
