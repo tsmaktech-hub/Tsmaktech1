@@ -41,24 +41,26 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090A0F] text-zinc-100 flex flex-col selection:bg-sky-500/25 selection:text-sky-300 relative">
+    <div className="min-h-screen bg-[#07090e] text-zinc-100 flex flex-col selection:bg-blue-600/30 selection:text-blue-200 relative">
       {/* Dynamic Scroll Progress Bar fixed at top of screen */}
       <ScrollProgressBar />
 
-      {/* Ambient Mouse Particle & Light Field (Ultra-low GPU overhead) */}
+      {/* Ambient Blueprint Grid & Lighting Field */}
       <AmbientBackground />
 
       {/* Navigation Header */}
       {currentPage !== 'get-started' && (
-        <Navigation
-          currentPage={currentPage}
-          onNavigate={handleNavigate}
-          isScrolled={isScrolled}
-        />
+        <div className="relative z-20">
+          <Navigation
+            currentPage={currentPage}
+            onNavigate={handleNavigate}
+            isScrolled={isScrolled}
+          />
+        </div>
       )}
 
       {/* Page Routing with Fluid Transitions */}
-      <main className="flex-grow">
+      <main className="flex-grow relative z-10">
         <AnimatePresence mode="wait">
           {currentPage === 'home' && (
             <motion.div

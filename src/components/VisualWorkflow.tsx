@@ -67,7 +67,7 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-[11px] font-mono font-bold tracking-widest text-sky-400 uppercase mb-2 block">
+          <span className="text-[11px] font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 block">
             Execution Velocity
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight font-display mb-3">
@@ -93,8 +93,8 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
               >
                 <TiltCard
                   tiltAngle={6}
-                  glareColor="rgba(70, 130, 180, 0.12)"
-                  className="rounded-2xl bg-[#0b0e1b] border border-white/10 hover:border-sky-500/35 transition-all p-3.5 sm:p-4 flex flex-col justify-between h-full group"
+                  glareColor="rgba(37, 99, 235, 0.08)"
+                  className="rounded-2xl bg-[#0c101c] border border-white/10 hover:border-blue-500/30 transition-all p-3.5 sm:p-4 flex flex-col justify-between h-full group"
                 >
                   <div>
                     {/* Visual Thumbnail */}
@@ -105,7 +105,7 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-sky-400 font-mono text-[10px] font-bold border border-white/10">
+                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-blue-400 font-mono text-[10px] font-bold border border-white/10">
                         {item.step}
                       </div>
                       <div className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-md text-zinc-300 font-mono text-[9px] border border-white/10">
@@ -113,10 +113,10 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
                       </div>
                     </div>
 
-                    <h3 className="text-base font-bold text-white font-display group-hover:text-sky-300 transition-colors">
+                    <h3 className="text-base font-bold text-white font-display group-hover:text-blue-300 transition-colors">
                       {item.title}
                     </h3>
-                    <div className="text-[11px] font-mono text-violet-400 font-semibold mb-1.5">
+                    <div className="text-[11px] font-mono text-blue-400 font-semibold mb-1.5">
                       {item.short}
                     </div>
                     <p className="text-[11px] text-zinc-400 leading-relaxed">
@@ -126,7 +126,7 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
 
                   <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-zinc-400">
                     <span>Target: Zero-Friction</span>
-                    <CheckCircle2 size={12} className="text-sky-400" />
+                    <CheckCircle2 size={12} className="text-blue-400" />
                   </div>
                 </TiltCard>
               </motion.div>
@@ -135,23 +135,23 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
         </div>
 
         {/* Visual "Get Started" Action Dock */}
-        <div className="p-5 sm:p-7 rounded-2xl bg-gradient-to-r from-violet-950/30 via-[#0c0f1e] to-[#0a0c16] border border-violet-500/25 flex flex-col md:flex-row items-center justify-between gap-5 shadow-xl">
+        <div className="p-6 sm:p-8 rounded-2xl bg-[#0c101c] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-5 shadow-lg">
           <div className="space-y-1 text-center md:text-left">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-sky-400">
-              Instant Engagement
+            <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-blue-400">
+              Direct Engagement
             </span>
             <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
               Ready to begin Step 01?
             </h3>
             <p className="text-xs text-zinc-400 max-w-xl">
-              Discuss your system requirements directly with founder <span className="text-sky-300 font-semibold">Tsmak</span> on WhatsApp or submit your project scope.
+              Discuss your system requirements directly with founder <span className="text-white font-semibold">Tsmak</span> on WhatsApp or submit your project scope.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto">
             <button
               onClick={onNavigateGetStarted}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-sky-600 hover:from-violet-500 hover:to-sky-500 text-white font-bold text-xs flex items-center justify-center gap-2 btn-launchpad-glow btn-shine active:scale-95 transition-all cursor-pointer shadow-lg shadow-violet-950/40"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-2 active:scale-95 transition-colors cursor-pointer shadow-sm"
             >
               <span>Request Project Quote</span>
               <ArrowRight size={14} />
@@ -161,9 +161,9 @@ export default function VisualWorkflow({ onNavigateGetStarted }: VisualWorkflowP
               href="https://wa.me/2347087445219?text=Hello%20Tsmak%2C%20I%20want%20to%20get%20started%20on%20a%20new%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/10 hover:border-sky-500/30 btn-glass-hover active:scale-95 cursor-pointer"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 active:scale-95 cursor-pointer transition-colors"
             >
-              <MessageCircle size={14} className="text-sky-400" />
+              <MessageCircle size={14} className="text-blue-400" />
               <span>WhatsApp +234 708 744 5219</span>
             </a>
           </div>

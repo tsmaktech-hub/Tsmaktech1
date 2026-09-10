@@ -1,83 +1,71 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 export default function AmbientBackground() {
-  const followerRef = useRef<HTMLDivElement>(null);
-  const targetPos = useRef({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 500, y: 300 });
-  const currentPos = useRef({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 500, y: 300 });
-  const rafId = useRef<number | null>(null);
-
-  useEffect(() => {
-    // Only activate cursor light follower on desktop with mouse
-    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!isDesktop) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      targetPos.current.x = e.clientX;
-      targetPos.current.y = e.clientY;
-    };
-
-    const animate = () => {
-      // Smooth lerp (linear interpolation)
-      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.08;
-      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.08;
-
-      if (followerRef.current) {
-        followerRef.current.style.transform = `translate3d(${currentPos.current.x}px, ${currentPos.current.y}px, 0) translate(-50%, -50%)`;
-      }
-
-      rafId.current = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafId.current = requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
-
   return (
-    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
-      {/* Deep baseline background */}
-      <div className="absolute inset-0 bg-[#080a12]" />
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+      {/* 1. Deep charcoal canvas base */}
+      <div className="absolute inset-0 bg-[#07090e]" />
 
-      {/* Lightweight GPU-accelerated cursor glow (pure radial gradient without expensive blur filters) */}
+      {/* 2. Crisp Architectural Blueprint Pattern (Continuous across all scroll positions) */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-80"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          {/* Small 36x36px blueprint cell */}
+          <pattern id="arch-grid-pattern" width="36" height="36" patternUnits="userSpaceOnUse">
+            {/* Fine coordinate grid lines */}
+            <path
+              d="M 36 0 L 0 0 0 36"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.065)"
+              strokeWidth="0.8"
+            />
+            {/* Blue intersection micro-node */}
+            <circle cx="0" cy="0" r="1.4" fill="#3b82f6" opacity="0.85" />
+            {/* Subtle center matrix point */}
+            <circle cx="18" cy="18" r="0.75" fill="rgba(255, 255, 255, 0.25)" />
+          </pattern>
+
+          {/* 144x144px CAD crosshair overlay */}
+          <pattern id="arch-cad-marks" width="144" height="144" patternUnits="userSpaceOnUse">
+            {/* Technical plus mark at major intersections */}
+            <path
+              d="M 0 -4 L 0 4 M -4 0 L 4 0"
+              stroke="rgba(96, 165, 250, 0.4)"
+              strokeWidth="1"
+            />
+          </pattern>
+        </defs>
+
+        {/* Primary blueprint grid fill */}
+        <rect width="100%" height="100%" fill="url(#arch-grid-pattern)" />
+        {/* Secondary CAD crosshair marks */}
+        <rect width="100%" height="100%" fill="url(#arch-cad-marks)" />
+      </svg>
+
+      {/* 3. Soft ambient lighting highlights to bring depth to the pattern */}
       <div
-        ref={followerRef}
-        className="absolute top-0 left-0 w-[550px] h-[550px] rounded-full pointer-events-none opacity-40 will-change-transform"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none opacity-50"
         style={{
-          background: 'radial-gradient(circle, rgba(138, 43, 226, 0.14) 0%, rgba(70, 130, 180, 0.1) 35%, rgba(14, 21, 37, 0.04) 60%, transparent 75%)',
-          transform: 'translate3d(-550px, -550px, 0)',
+          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(37, 99, 235, 0.16) 0%, transparent 70%)',
         }}
       />
-
-      {/* Static ambient depth orbs with gentle, elegant steel-blue & blue-violet lighting */}
       <div
-        className="absolute -top-32 -left-32 w-[550px] h-[550px] pointer-events-none opacity-45"
+        className="absolute top-1/3 left-0 w-[500px] h-[500px] pointer-events-none opacity-30"
         style={{
-          background: 'radial-gradient(circle, rgba(138, 43, 226, 0.14) 0%, rgba(70, 130, 180, 0.07) 40%, transparent 70%)',
+          background: 'radial-gradient(circle at 10% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%)',
         }}
       />
       <div
-        className="absolute top-1/3 -right-32 w-[580px] h-[580px] pointer-events-none opacity-40"
+        className="absolute top-2/3 right-0 w-[550px] h-[550px] pointer-events-none opacity-30"
         style={{
-          background: 'radial-gradient(circle, rgba(70, 130, 180, 0.14) 0%, rgba(124, 58, 237, 0.08) 40%, transparent 70%)',
+          background: 'radial-gradient(circle at 90% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%)',
         }}
       />
-      <div
-        className="absolute -bottom-32 left-1/4 w-[650px] h-[650px] pointer-events-none opacity-35"
-        style={{
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(70, 130, 180, 0.08) 45%, transparent 70%)',
-        }}
-      />
-
-      {/* Fine tech grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-25 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_60%,transparent_100%)]" />
-
-      {/* Soft vignette border */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,#080a12_95%)]" />
     </div>
   );
 }
+
+
 

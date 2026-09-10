@@ -57,22 +57,22 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#090A0F] text-white flex flex-col pt-24 pb-16">
+    <div className="min-h-screen bg-transparent text-white flex flex-col pt-24 pb-16">
       {/* Header Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#090A0F]/80 backdrop-blur-xl border-b border-white/[0.08]">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#090d16]/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <button 
               onClick={onBack}
               className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group text-sm font-mono cursor-pointer"
             >
-              <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-pink-400" />
+              <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-blue-400" />
               <span>Back to Home</span>
             </button>
             <div className="flex items-center gap-2.5">
               <TsmakLogo size="sm" />
               <div className="text-lg font-bold tracking-tight font-display">
-                Tsmak <span className="text-pink-400">Tech</span>
+                Tsmak <span className="text-blue-400">Tech</span>
               </div>
             </div>
             <div className="w-20" />
@@ -84,7 +84,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
         <div className="w-full max-w-3xl">
           {/* Track Switcher */}
           <div className="text-center mb-10">
-            <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
+            <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-3 block">
               Engagement Portal
             </span>
             <h1 className="text-3xl sm:text-5xl font-bold font-display text-white mb-4">
@@ -94,13 +94,13 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
               Select whether you want to hire the engineering studio for a project or enroll in developer mentorship.
             </p>
 
-            <div className="grid grid-cols-2 gap-3 max-w-md mx-auto mt-8 p-1.5 rounded-2xl bg-white/[0.04] border border-white/10">
+            <div className="grid grid-cols-2 gap-3 max-w-md mx-auto mt-8 p-1.5 rounded-xl bg-white/[0.04] border border-white/10">
               <button
                 type="button"
                 onClick={() => setTrack('client')}
-                className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                className={`py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   track === 'client'
-                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-lg shadow-purple-500/25'
+                    ? 'bg-blue-600 text-white shadow-sm'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -110,9 +110,9 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
               <button
                 type="button"
                 onClick={() => setTrack('student')}
-                className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                className={`py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   track === 'student'
-                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-lg shadow-purple-500/25'
+                    ? 'bg-blue-600 text-white shadow-sm'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -125,14 +125,14 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
           {/* Form Container */}
           <motion.div
             layout
-            className="rounded-[2.5rem] bg-[#0c0e20] border border-purple-500/20 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
+            className="rounded-2xl bg-[#0c101c] border border-white/10 p-6 sm:p-10 shadow-xl"
           >
             {track === 'client' ? (
               <form onSubmit={handleClientSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   {/* Full Name */}
                   <div className="space-y-2">
-                    <label className="text-xs font-mono font-bold text-zinc-400 uppercase">
+                    <label className="text-xs font-mono font-semibold text-zinc-400 uppercase">
                       Your Name / Company
                     </label>
                     <div className="relative">
@@ -145,14 +145,14 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="Sarah Connor"
-                        className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors"
+                        className="w-full bg-[#080b14] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Contact info */}
                   <div className="space-y-2">
-                    <label className="text-xs font-mono font-bold text-zinc-400 uppercase">
+                    <label className="text-xs font-mono font-semibold text-zinc-400 uppercase">
                       Email or WhatsApp Number
                     </label>
                     <div className="relative">
@@ -165,7 +165,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                         placeholder="+1 555 0192 or name@company.com"
-                        className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors"
+                        className="w-full bg-[#080b14] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
                   </div>
@@ -173,13 +173,13 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
 
                 {/* Project Type */}
                 <div className="space-y-2">
-                  <label className="text-xs font-mono font-bold text-zinc-400 uppercase">
+                  <label className="text-xs font-mono font-semibold text-zinc-400 uppercase">
                     Project Type
                   </label>
                   <select
                     value={projectType}
                     onChange={(e) => setProjectType(e.target.value)}
-                    className="w-full bg-[#090b12] border border-white/10 rounded-xl py-3.5 px-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors"
+                    className="w-full bg-[#080b14] border border-white/10 rounded-xl py-3.5 px-4 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors"
                   >
                     <option value="Web Application / SaaS">Web Application / High-Concurrency SaaS</option>
                     <option value="Attendance / Institutional System">Institutional Attendance & Records System</option>
@@ -191,7 +191,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
 
                 {/* Timeline */}
                 <div className="space-y-2">
-                  <label className="text-xs font-mono font-bold text-zinc-400 uppercase">
+                  <label className="text-xs font-mono font-semibold text-zinc-400 uppercase">
                     Expected Timeline
                   </label>
                   <div className="grid grid-cols-3 gap-3">
@@ -202,7 +202,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                         onClick={() => setTimeline(t)}
                         className={`py-3 px-3 rounded-xl text-xs font-semibold border transition-all text-center cursor-pointer ${
                           timeline === t
-                            ? 'bg-pink-500/15 border-pink-500 text-pink-300'
+                            ? 'bg-blue-600 border-blue-500 text-white shadow-sm'
                             : 'bg-white/[0.02] border-white/5 text-zinc-400 hover:text-white'
                         }`}
                       >
@@ -214,7 +214,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
 
                 {/* Project Brief */}
                 <div className="space-y-2">
-                  <label className="text-xs font-mono font-bold text-zinc-400 uppercase">
+                  <label className="text-xs font-mono font-semibold text-zinc-400 uppercase">
                     Brief Project Overview (Optional)
                   </label>
                   <textarea
@@ -222,14 +222,14 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Tell us about the key features, users, or integrations you require..."
-                    className="w-full bg-[#090b12] border border-white/10 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-pink-400 transition-colors resize-none"
+                    className="w-full bg-[#080b14] border border-white/10 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
                 {/* Action button */}
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-sm flex items-center justify-center gap-2 btn-launchpad-glow btn-shine active:scale-95 transition-all cursor-pointer shadow-lg shadow-purple-500/25"
+                  className="w-full py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-colors cursor-pointer shadow-sm"
                 >
                   <Send size={16} />
                   <span>Send Requirements via WhatsApp Hotline</span>
@@ -241,8 +241,8 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
               </form>
             ) : (
               <div className="text-center py-6 space-y-6">
-                <div className="w-16 h-16 rounded-3xl bg-purple-500/15 text-pink-400 flex items-center justify-center mx-auto mb-4 border border-purple-500/20">
-                  <MessageCircle size={32} />
+                <div className="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-400 flex items-center justify-center mx-auto mb-4 border border-blue-500/20">
+                  <MessageCircle size={28} />
                 </div>
 
                 <h2 className="text-2xl font-bold text-white font-display">
@@ -253,16 +253,16 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   Get instant access to weekly live coding sessions, code reviews, career mentorship, and a collaborative network of developers.
                 </p>
 
-                <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 max-w-md mx-auto text-left space-y-2 text-xs font-mono text-zinc-300">
-                  <div className="flex items-center gap-2 text-pink-400">
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 max-w-md mx-auto text-left space-y-2 text-xs font-mono text-zinc-300">
+                  <div className="flex items-center gap-2 text-blue-400">
                     <CheckCircle2 size={15} />
                     <span>Free weekly masterclasses on modern full-stack</span>
                   </div>
-                  <div className="flex items-center gap-2 text-pink-400">
+                  <div className="flex items-center gap-2 text-blue-400">
                     <CheckCircle2 size={15} />
                     <span>Direct troubleshooting & unblocking with mentors</span>
                   </div>
-                  <div className="flex items-center gap-2 text-pink-400">
+                  <div className="flex items-center gap-2 text-blue-400">
                     <CheckCircle2 size={15} />
                     <span>Real-world client project case breakdowns</span>
                   </div>
@@ -272,7 +272,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   href={COMMUNITY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-sm btn-launchpad-glow btn-shine active:scale-95 transition-all cursor-pointer shadow-lg shadow-purple-500/25"
+                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm active:scale-95 transition-colors cursor-pointer shadow-sm"
                 >
                   <MessageCircle size={18} />
                   <span>Join Official WhatsApp Community Group</span>
@@ -285,7 +285,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                       href={`https://wa.me/${WHATSAPP_NUMBER}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-pink-400 hover:underline"
+                      className="text-blue-400 hover:underline"
                     >
                       Chat with Founder directly
                     </a>

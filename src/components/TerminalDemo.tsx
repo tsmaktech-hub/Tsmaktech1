@@ -65,17 +65,17 @@ export default function TerminalDemo() {
   };
 
   return (
-    <div className="w-full rounded-3xl bg-[#0c0f17] border border-white/10 shadow-2xl overflow-hidden text-left font-mono">
+    <div className="w-full rounded-2xl bg-[#0c101c] border border-white/10 shadow-xl overflow-hidden text-left font-mono">
       {/* Terminal Title Bar */}
       <div className="px-4 sm:px-6 py-3.5 bg-zinc-950/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-            <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-            <div className="w-3 h-3 rounded-full bg-pink-500/80" />
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+            <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+            <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
           </div>
           <div className="flex items-center gap-2 text-xs text-zinc-400 pl-2">
-            <TerminalIcon size={14} className="text-pink-400" />
+            <TerminalIcon size={14} className="text-blue-400" />
             <span>tsmak-terminal ~ zsh</span>
           </div>
         </div>
@@ -86,10 +86,10 @@ export default function TerminalDemo() {
             <button
               key={preset.cmd}
               onClick={() => setActiveTab(i)}
-              className={`px-3 py-1 rounded-lg text-xs transition-all whitespace-nowrap ${
+              className={`px-3 py-1 rounded-md text-xs transition-colors whitespace-nowrap cursor-pointer ${
                 activeTab === i
-                  ? 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-pink-200 border border-purple-500/40 shadow-sm font-semibold'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border border-transparent'
+                  ? 'bg-blue-600 text-white font-semibold shadow-sm'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/5'
               }`}
             >
               {preset.label}
@@ -99,24 +99,24 @@ export default function TerminalDemo() {
 
         <button
           onClick={handleCopy}
-          className="text-xs text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors"
+          className="text-xs text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors cursor-pointer"
           title="Copy output"
         >
-          {copied ? <Check size={13} className="text-pink-400" /> : <Copy size={13} />}
+          {copied ? <Check size={13} className="text-blue-400" /> : <Copy size={13} />}
           <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
         </button>
       </div>
 
       {/* Terminal Body */}
-      <div className="p-5 sm:p-7 space-y-3 min-h-[220px] bg-[#090b12] text-xs sm:text-sm">
+      <div className="p-5 sm:p-6 space-y-3 min-h-[220px] bg-[#080b14] text-xs sm:text-sm">
         {/* Command prompt */}
         <div className="flex items-center gap-2 text-zinc-400">
-          <span className="text-pink-400 font-bold">tsmak@studio:~$</span>
+          <span className="text-blue-400 font-semibold">tsmak@studio:~$</span>
           <span className="text-white font-semibold">{currentPreset.cmd}</span>
           <motion.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
-            className="w-2 h-4 bg-pink-400 inline-block align-middle"
+            className="w-2 h-4 bg-blue-400 inline-block align-middle"
           />
         </div>
 
@@ -133,11 +133,11 @@ export default function TerminalDemo() {
               key={idx}
               className={`leading-relaxed ${
                 line.startsWith('●') || line.startsWith('⚡') || line.startsWith('🚀') || line.startsWith('💼')
-                  ? 'text-purple-300 font-bold'
+                  ? 'text-blue-400 font-medium'
                   : line.includes('✔')
-                  ? 'text-pink-300'
+                  ? 'text-emerald-400'
                   : line.includes('✨')
-                  ? 'text-blue-300 font-semibold'
+                  ? 'text-blue-300 font-medium'
                   : 'text-zinc-400'
               }`}
             >

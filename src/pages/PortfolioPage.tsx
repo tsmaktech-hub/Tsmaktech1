@@ -59,13 +59,13 @@ const TESTIMONIALS = [
 const SKILL_DOMAINS = [
   { 
     name: "Full-Stack Web Architectures", 
-    icon: <Globe size={22} className="text-purple-400" />, 
+    icon: <Globe size={22} className="text-blue-400" />, 
     tech: "Next.js 15, React 19, TypeScript Strict, Tailwind CSS v4, Framer Motion",
     desc: "Building production platforms optimized for sub-second paint times and 60fps kinetic user interaction." 
   },
   { 
     name: "Backend, APIs & Cloud Scalability", 
-    icon: <Cpu size={22} className="text-pink-400" />, 
+    icon: <Cpu size={22} className="text-blue-400" />, 
     tech: "Node.js, Express, PostgreSQL, SQLite, Docker, Cloud Run, Supabase",
     desc: "ACID relational schema design, role-based access control, JWT verification, and zero-downtime containerized deployments." 
   },
@@ -77,7 +77,7 @@ const SKILL_DOMAINS = [
   },
   { 
     name: "Cross-Platform Mobile Suites", 
-    icon: <Smartphone size={22} className="text-purple-400" />, 
+    icon: <Smartphone size={22} className="text-blue-400" />, 
     tech: "React Native, Expo SDK, Native Biometrics, Offline-First Sync",
     desc: "Performant iOS and Android mobile software with local persistence and background push notification pipelines." 
   }
@@ -94,7 +94,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
     : PROJECTS.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[#090A0F] text-white pt-24 pb-20">
+    <div className="min-h-screen bg-transparent text-white pt-24 pb-20">
       {/* Header Back Link & Title */}
       <section className="relative py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,13 +102,13 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             onClick={onBackToHome}
             className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-white transition-colors mb-8 group cursor-pointer"
           >
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-pink-400" />
+            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-blue-400" />
             <span>Return to Studio Home</span>
           </button>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <div className="max-w-3xl">
-              <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
+              <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-3 block">
                 Engineering Provenance
               </span>
               <h1 className="text-4xl sm:text-6xl font-bold tracking-tight font-display mb-6">
@@ -121,12 +121,12 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
 
             {/* Quick Metrics & View Mode Switcher */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="p-1 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center">
+              <div className="p-1 rounded-xl bg-white/[0.04] border border-white/10 flex items-center">
                 <button
                   onClick={() => setViewMode('3d')}
-                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
                     viewMode === '3d'
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-500/25'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -134,9 +134,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
                     viewMode === 'grid'
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-500/25'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -145,11 +145,11 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
-                  <div className="text-xl font-extrabold text-pink-400 font-display">4+</div>
+                <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                  <div className="text-xl font-extrabold text-blue-400 font-display">4+</div>
                   <div className="text-[10px] text-zinc-400 uppercase font-mono">Systems</div>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+                <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
                   <div className="text-xl font-extrabold text-white font-display">99.9%</div>
                   <div className="text-[10px] text-zinc-400 uppercase font-mono">Uptime</div>
                 </div>
@@ -176,7 +176,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white shadow-md shadow-purple-500/20'
+                    ? 'bg-blue-600 text-white shadow-sm'
                     : 'bg-white/[0.04] text-zinc-400 hover:text-white hover:bg-white/[0.08] border border-white/5'
                 }`}
               >
@@ -204,13 +204,12 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 >
                   <TiltCard
                     tiltAngle={6}
-                    glareColor="rgba(236, 72, 153, 0.15)"
-                    className="rounded-3xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/40 p-6 sm:p-8 flex flex-col justify-between group shadow-xl transition-all h-full"
+                    className="rounded-2xl bg-[#0c101c] border border-white/10 hover:border-blue-500/30 p-6 sm:p-8 flex flex-col justify-between group shadow-lg transition-all h-full"
                   >
                   <div>
                     {/* Header */}
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
                         {project.category}
                       </span>
                       {project.client && (
@@ -220,7 +219,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                       )}
                     </div>
 
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 font-display group-hover:text-pink-300 transition-colors">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 font-display">
                       {project.title}
                     </h2>
 
@@ -233,13 +232,13 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                     {/* Simulated Browser Frame with Preview Image */}
                     <div 
                       onClick={() => onSelectProject(project)}
-                      className="cursor-pointer rounded-2xl overflow-hidden border border-white/10 bg-zinc-950 mb-6 group/img relative"
+                      className="cursor-pointer rounded-xl overflow-hidden border border-white/10 bg-zinc-950 mb-6 group/img relative"
                     >
                       <div className="h-7 bg-zinc-900 px-3 flex items-center justify-between border-b border-white/5">
                         <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-rose-500/70" />
-                          <div className="w-2 h-2 rounded-full bg-amber-500/70" />
-                          <div className="w-2 h-2 rounded-full bg-pink-500/70" />
+                          <div className="w-2 h-2 rounded-full bg-zinc-700" />
+                          <div className="w-2 h-2 rounded-full bg-zinc-700" />
+                          <div className="w-2 h-2 rounded-full bg-zinc-700" />
                         </div>
                         <span className="text-[10px] font-mono text-zinc-500">
                           {project.link.replace(/^https?:\/\//, '')}
@@ -258,7 +257,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                           referrerPolicy="no-referrer"
                         />
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="px-4 py-2 rounded-full bg-white text-zinc-950 text-xs font-bold shadow-xl flex items-center gap-1.5">
+                          <span className="px-4 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold shadow-md flex items-center gap-1.5">
                             <Layers size={14} />
                             <span>Inspect Architecture</span>
                           </span>
@@ -268,7 +267,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
 
                     {/* Metric & Tags */}
                     {project.metric && (
-                      <div className="text-xs font-mono text-pink-400 mb-4 flex items-center gap-2">
+                      <div className="text-xs font-mono text-blue-400 mb-4 flex items-center gap-2">
                         <ShieldCheck size={14} />
                         <span>Metric: {project.metric}</span>
                       </div>
@@ -278,7 +277,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
+                          className="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
                         >
                           #{tag}
                         </span>
@@ -289,7 +288,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                     <div className="flex items-center gap-3 pt-4 border-t border-white/10">
                       <button
                         onClick={() => onSelectProject(project)}
-                        className="flex-grow py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs sm:text-sm font-semibold border border-white/10 btn-glass-hover transition-all flex items-center justify-center gap-2 cursor-pointer"
+                        className="flex-grow py-2.5 px-4 rounded-lg bg-white/5 hover:bg-white/10 text-white text-xs sm:text-sm font-semibold border border-white/10 transition-colors flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <span>Case Study Details</span>
                         <ArrowRight size={14} />
@@ -299,7 +298,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-xs sm:text-sm font-bold btn-launchpad-glow btn-shine transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-purple-500/25"
+                        className="py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                       >
                         <span>Live Site</span>
                         <ExternalLink size={14} />
@@ -315,10 +314,10 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
       </section>
 
       {/* Skills Matrix / Architectural Capabilities */}
-      <section className="py-24 border-y border-white/[0.08] bg-black/30">
+      <section className="py-20 border-y border-white/[0.08] bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-3 block">
               Core Capabilities
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
@@ -333,17 +332,17 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             {SKILL_DOMAINS.map((domain, i) => (
               <div
                 key={i}
-                className="p-8 rounded-3xl bg-[#0c0e20] border border-white/10 hover:border-purple-500/30 transition-all"
+                className="p-8 rounded-2xl bg-[#0c101c] border border-white/10 hover:border-blue-500/30 transition-colors"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
                     {domain.icon}
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white font-display">
                       {domain.name}
                     </h3>
-                    <div className="text-xs text-pink-400 font-mono">
+                    <div className="text-xs text-blue-400 font-mono">
                       Production Certified
                     </div>
                   </div>
@@ -351,7 +350,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                   {domain.desc}
                 </p>
-                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-mono text-zinc-300">
+                <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 text-xs font-mono text-zinc-300">
                   {domain.tech}
                 </div>
               </div>
@@ -361,10 +360,10 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
       </section>
 
       {/* Client Feedback & Testimonials */}
-      <section className="py-24">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold tracking-widest text-pink-400 uppercase mb-3 block">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-3 block">
               Testimonials
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
@@ -379,13 +378,13 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
             {TESTIMONIALS.map((t) => (
               <div
                 key={t.id}
-                className="p-8 rounded-3xl bg-[#0c0e20] border border-white/10 relative flex flex-col justify-between hover:border-purple-500/30 transition-all"
+                className="p-8 rounded-2xl bg-[#0c101c] border border-white/10 relative flex flex-col justify-between hover:border-blue-500/30 transition-colors"
               >
-                <Quote size={32} className="text-purple-500/20 absolute top-6 right-6" />
+                <Quote size={32} className="text-white/10 absolute top-6 right-6" />
                 <div>
                   <div className="flex gap-1 mb-6">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} size={15} className="fill-pink-400 text-pink-400" />
+                      <Star key={i} size={15} className="fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   <p className="text-zinc-300 text-sm leading-relaxed mb-8 italic">
@@ -414,7 +413,7 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
       {/* Bottom CTA */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-purple-950/60 via-[#0e1024] to-[#090A0F] border border-purple-500/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="p-8 sm:p-12 rounded-2xl bg-[#0c101c] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-2">
                 Have a platform to build?
@@ -423,10 +422,10 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 Let's discuss scope, architectural requirements, and delivery timeline.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <button
                 onClick={onGetStarted}
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold text-sm transition-all btn-launchpad-glow btn-shine flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-lg shadow-purple-500/25"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-sm"
               >
                 <span>Hire Studio</span>
                 <ArrowRight size={16} />
@@ -435,9 +434,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10 hover:border-pink-500/30 btn-glass-hover flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-sm transition-colors border border-white/10 hover:border-white/20 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <MessageCircle size={16} className="text-pink-400" />
+                <MessageCircle size={16} className="text-blue-400" />
                 <span>WhatsApp Hotline</span>
               </a>
             </div>

@@ -12,7 +12,7 @@
     color-scheme: dark;
   }
   body {
-    background-color: #080a12;
+    background-color: #060810;
     color: #f1f5f9;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -20,52 +20,48 @@
   }
 }
 
-/* Bespoke subtle texture & grid utilities */
-.bg-grid-pattern {
-  background-size: 32px 32px;
+/* Bespoke architectural patterns & texture utilities */
+.bg-tech-grid {
+  background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
 }
 
-.bg-radial-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(138, 43, 226, 0.15) 0%, rgba(70, 130, 180, 0.1) 40%, rgba(14, 21, 37, 0.04) 70%, transparent 85%);
+.bg-tech-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
+}
+
+.bg-tech-blueprint {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.35) 1.5px, transparent 1.5px);
+}
+
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
 }
 
 .font-display {
   font-family: var(--font-display);
 }
 
-/* Glassmorphism crafted for deep dark surfaces */
+/* Card surfaces crafted for clean dark UI */
 .studio-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  background-color: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .studio-card-elevated {
-  background: linear-gradient(135deg, rgba(16, 20, 36, 0.9) 0%, rgba(10, 12, 24, 0.96) 100%);
-  border: 1px solid rgba(138, 43, 226, 0.22);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* Shimmer border animation */
-@keyframes border-shimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-border-shimmer {
-  background-size: 200% 200%;
-  animation: border-shimmer 4s ease infinite;
+  background-color: #0c101c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 /* Infinite Marquee */
@@ -95,7 +91,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #080a12;
+  background: #060810;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -104,64 +100,45 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(138, 43, 226, 0.6);
+  background: rgba(37, 99, 235, 0.7);
 }
 
-/* High-Performance Button Hover Micro-interactions */
+/* Clean, simple button utilities without web3 glow or shine streaks */
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
 .btn-shine {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-shine::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.25) 35%,
-    transparent 50%
-  );
-  transform: translateX(-120%) rotate(25deg);
-  transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1);
-  pointer-events: none;
-}
-
-.btn-shine:hover::after {
-  transform: translateX(120%) rotate(25deg);
+  /* Kept as empty alias for backward compatibility without light streak */
 }
 
 .btn-launchpad-glow {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.35);
-}
-
-.btn-launchpad-glow:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 25px -4px rgba(124, 58, 237, 0.45), 0 0 18px rgba(70, 130, 180, 0.35);
-}
-
-.btn-launchpad-glow:active {
-  transform: translateY(0) scale(0.97);
+  /* Simple subtle elevation without neon glow */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 }
 
 .btn-glass-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 }
 
 .btn-glass-hover:hover {
-  transform: translateY(-2px) scale(1.02);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(70, 130, 180, 0.4);
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5), 0 0 14px rgba(138, 43, 226, 0.2);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btn-glass-hover:active {
-  transform: translateY(0) scale(0.97);
+  transform: scale(0.98);
 }
 
 /* Hardware accelerated layer */

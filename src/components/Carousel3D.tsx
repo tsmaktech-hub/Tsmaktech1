@@ -4,7 +4,9 @@ import {
   ExternalLink, 
   Sparkles, 
   ArrowRight,
-  Eye
+  Eye,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { Project } from '../types';
 
@@ -86,27 +88,27 @@ export default function Carousel3D({
     } else if (normalizedOffset === 1) {
       return {
         zIndex: 20,
-        x: '55%',
-        scale: 0.82,
-        rotateY: -28,
+        x: '52%',
+        scale: 0.84,
+        rotateY: -24,
         opacity: 0.65,
         pointerEvents: 'auto' as const,
       };
     } else if (normalizedOffset === -1) {
       return {
         zIndex: 20,
-        x: '-55%',
-        scale: 0.82,
-        rotateY: 28,
+        x: '-52%',
+        scale: 0.84,
+        rotateY: 24,
         opacity: 0.65,
         pointerEvents: 'auto' as const,
       };
     } else {
       return {
         zIndex: 10,
-        x: normalizedOffset > 0 ? '90%' : '-90%',
+        x: normalizedOffset > 0 ? '88%' : '-88%',
         scale: 0.65,
-        rotateY: normalizedOffset > 0 ? -45 : 45,
+        rotateY: normalizedOffset > 0 ? -40 : 40,
         opacity: 0,
         pointerEvents: 'none' as const,
       };
@@ -114,11 +116,11 @@ export default function Carousel3D({
   };
 
   return (
-    <div className="relative w-full py-4 select-none">
-      {/* 3D Perspective Stage */}
+    <div className="relative w-full py-2 select-none">
+      {/* 3D Perspective Stage - Reduced width & height for sleeker, compact cards */}
       <div
         style={{ perspective: 1200 }}
-        className="relative h-[390px] sm:h-[430px] md:h-[460px] max-w-4xl mx-auto flex items-center justify-center overflow-hidden px-4"
+        className="relative h-[360px] sm:h-[390px] md:h-[415px] max-w-3xl mx-auto flex items-center justify-center overflow-hidden px-2 sm:px-4"
         onTouchStart={(e) => setDragStartX(e.touches[0].clientX)}
         onTouchEnd={(e) => {
           if (dragStartX !== null) {
@@ -157,28 +159,28 @@ export default function Carousel3D({
                   goToSlide(idx);
                 }
               }}
-              className="absolute w-[88%] sm:w-[440px] md:w-[480px] rounded-2xl bg-[#0b0e1b] border border-white/10 p-3 sm:p-4 shadow-xl group cursor-pointer transition-colors hover:border-sky-500/40 gpu-accel"
+              className="absolute w-[78%] sm:w-[320px] md:w-[350px] rounded-2xl bg-[#0c101c] border border-white/10 p-3 sm:p-3.5 shadow-xl group cursor-pointer transition-colors hover:border-blue-500/30 gpu-accel"
             >
               {/* Browser Window Header */}
-              <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3">
+              <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-rose-500/80" />
-                  <div className="w-2 h-2 rounded-full bg-amber-500/80" />
-                  <div className="w-2 h-2 rounded-full bg-sky-400/80" />
-                  <span className="text-[10px] font-mono text-zinc-400 pl-2 truncate max-w-[180px]">
+                  <div className="w-2 h-2 rounded-full bg-zinc-600" />
+                  <div className="w-2 h-2 rounded-full bg-zinc-600" />
+                  <div className="w-2 h-2 rounded-full bg-blue-500" />
+                  <span className="text-[10px] font-mono text-zinc-400 pl-1.5 truncate max-w-[140px] sm:max-w-[170px]">
                     tsmak.tech/{project.id}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-violet-500/15 text-violet-300 border border-violet-500/25">
+                  <span className="px-2 py-0.5 rounded-md text-[9px] font-mono font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20">
                     {project.category}
                   </span>
                 </div>
               </div>
 
               {/* Full Image Visual Area */}
-              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-white/10 group">
+              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-950 mb-2.5 border border-white/10 group">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -190,20 +192,20 @@ export default function Carousel3D({
                 />
 
                 {/* Metric Overlay Badge */}
-                <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center gap-1.5 shadow-md">
-                  <Sparkles size={11} className="text-sky-400" />
+                <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/15 text-white text-[10px] font-mono flex items-center gap-1 shadow-sm">
+                  <Sparkles size={10} className="text-blue-400" />
                   <span>{project.metric}</span>
                 </div>
 
                 {/* Quick Inspect Button on Image Hover */}
                 {isCenter && (
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectProject(project);
                       }}
-                      className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-violet-600 to-sky-600 hover:from-violet-500 hover:to-sky-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-violet-950/40 active:scale-95 transition-all"
+                      className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs flex items-center gap-1.5 shadow-sm active:scale-95 transition-colors cursor-pointer"
                     >
                       <Eye size={13} />
                       <span>Inspect</span>
@@ -214,22 +216,22 @@ export default function Carousel3D({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="px-3.5 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white font-bold text-xs flex items-center gap-1.5 backdrop-blur-md transition-all active:scale-95"
+                        className="px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-white font-medium text-xs flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
                       >
                         <ExternalLink size={13} />
-                        <span>Live Site</span>
+                        <span>Live</span>
                       </a>
                     )}
                   </div>
                 )}
               </div>
 
-              {/* Title & Micro Description (Low text, high visual punch) */}
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="text-base font-bold text-white font-display flex items-center gap-2">
-                    <span>{project.title}</span>
-                    <span className="text-[11px] text-zinc-500 font-mono">({project.year})</span>
+              {/* Title & Micro Description */}
+              <div className="flex items-start justify-between gap-2.5">
+                <div className="min-w-0">
+                  <h3 className="text-sm sm:text-base font-bold text-white font-display flex items-center gap-1.5 truncate">
+                    <span className="truncate">{project.title}</span>
+                    <span className="text-[10px] text-zinc-500 font-mono shrink-0">({project.year})</span>
                   </h3>
                   <p className="text-[11px] text-zinc-400 mt-0.5 line-clamp-1">
                     {project.description}
@@ -242,25 +244,25 @@ export default function Carousel3D({
                     e.stopPropagation();
                     onSelectProject(project);
                   }}
-                  className="p-2 rounded-lg bg-white/[0.04] hover:bg-gradient-to-r hover:from-violet-600 hover:to-sky-600 hover:text-white text-zinc-300 border border-white/10 transition-all flex-shrink-0"
+                  className="p-1.5 rounded-lg bg-white/[0.04] hover:bg-blue-600 hover:text-white text-zinc-300 border border-white/10 transition-colors shrink-0 cursor-pointer"
                   title="View Details"
                 >
-                  <ArrowRight size={14} />
+                  <ArrowRight size={13} />
                 </button>
               </div>
 
               {/* Tech Pills */}
-              <div className="flex flex-wrap gap-1.5 mt-2.5 pt-2.5 border-t border-white/5">
+              <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-white/5">
                 {project.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 rounded-md text-[9px] font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
+                    className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-white/[0.03] text-zinc-400 border border-white/5"
                   >
                     {tag}
                   </span>
                 ))}
                 {project.tags.length > 3 && (
-                  <span className="px-1.5 py-0.5 rounded-md text-[9px] font-mono text-sky-400 bg-sky-500/10">
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono text-blue-400 bg-blue-500/10">
                     +{project.tags.length - 3}
                   </span>
                 )}
@@ -268,6 +270,38 @@ export default function Carousel3D({
             </motion.div>
           );
         })}
+
+        {/* Left & Right Nav Controls */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous Project"
+          className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0c101c]/90 border border-white/10 hover:border-blue-500/40 hover:bg-blue-600 hover:text-white text-zinc-300 flex items-center justify-center transition-all shadow-md cursor-pointer active:scale-95"
+        >
+          <ChevronLeft size={16} />
+        </button>
+        <button
+          onClick={nextSlide}
+          aria-label="Next Project"
+          className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0c101c]/90 border border-white/10 hover:border-blue-500/40 hover:bg-blue-600 hover:text-white text-zinc-300 flex items-center justify-center transition-all shadow-md cursor-pointer active:scale-95"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
+
+      {/* Slide Pagination Indicator Dots */}
+      <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
+        {projects.map((project, idx) => (
+          <button
+            key={project.id}
+            onClick={() => goToSlide(idx)}
+            aria-label={`View ${project.title}`}
+            className={`transition-all duration-300 rounded-full cursor-pointer ${
+              currentIndex === idx
+                ? 'w-6 h-1.5 bg-blue-500'
+                : 'w-1.5 h-1.5 bg-zinc-700 hover:bg-zinc-500'
+            }`}
+          />
+        ))}
       </div>
     </div>
   );

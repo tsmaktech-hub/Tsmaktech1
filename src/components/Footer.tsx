@@ -16,15 +16,15 @@ export default function Footer({ onNavigate }: FooterProps) {
             <div className="flex items-center gap-3">
               <TsmakLogo size="sm" />
               <div className="text-xl font-bold tracking-tight text-white font-display">
-                Tsmak <span className="text-pink-400">Tech</span>
+                Tsmak <span className="text-blue-400">Tech</span>
               </div>
             </div>
             <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
               An engineering studio & academy. Architecting mission-critical platforms, attendance ecosystems, and custom AI solutions while mentoring high-caliber developers.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                 <span>All systems operational</span>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://tsmakislamicgpt.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-pink-300 transition-colors flex items-center gap-1 text-pink-400"
+                  className="hover:text-blue-300 transition-colors flex items-center gap-1 text-blue-400"
                 >
                   <span>Tsmak-Islamic GPT</span>
                   <ArrowRight size={11} />
@@ -95,7 +95,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center gap-1"
                 >
-                  <MessageCircle size={12} className="text-purple-400" />
+                  <MessageCircle size={12} className="text-blue-400" />
                   <span>WhatsApp Community</span>
                 </a>
               </li>
@@ -121,7 +121,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://wa.me/2347087445219"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-pink-300 transition-colors text-pink-400 flex items-center gap-1"
+                  className="hover:text-blue-300 transition-colors text-blue-400 flex items-center gap-1"
                 >
                   <span>+234 708 744 5219</span>
                 </a>
@@ -155,7 +155,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </button>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="hover:text-pink-400 transition-colors cursor-pointer"
+              className="hover:text-blue-400 transition-colors cursor-pointer"
             >
               Back to Top ↑
             </button>
