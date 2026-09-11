@@ -53,7 +53,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
             <button
               onClick={() => handleLinkClick('home')}
               className={cn(
-                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors',
+                'relative px-3.5 lg:px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors whitespace-nowrap',
                 currentPage === 'home' ? 'text-white' : 'text-zinc-400 hover:text-white'
               )}
             >
@@ -70,7 +70,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
             <button
               onClick={() => handleLinkClick('portfolio')}
               className={cn(
-                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors',
+                'relative px-3.5 lg:px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors whitespace-nowrap',
                 currentPage === 'portfolio' ? 'text-white' : 'text-zinc-400 hover:text-white'
               )}
             >
@@ -81,14 +81,14 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                   transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                 />
               )}
-              <span className="relative z-10">Portfolio</span>
+              <span className="relative z-10">Portfolio & Case Studies</span>
             </button>
 
             {/* Services Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white flex items-center gap-1 transition-colors"
+                className="px-3.5 lg:px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white flex items-center gap-1 transition-colors whitespace-nowrap"
               >
                 <span>Services</span>
                 <ChevronDown
@@ -135,9 +135,9 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
 
             <button
               onClick={() => handleLinkClick('portfolio', 'about')}
-              className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-colors"
+              className="px-3.5 lg:px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap"
             >
-              About
+              About us
             </button>
           </div>
 
@@ -226,7 +226,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 onClick={() => handleLinkClick('portfolio', 'about')}
                 className="text-left px-4 py-3 rounded-xl text-base font-semibold text-zinc-300 hover:bg-white/5"
               >
-                About Tsmak Tech
+                About us
               </button>
               <a
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"
