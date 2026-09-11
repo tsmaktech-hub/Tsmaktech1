@@ -192,9 +192,9 @@ export default function AmbientBackground() {
 
     // Lid open/close angle constants
     // CLOSED: ~88 degrees forward (+1.54 rad), resting flush on top of the keyboard base
-    // OPEN: 0.0 rad (perpendicular 90-degree right angle forming the iconic L-shape with the base)
+    // OPEN: -0.28 rad (~106 degrees open), smoothly rising through the 90° L-shape and pressing to the back a little at the end
     const CLOSED_LID_ANGLE = Math.PI * 0.49;
-    const OPEN_LID_ANGLE = 0.0;
+    const OPEN_LID_ANGLE = -0.28;
 
     // Start with laptop completely closed
     lidPivot.rotation.x = CLOSED_LID_ANGLE;
