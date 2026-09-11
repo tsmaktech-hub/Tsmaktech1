@@ -1,9 +1,10 @@
 import React from 'react';
 import { ArrowRight, MessageCircle, Mail, Globe, Github, Terminal } from 'lucide-react';
 import { TsmakLogo } from './Logo';
+import { Page } from '../types';
 
 interface FooterProps {
-  onNavigate: (page: 'home' | 'portfolio' | 'get-started', sectionId?: string) => void;
+  onNavigate: (page: Page, sectionId?: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -23,7 +24,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </div>
             </div>
             <p className="text-zinc-400 text-xs sm:text-sm max-w-sm leading-relaxed">
-              An elite engineering studio & academy. Architecting mission-critical platforms, attendance ecosystems, and custom AI solutions while mentoring high-caliber developers.
+              An online tech program and engineering studio teaching young people and tech enthusiasts real digital skills, while architecting modern software systems.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
@@ -39,6 +40,14 @@ export default function Footer({ onNavigate }: FooterProps) {
               Studio
             </h4>
             <ul className="space-y-2.5 text-xs">
+              <li>
+                <button
+                  onClick={() => onNavigate('about')}
+                  className="text-zinc-400 hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  About Tsmak Tech
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => onNavigate('portfolio')}

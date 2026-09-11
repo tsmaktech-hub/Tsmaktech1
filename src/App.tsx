@@ -7,12 +7,13 @@ import ScrollProgressBar from './components/ScrollProgressBar';
 import ProjectModal from './components/ProjectModal';
 import HomePage from './pages/HomePage';
 import PortfolioPage from './pages/PortfolioPage';
+import AboutPage from './pages/AboutPage';
 import GetStartedPage from './pages/GetStartedPage';
-import { Project } from './types';
+import { Project, Page } from './types';
 import { MessageCircle } from 'lucide-react';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'portfolio' | 'get-started'>('home');
+  const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -24,7 +25,7 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'portfolio' | 'get-started', sectionId?: string) => {
+  const handleNavigate = (page: Page, sectionId?: string) => {
     setCurrentPage(page);
 
     if (sectionId) {
@@ -88,6 +89,18 @@ export default function App() {
                 onGetStarted={() => handleNavigate('get-started')}
                 onSelectProject={(proj) => setSelectedProject(proj)}
               />
+            </motion.div>
+          )}
+
+          {currentPage === 'about' && (
+            <motion.div
+              key="about"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <AboutPage onNavigate={handleNavigate} />
             </motion.div>
           )}
 

@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { PROJECTS, LEARNING_PATHS, FEATURED_TUTORIALS, STUDIO_METRICS } from '../constants';
-import { Project } from '../types';
+import { Project, Page } from '../types';
 import Marquee from '../components/Marquee';
 import TerminalDemo from '../components/TerminalDemo';
 import HeroFireShowcase from '../components/HeroFireShowcase';
@@ -30,7 +30,7 @@ import VisualWorkflow from '../components/VisualWorkflow';
 import TiltCard from '../components/TiltCard';
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'portfolio' | 'get-started', sectionId?: string) => void;
+  onNavigate: (page: Page, sectionId?: string) => void;
   onSelectProject: (project: Project) => void;
 }
 

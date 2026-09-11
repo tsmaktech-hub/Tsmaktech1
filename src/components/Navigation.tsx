@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
 import { TsmakLogo } from './Logo';
 import { cn } from '../lib/utils';
+import { Page } from '../types';
 
 interface NavigationProps {
-  currentPage: 'home' | 'portfolio' | 'get-started';
-  onNavigate: (page: 'home' | 'portfolio' | 'get-started', sectionId?: string) => void;
+  currentPage: Page;
+  onNavigate: (page: Page, sectionId?: string) => void;
   isScrolled: boolean;
 }
 
@@ -14,7 +15,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
-  const handleLinkClick = (page: 'home' | 'portfolio' | 'get-started', sectionId?: string) => {
+  const handleLinkClick = (page: Page, sectionId?: string) => {
     onNavigate(page, sectionId);
     setIsMenuOpen(false);
     setIsServicesOpen(false);
@@ -53,7 +54,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
             <button
               onClick={() => handleLinkClick('home')}
               className={cn(
-                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors',
+                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors cursor-pointer',
                 currentPage === 'home' ? 'text-white' : 'text-zinc-400 hover:text-white'
               )}
             >
@@ -68,9 +69,26 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
             </button>
 
             <button
+              onClick={() => handleLinkClick('about')}
+              className={cn(
+                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors cursor-pointer',
+                currentPage === 'about' ? 'text-white' : 'text-zinc-400 hover:text-white'
+              )}
+            >
+              {currentPage === 'about' && (
+                <motion.div
+                  layoutId="navPill"
+                  className="absolute inset-0 bg-white/10 rounded-full border border-white/10"
+                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">About Us</span>
+            </button>
+
+            <button
               onClick={() => handleLinkClick('portfolio')}
               className={cn(
-                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors',
+                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors cursor-pointer',
                 currentPage === 'portfolio' ? 'text-white' : 'text-zinc-400 hover:text-white'
               )}
             >
@@ -88,7 +106,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
             <div className="relative">
               <button
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white flex items-center gap-1 transition-colors"
+                className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
               >
                 <span>Services</span>
                 <ChevronDown
@@ -108,7 +126,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                   >
                     <button
                       onClick={() => handleLinkClick('home', 'professional-services')}
-                      className="w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors group"
+                      className="w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
                     >
                       <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
                         Hire the Studio
@@ -119,7 +137,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                     </button>
                     <button
                       onClick={() => handleLinkClick('home', 'tutorials')}
-                      className="w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors group"
+                      className="w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
                     >
                       <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
                         Engineering Academy
@@ -132,13 +150,6 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 )}
               </AnimatePresence>
             </div>
-
-            <button
-              onClick={() => handleLinkClick('portfolio', 'about')}
-              className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
-            >
-              About Us
-            </button>
           </div>
 
           {/* Right Action Cluster */}
@@ -202,6 +213,15 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 Home
               </button>
               <button
+                onClick={() => handleLinkClick('about')}
+                className={cn(
+                  'text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors',
+                  currentPage === 'about' ? 'bg-white/10 text-white' : 'text-zinc-300 hover:bg-white/5'
+                )}
+              >
+                About Us
+              </button>
+              <button
                 onClick={() => handleLinkClick('portfolio')}
                 className={cn(
                   'text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors',
@@ -221,12 +241,6 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 className="text-left px-4 py-3 rounded-xl text-base font-semibold text-zinc-300 hover:bg-white/5"
               >
                 Curriculum & Tutorials
-              </button>
-              <button
-                onClick={() => handleLinkClick('portfolio', 'about')}
-                className="text-left px-4 py-3 rounded-xl text-base font-semibold text-zinc-300 hover:bg-white/5"
-              >
-                About Us
               </button>
               <a
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"

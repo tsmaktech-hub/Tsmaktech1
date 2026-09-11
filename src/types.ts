@@ -1,3 +1,5 @@
+export type Page = 'home' | 'portfolio' | 'about' | 'get-started';
+
 export interface Tutorial {
   id: string;
   title: string;
