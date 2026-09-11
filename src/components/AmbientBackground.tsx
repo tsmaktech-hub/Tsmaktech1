@@ -192,9 +192,9 @@ export default function AmbientBackground() {
 
     // Lid open/close angle constants
     // CLOSED: ~88 degrees forward (+1.54 rad), resting flush on top of the keyboard base
-    // OPEN: ~115 degrees back (-1.95 rad), exposing the IDE screen
+    // OPEN: 0.0 rad (perpendicular 90-degree right angle forming the iconic L-shape with the base)
     const CLOSED_LID_ANGLE = Math.PI * 0.49;
-    const OPEN_LID_ANGLE = -Math.PI * 0.62;
+    const OPEN_LID_ANGLE = 0.0;
 
     // Start with laptop completely closed
     lidPivot.rotation.x = CLOSED_LID_ANGLE;
@@ -473,9 +473,10 @@ export default function AmbientBackground() {
       targetRotationX = 0.2 + Math.sin(scrollProgress * Math.PI * 2) * 0.15;
       targetPositionY = -0.15 - scrollProgress * 0.4;
 
-      // 2. Progressive opening: closed at top (scroll = 0), opens "small small" as you scroll down
-      // Uses smooth cubic Hermite curve (smoothstep) for realistic mechanical hinge feel
-      const openFactor = Math.min(Math.max(scrollProgress * 2.4, scrollY / 700), 1);
+      // 2. Progressive opening into an L-shape:
+      // Calibrated to open much more slowly and gently across the scroll ("small small")
+      // Reaches the crisp 90° perpendicular L-shape smoothly without rushing
+      const openFactor = Math.min(Math.max(scrollProgress * 0.95, scrollY / 2200), 1);
       const smoothOpen = openFactor * openFactor * (3 - 2 * openFactor);
       targetLidAngle = CLOSED_LID_ANGLE + (OPEN_LID_ANGLE - CLOSED_LID_ANGLE) * smoothOpen;
 
@@ -534,7 +535,7 @@ export default function AmbientBackground() {
       currentRotationY += (targetRotationY + mouseInfluenceX + tiltHover - currentRotationY) * 0.05;
       currentRotationX += (targetRotationX - mouseInfluenceY - currentRotationX) * 0.05;
       currentPositionY += (targetPositionY + floatHover - currentPositionY) * 0.05;
-      currentLidAngle += (targetLidAngle - currentLidAngle) * 0.05;
+      currentLidAngle += (targetLidAngle - currentLidAngle) * 0.038;
 
       laptopGroup.rotation.y = currentRotationY;
       laptopGroup.rotation.x = currentRotationX;
