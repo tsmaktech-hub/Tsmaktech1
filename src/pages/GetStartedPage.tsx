@@ -7,7 +7,6 @@ import {
   Phone, 
   Briefcase, 
   GraduationCap, 
-  ChevronLeft, 
   CheckCircle2, 
   MessageCircle,
   Sparkles,
@@ -15,10 +14,9 @@ import {
   Layers,
   Clock
 } from 'lucide-react';
-import { TsmakLogo } from '../components/Logo';
 
 interface GetStartedPageProps {
-  onBack: () => void;
+  onBack?: () => void;
 }
 
 type TrackType = 'client' | 'student';
@@ -57,29 +55,7 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-white flex flex-col pt-24 pb-16">
-      {/* Header Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#090d16]/90 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <button 
-              onClick={onBack}
-              className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group text-sm font-mono cursor-pointer"
-            >
-              <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-blue-400" />
-              <span>Back to Home</span>
-            </button>
-            <div className="flex items-center gap-2.5">
-              <TsmakLogo size="sm" />
-              <div className="text-lg font-bold tracking-tight font-display">
-                Tsmak <span className="text-blue-400">Tech</span>
-              </div>
-            </div>
-            <div className="w-20" />
-          </div>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-transparent text-white flex flex-col pt-28 sm:pt-32 pb-16">
       <main className="flex-grow flex items-center justify-center px-4 sm:px-6">
         <div className="w-full max-w-3xl">
           {/* Track Switcher */}
@@ -232,11 +208,11 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   className="w-full py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-colors cursor-pointer shadow-sm"
                 >
                   <Send size={16} />
-                  <span>Send Requirements via WhatsApp Hotline</span>
+                  <span>Send via WhatsApp</span>
                 </button>
 
                 <p className="text-center text-xs text-zinc-500">
-                  Connects directly to founder line: +234 708 744 5219. Usually responds within 2 hours.
+                  Direct founder line: +234 708 744 5219. Fast response.
                 </p>
               </form>
             ) : (
@@ -272,10 +248,10 @@ export default function GetStartedPage({ onBack }: GetStartedPageProps) {
                   href={COMMUNITY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm active:scale-95 transition-colors cursor-pointer shadow-sm"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm active:scale-95 transition-colors cursor-pointer shadow-sm text-center"
                 >
                   <MessageCircle size={18} />
-                  <span>Join Official WhatsApp Community Group</span>
+                  <span>Join WhatsApp Community</span>
                 </a>
 
                 <div className="pt-4 border-t border-white/5">

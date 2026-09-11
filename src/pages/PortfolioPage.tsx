@@ -14,8 +14,7 @@ import {
   MessageCircle,
   Sparkles,
   Layers,
-  ShieldCheck,
-  ChevronLeft
+  ShieldCheck
 } from 'lucide-react';
 import { PROJECTS, STUDIO_METRICS } from '../constants';
 import { Project } from '../types';
@@ -24,7 +23,7 @@ import TiltCard from '../components/TiltCard';
 import Carousel3D from '../components/Carousel3D';
 
 interface PortfolioPageProps {
-  onBackToHome: () => void;
+  onBackToHome?: () => void;
   onGetStarted: () => void;
   onSelectProject: (project: Project) => void;
 }
@@ -85,7 +84,7 @@ const SKILL_DOMAINS = [
 
 const CATEGORIES = ['All Works', 'AI Application', 'Institutional System', 'Enterprise SaaS', 'Web App'];
 
-export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProject }: PortfolioPageProps) {
+export default function PortfolioPage({ onGetStarted, onSelectProject }: PortfolioPageProps) {
   const [selectedCategory, setSelectedCategory] = useState('All Works');
   const [viewMode, setViewMode] = useState<'3d' | 'grid'>('3d');
 
@@ -95,17 +94,9 @@ export default function PortfolioPage({ onBackToHome, onGetStarted, onSelectProj
 
   return (
     <div className="min-h-screen bg-transparent text-white pt-24 pb-20">
-      {/* Header Back Link & Title */}
-      <section className="relative py-16 overflow-hidden">
+      {/* Header & Title */}
+      <section className="relative py-12 sm:py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button
-            onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-white transition-colors mb-8 group cursor-pointer"
-          >
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform text-blue-400" />
-            <span>Return to Studio Home</span>
-          </button>
-
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8">
             <div className="max-w-3xl">
               <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 sm:mb-3 block">
