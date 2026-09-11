@@ -49,8 +49,8 @@ export default function AmbientBackground() {
     rimLight.position.set(0, -2, 2);
     scene.add(rimLight);
 
-    // Screen glow point light (glows from the monitor down onto keyboard deck)
-    const screenGlowLight = new THREE.PointLight(0x38bdf8, 2.2, 4);
+    // Screen glow point light (glows from the monitor down onto keyboard deck as lid opens)
+    const screenGlowLight = new THREE.PointLight(0x38bdf8, 0, 4);
     screenGlowLight.position.set(0, 0.8, -0.6);
     scene.add(screenGlowLight);
 
@@ -190,8 +190,14 @@ export default function AmbientBackground() {
     const lidPivot = new THREE.Group();
     hingeGroup.add(lidPivot);
 
-    // Base open angle: ~112 degrees (in radians, from flat)
-    lidPivot.rotation.x = -Math.PI * 0.62;
+    // Lid open/close angle constants
+    // CLOSED: ~88 degrees forward (+1.54 rad), resting flush on top of the keyboard base
+    // OPEN: ~115 degrees back (-1.95 rad), exposing the IDE screen
+    const CLOSED_LID_ANGLE = Math.PI * 0.49;
+    const OPEN_LID_ANGLE = -Math.PI * 0.62;
+
+    // Start with laptop completely closed
+    lidPivot.rotation.x = CLOSED_LID_ANGLE;
 
     // Metallic back lid
     const lidBackGeom = new THREE.BoxGeometry(baseWidth, lidHeight, lidThickness);
@@ -199,18 +205,31 @@ export default function AmbientBackground() {
     lidBackMesh.position.set(0, lidHeight / 2, -lidThickness / 2);
     lidPivot.add(lidBackMesh);
 
-    // Glowing Tsmak Tech Logo on back of lid
+    // Glowing Tsmak Tech Logo on back of lid (visible on top when laptop is closed)
     const logoGeom = new THREE.CircleGeometry(0.18, 24);
     const logoMat = new THREE.MeshBasicMaterial({
       color: 0x38bdf8,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.85,
       side: THREE.DoubleSide,
     });
     const logoMesh = new THREE.Mesh(logoGeom, logoMat);
     logoMesh.position.set(0, lidHeight / 2, -lidThickness - 0.002);
     logoMesh.rotation.y = Math.PI;
     lidPivot.add(logoMesh);
+
+    // Outer cyber ring around logo
+    const logoRingGeom = new THREE.RingGeometry(0.22, 0.245, 32);
+    const logoRingMat = new THREE.MeshBasicMaterial({
+      color: 0x60a5fa,
+      transparent: true,
+      opacity: 0.6,
+      side: THREE.DoubleSide,
+    });
+    const logoRingMesh = new THREE.Mesh(logoRingGeom, logoRingMat);
+    logoRingMesh.position.set(0, lidHeight / 2, -lidThickness - 0.002);
+    logoRingMesh.rotation.y = Math.PI;
+    lidPivot.add(logoRingMesh);
 
     // Screen bezel (front)
     const bezelGeom = new THREE.BoxGeometry(baseWidth * 0.98, lidHeight * 0.98, 0.02);
@@ -424,10 +443,11 @@ export default function AmbientBackground() {
     scene.add(particlePoints);
 
     // 5. Scroll & Mouse Tracking
-    let targetRotationY = -0.32;
+    // Start with laptop completely closed and at the resting 3D angle
+    let targetRotationY = -0.35;
     let targetRotationX = 0.22;
     let targetPositionY = -0.15;
-    let targetLidAngle = -Math.PI * 0.62;
+    let targetLidAngle = CLOSED_LID_ANGLE;
 
     let currentRotationY = targetRotationY;
     let currentRotationX = targetRotationX;
@@ -448,15 +468,19 @@ export default function AmbientBackground() {
       const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1000);
       const scrollProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
 
-      // As you scroll down:
-      // - Laptop rotates smoothly on Y axis (showing dynamic 3D angles)
-      // - Tilts gently on X axis
-      // - Floats smoothly with parallax elevation
-      // - Screen angle flexes slightly like a responsive cyber device
+      // 1. Maintain exact 3D rotation, pitch, and parallax behavior as before
       targetRotationY = -0.35 + scrollProgress * 1.8;
       targetRotationX = 0.2 + Math.sin(scrollProgress * Math.PI * 2) * 0.15;
       targetPositionY = -0.15 - scrollProgress * 0.4;
-      targetLidAngle = -Math.PI * 0.62 - scrollProgress * 0.12;
+
+      // 2. Progressive opening: closed at top (scroll = 0), opens "small small" as you scroll down
+      // Uses smooth cubic Hermite curve (smoothstep) for realistic mechanical hinge feel
+      const openFactor = Math.min(Math.max(scrollProgress * 2.4, scrollY / 700), 1);
+      const smoothOpen = openFactor * openFactor * (3 - 2 * openFactor);
+      targetLidAngle = CLOSED_LID_ANGLE + (OPEN_LID_ANGLE - CLOSED_LID_ANGLE) * smoothOpen;
+
+      // 3. Screen glow illuminates as the lid opens
+      screenGlowLight.intensity = smoothOpen * 2.4;
     };
 
     const handleResize = () => {
@@ -477,8 +501,13 @@ export default function AmbientBackground() {
       renderer.setSize(width, height);
     };
 
-    // Initial sizing
+    // Initial sizing & sync state immediately
     handleResize();
+    handleScroll();
+    currentLidAngle = targetLidAngle;
+    currentRotationY = targetRotationY;
+    currentRotationX = targetRotationX;
+    currentPositionY = targetPositionY;
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -544,6 +573,7 @@ export default function AmbientBackground() {
       hingeGeom.dispose();
       lidBackGeom.dispose();
       logoGeom.dispose();
+      logoRingGeom.dispose();
       bezelGeom.dispose();
       camGeom.dispose();
       screenGeom.dispose();
