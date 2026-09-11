@@ -69,23 +69,6 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
             </button>
 
             <button
-              onClick={() => handleLinkClick('about')}
-              className={cn(
-                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors cursor-pointer',
-                currentPage === 'about' ? 'text-white' : 'text-zinc-400 hover:text-white'
-              )}
-            >
-              {currentPage === 'about' && (
-                <motion.div
-                  layoutId="navPill"
-                  className="absolute inset-0 bg-white/10 rounded-full border border-white/10"
-                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">About Us</span>
-            </button>
-
-            <button
               onClick={() => handleLinkClick('portfolio')}
               className={cn(
                 'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors cursor-pointer',
@@ -150,6 +133,23 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 )}
               </AnimatePresence>
             </div>
+
+            <button
+              onClick={() => handleLinkClick('about')}
+              className={cn(
+                'relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors cursor-pointer',
+                currentPage === 'about' ? 'text-white' : 'text-zinc-400 hover:text-white'
+              )}
+            >
+              {currentPage === 'about' && (
+                <motion.div
+                  layoutId="navPill"
+                  className="absolute inset-0 bg-white/10 rounded-full border border-white/10"
+                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">About Us</span>
+            </button>
           </div>
 
           {/* Right Action Cluster */}
@@ -213,15 +213,6 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 Home
               </button>
               <button
-                onClick={() => handleLinkClick('about')}
-                className={cn(
-                  'text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors',
-                  currentPage === 'about' ? 'bg-white/10 text-white' : 'text-zinc-300 hover:bg-white/5'
-                )}
-              >
-                About Us
-              </button>
-              <button
                 onClick={() => handleLinkClick('portfolio')}
                 className={cn(
                   'text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors',
@@ -241,6 +232,15 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 className="text-left px-4 py-3 rounded-xl text-base font-semibold text-zinc-300 hover:bg-white/5"
               >
                 Curriculum & Tutorials
+              </button>
+              <button
+                onClick={() => handleLinkClick('about')}
+                className={cn(
+                  'text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors',
+                  currentPage === 'about' ? 'bg-white/10 text-white' : 'text-zinc-300 hover:bg-white/5'
+                )}
+              >
+                About Us
               </button>
               <a
                 href="https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea"

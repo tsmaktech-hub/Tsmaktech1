@@ -9,7 +9,7 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps) {
   return (
-    <footer id="site-footer" className="relative z-20 w-full border-t border-white/[0.12] bg-[#060810] text-zinc-300 text-sm">
+    <footer id="site-footer" className="relative z-20 w-full border-t border-white/[0.12] bg-[#060810]/80 backdrop-blur-lg text-zinc-300 text-sm">
       {/* Subtle top accent highlight */}
       <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
 

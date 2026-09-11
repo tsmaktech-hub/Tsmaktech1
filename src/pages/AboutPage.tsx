@@ -12,7 +12,6 @@ import {
   ArrowRight, 
   MessageCircle, 
   Mail, 
-  MapPin, 
   ShieldCheck, 
   CheckCircle2, 
   HeartHandshake, 
@@ -25,11 +24,10 @@ import {
   Zap
 } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
-
-const FOUNDER_IMAGE_URL = 'https://lh3.googleusercontent.com/u/0/d/1RMbVzbxfhQT1SV6MejHoctam0kapyQOV';
+import { Page } from '../types';
 
 interface AboutPageProps {
-  onNavigate: (page: 'home' | 'portfolio' | 'about' | 'get-started', sectionId?: string) => void;
+  onNavigate: (page: Page, sectionId?: string) => void;
 }
 
 const PILLARS = [
@@ -242,127 +240,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
         </div>
       </section>
 
-      {/* 3. Founder Story & Vision */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="rounded-3xl bg-[#090d16]/90 border border-white/10 p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-sm shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Founder Biography and Vision */}
-            <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
-              <div className="flex flex-wrap items-center gap-2.5 mb-3">
-                <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
-                  Founder & Lead Mentor
-                </span>
-                <span className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-                  <MapPin size={13} className="text-blue-400" />
-                  Lagos, Nigeria
-                </span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight leading-tight mb-2">
-                Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Ajibade Abdullateef</span>
-              </h2>
-
-              <p className="text-sm sm:text-base font-mono text-blue-400/90 font-medium mb-4">
-                Founder of Tsmak Tech • Mechatronics Student • Full-Stack Software Developer
-              </p>
-
-              <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed mb-6">
-                <p>
-                  As an engineering student studying <strong className="text-white font-semibold">Mechatronics</strong>, I discovered that the best way to master technology is by building things that solve actual human problems.
-                </p>
-                <p>
-                  I created <strong className="text-white font-semibold">Tsmak Tech</strong> to pass this knowledge forward. Countless young people and tech enthusiasts have immense creativity, but lack a clear, supportive program to show them how to start coding, how to design digital products, and how to build confidence in tech.
-                </p>
-                <p>
-                  Through Tsmak Tech, we break down high-tech barriers into actionable milestones—whether you want to build a portfolio website, create an attendance system, or develop modern web apps with React and modern APIs.
-                </p>
-              </div>
-
-              {/* Skills and Focus Badges */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-300">
-                  <Cpu size={14} className="text-blue-400" />
-                  Mechatronics Engineering
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-300">
-                  <Code2 size={14} className="text-blue-400" />
-                  Web & Mobile Engineering
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-300">
-                  <GraduationCap size={14} className="text-blue-400" />
-                  Online Tech Mentorship
-                </span>
-              </div>
-
-              {/* Founder Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="https://wa.me/2347087445219?text=Hello%20Ajibade,%20I'd%20like%20to%20learn%20more%20about%20the%20Tsmak%20Tech%20program."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
-                >
-                  <MessageCircle size={16} />
-                  <span>Message Founder Directly</span>
-                </a>
-
-                <button
-                  onClick={() => onNavigate('portfolio')}
-                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] text-white font-medium text-xs sm:text-sm transition-colors border border-white/10 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>See Studio Projects</span>
-                  <ArrowRight size={15} className="text-zinc-400" />
-                </button>
-              </div>
-            </div>
-
-            {/* Right Column: Verified Photo */}
-            <div className="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
-              <div className="w-full max-w-sm relative">
-                <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 bg-gradient-to-b from-blue-500/30 via-white/10 to-white/5 border border-blue-500/30 shadow-2xl">
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-[#050811]">
-                    <img
-                      src={FOUNDER_IMAGE_URL}
-                      onError={(e) => {
-                        e.currentTarget.src = '/images/founder.jpg';
-                      }}
-                      alt="Ajibade Abdullateef - Founder of Tsmak Tech"
-                      className="w-full h-full object-cover object-center"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#060a14] via-[#060a14]/60 to-transparent pointer-events-none" />
-                    
-                    <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-xs">
-                      <span className="font-mono text-white font-semibold flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        Founder & Mentor
-                      </span>
-                      <span className="text-[11px] text-zinc-300 font-mono bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
-                        Tsmak Tech
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-semibold text-white">Ajibade Abdullateef</div>
-                    <div className="text-[11px] text-zinc-400 font-mono">Dedicated to raising confident digital builders</div>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-blue-400 text-xs font-mono font-medium">
-                    <ShieldCheck size={16} />
-                    <span>Lead Mentor</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. What You Learn in the Program */}
+      {/* 3. What You Learn in the Program */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 block">

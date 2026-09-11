@@ -14,9 +14,10 @@ import {
   Cpu
 } from 'lucide-react';
 import TiltCard from './TiltCard';
+import { Page } from '../types';
 
 interface HeroFireShowcaseProps {
-  onNavigate: (page: 'home' | 'portfolio' | 'get-started', sectionId?: string) => void;
+  onNavigate: (page: Page, sectionId?: string) => void;
 }
 
 const PREVIEWS = [
@@ -137,14 +138,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
               </button>
 
               <button
-                onClick={() => {
-                  const target = document.getElementById('portfolio-showcase') || document.getElementById('professional-services');
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                  } else {
-                    onNavigate('portfolio');
-                  }
-                }}
+                onClick={() => onNavigate('about')}
                 className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs sm:text-sm border border-white/10 hover:border-white/20 flex items-center justify-center gap-2 cursor-pointer transition-colors active:scale-95"
               >
                 <Info size={14} className="text-blue-400" />
