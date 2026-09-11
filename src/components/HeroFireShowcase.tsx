@@ -7,7 +7,7 @@ import {
   Layers, 
   ShieldCheck, 
   Zap, 
-  MessageCircle, 
+  Info, 
   CheckCircle2, 
   Eye,
   ExternalLink,
@@ -136,15 +136,20 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                 <ArrowRight size={14} />
               </button>
 
-              <a
-                href="https://wa.me/2347087445219?text=Hello%20Tsmak%20Tech%2C%20I'm%20interested%20in%20a%20website%2Fsystem%20project."
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => {
+                  const target = document.getElementById('portfolio-showcase') || document.getElementById('professional-services');
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    onNavigate('portfolio');
+                  }
+                }}
                 className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-xs sm:text-sm border border-white/10 hover:border-white/20 flex items-center justify-center gap-2 cursor-pointer transition-colors active:scale-95"
               >
-                <MessageCircle size={14} className="text-blue-400" />
-                <span>Direct WhatsApp</span>
-              </a>
+                <Info size={14} className="text-blue-400" />
+                <span>Learn More</span>
+              </button>
             </motion.div>
 
             {/* Compact Trust Bar */}
