@@ -14,13 +14,17 @@ import {
   MessageCircle,
   Sparkles,
   Layers,
-  ShieldCheck
+  ShieldCheck,
+  GraduationCap,
+  MapPin,
+  Phone
 } from 'lucide-react';
 import { PROJECTS, STUDIO_METRICS } from '../constants';
 import { Project } from '../types';
 import { TsmakLogo } from '../components/Logo';
 import TiltCard from '../components/TiltCard';
 import Carousel3D from '../components/Carousel3D';
+import founderPhoto from '../assets/images/founder_ajibade_1789123052909.jpg';
 
 interface PortfolioPageProps {
   onBackToHome?: () => void;
@@ -94,8 +98,155 @@ export default function PortfolioPage({ onGetStarted, onSelectProject }: Portfol
 
   return (
     <div className="min-h-screen bg-transparent text-white pt-24 pb-20">
+      {/* Founder Profile & Biography Section (First Page Section) */}
+      <section id="about" className="relative pt-6 pb-12 sm:pb-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-[#090d16]/90 border border-white/10 p-6 sm:p-10 lg:p-12 relative overflow-hidden backdrop-blur-sm shadow-2xl">
+            {/* Subtle blue accent background glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column: Biography and Story (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
+                <div className="flex flex-wrap items-center gap-2.5 mb-4">
+                  <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
+                    Founder & Lead Architect
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                    <MapPin size={13} className="text-blue-400" />
+                    Lagos, Nigeria
+                  </span>
+                </div>
+
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-white tracking-tight leading-tight mb-3">
+                  Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Ajibade Abdullateef</span>
+                </h1>
+
+                <p className="text-sm sm:text-base font-mono text-blue-400/90 font-medium mb-5">
+                  Founder of Tsmak Tech • Student of Mechatronics Engineering • Web & Mobile Developer
+                </p>
+
+                {/* Rephrased Bio Narrative */}
+                <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed mb-8">
+                  <p>
+                    I am the founder and lead software architect of <strong className="text-white font-semibold">Tsmak Tech</strong>, a student of <strong className="text-white font-semibold">Mechatronics Engineering</strong>, and a dedicated full-stack web and mobile developer. I combine hardware-level engineering rigor with modern digital software design to engineer robust, high-performance systems for institutions, enterprises, and everyday users.
+                  </p>
+                  <p>
+                    Beyond building production software, my greatest passion is <strong className="text-white font-semibold">inspiring and mentoring the next generation in tech</strong>. I actively teach, guide, and support young students and enthusiastic beginners—helping them break down complex concepts, master real-world coding skills, and build a lasting foundation in technology.
+                  </p>
+                </div>
+
+                {/* Key Pillars */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                  <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs font-mono uppercase mb-1">
+                      <Cpu size={15} />
+                      Mechatronics
+                    </div>
+                    <p className="text-xs text-zinc-400 leading-snug">
+                      Analytical engineering, automation logic, and systems architecture.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs font-mono uppercase mb-1">
+                      <Smartphone size={15} />
+                      Web & Mobile
+                    </div>
+                    <p className="text-xs text-zinc-400 leading-snug">
+                      Responsive web platforms, native mobile apps, and cloud services.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs font-mono uppercase mb-1">
+                      <GraduationCap size={15} />
+                      Mentorship
+                    </div>
+                    <p className="text-xs text-zinc-400 leading-snug">
+                      Guiding young talent and teaching practical tech skills.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Quick Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://wa.me/2347087445219?text=Hello%20Ajibade,%20I%20am%20reaching%20out%20from%20your%20portfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+                  >
+                    <MessageCircle size={16} />
+                    <span>Connect on WhatsApp</span>
+                  </a>
+
+                  <a
+                    href="#selected-works"
+                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] text-white font-medium text-xs sm:text-sm transition-colors border border-white/10 flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>View Projects</span>
+                    <ArrowRight size={15} className="text-zinc-400" />
+                  </a>
+
+                  <a
+                    href="mailto:tsmaktech@gmail.com"
+                    className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] text-zinc-300 hover:text-white text-xs sm:text-sm transition-colors border border-white/10 flex items-center justify-center gap-2"
+                  >
+                    <Mail size={15} className="text-blue-400" />
+                    <span>tsmaktech@gmail.com</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Column: Picture Beside It (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
+                <div className="w-full max-w-sm relative">
+                  {/* Photo container with refined frame */}
+                  <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 bg-gradient-to-b from-blue-500/30 via-white/10 to-white/5 border border-blue-500/30 shadow-2xl">
+                    <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-[#050811]">
+                      <img
+                        src={founderPhoto}
+                        alt="Ajibade Abdullateef - Founder of Tsmak Tech"
+                        className="w-full h-full object-cover object-center"
+                        referrerPolicy="no-referrer"
+                      />
+                      {/* Subtle gradient overlay at bottom of photo */}
+                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#060a14] via-[#060a14]/60 to-transparent pointer-events-none" />
+                      
+                      <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-xs">
+                        <span className="font-mono text-white font-semibold flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                          Founder & Engineer
+                        </span>
+                        <span className="text-[11px] text-zinc-300 font-mono bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
+                          Tsmak Tech
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Trust Card beneath photo */}
+                  <div className="mt-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-semibold text-white">Ajibade Abdullateef</div>
+                      <div className="text-[11px] text-zinc-400 font-mono">Mechatronics Scholar & Full-Stack Developer</div>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-blue-400 text-xs font-mono font-medium">
+                      <ShieldCheck size={16} />
+                      <span>Verified</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Header & Title */}
-      <section className="relative py-12 sm:py-16 overflow-hidden">
+      <section id="selected-works" className="relative py-12 sm:py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8">
             <div className="max-w-3xl">

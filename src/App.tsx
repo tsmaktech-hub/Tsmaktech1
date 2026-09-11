@@ -49,15 +49,13 @@ export default function App() {
       <AmbientBackground />
 
       {/* Navigation Header */}
-      {currentPage !== 'get-started' && (
-        <div className="relative z-20">
-          <Navigation
-            currentPage={currentPage}
-            onNavigate={handleNavigate}
-            isScrolled={isScrolled}
-          />
-        </div>
-      )}
+      <div className="relative z-20">
+        <Navigation
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
+          isScrolled={isScrolled}
+        />
+      </div>
 
       {/* Page Routing with Fluid Transitions */}
       <main className="flex-grow relative z-10">
