@@ -76,18 +76,16 @@ const PREVIEWS = [
 
 export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
-  // Automatically cycle between the 3 headline/subtitle sets and corresponding preview mockups (6.5s delay)
+  // Continuously cycle between the 3 headline/subtitle sets and corresponding preview mockups (6.5s delay)
+  // Keeps rotating non-stop even when scrolling up or down
   useEffect(() => {
-    if (isPaused) return;
-
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 6500);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, []);
 
   const currentSlide = HERO_SLIDES[activeSlide];
   const preview = PREVIEWS[activeSlide % PREVIEWS.length];
@@ -95,8 +93,6 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
   return (
     <section 
       className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background Radial Glow */}
       <div 
@@ -233,8 +229,6 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                 {/* High-Resolution Visual Mockup Image */}
                 <div 
                   className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-zinc-950 border border-white/10"
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
                 >
                   <AnimatePresence mode="wait">
                     <motion.img
