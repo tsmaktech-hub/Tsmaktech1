@@ -24,7 +24,8 @@ import { Project } from '../types';
 import { TsmakLogo } from '../components/Logo';
 import TiltCard from '../components/TiltCard';
 import Carousel3D from '../components/Carousel3D';
-import founderPhoto from '../assets/images/founder_ajibade_1789123052909.jpg';
+
+const FOUNDER_IMAGE_URL = 'https://lh3.googleusercontent.com/u/0/d/1RMbVzbxfhQT1SV6MejHoctam0kapyQOV';
 
 interface PortfolioPageProps {
   onBackToHome?: () => void;
@@ -109,9 +110,9 @@ export default function PortfolioPage({ onGetStarted, onSelectProject }: Portfol
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column: Biography and Story (7 cols) */}
               <div className="lg:col-span-7 flex flex-col order-2 lg:order-1">
-                <div className="flex flex-wrap items-center gap-2.5 mb-4">
+                <div className="flex flex-wrap items-center gap-2.5 mb-3">
                   <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
-                    Founder & Lead Architect
+                    Founder & Lead Engineer
                   </span>
                   <span className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
                     <MapPin size={13} className="text-blue-400" />
@@ -119,55 +120,33 @@ export default function PortfolioPage({ onGetStarted, onSelectProject }: Portfol
                   </span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-white tracking-tight leading-tight mb-3">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-white tracking-tight leading-tight mb-2">
                   Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Ajibade Abdullateef</span>
                 </h1>
 
-                <p className="text-sm sm:text-base font-mono text-blue-400/90 font-medium mb-5">
-                  Founder of Tsmak Tech • Student of Mechatronics Engineering • Web & Mobile Developer
+                <p className="text-sm sm:text-base font-mono text-blue-400/90 font-medium mb-4">
+                  Founder of Tsmak Tech • Mechatronics Student • Web & Mobile Developer
                 </p>
 
-                {/* Rephrased Bio Narrative */}
-                <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed mb-8">
-                  <p>
-                    I am the founder and lead software architect of <strong className="text-white font-semibold">Tsmak Tech</strong>, a student of <strong className="text-white font-semibold">Mechatronics Engineering</strong>, and a dedicated full-stack web and mobile developer. I combine hardware-level engineering rigor with modern digital software design to engineer robust, high-performance systems for institutions, enterprises, and everyday users.
-                  </p>
-                  <p>
-                    Beyond building production software, my greatest passion is <strong className="text-white font-semibold">inspiring and mentoring the next generation in tech</strong>. I actively teach, guide, and support young students and enthusiastic beginners—helping them break down complex concepts, master real-world coding skills, and build a lasting foundation in technology.
-                  </p>
-                </div>
+                {/* Concise Rephrased Bio */}
+                <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-5">
+                  I am the founder of <strong className="text-white font-semibold">Tsmak Tech</strong>, studying <strong className="text-white font-semibold">Mechatronics Engineering</strong>, and developing modern web and mobile applications. Driven by curiosity and engineering precision, I build high-performance digital systems while inspiring and teaching young minds to learn, code, and thrive in tech.
+                </p>
 
-                {/* Key Pillars */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-                  <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs font-mono uppercase mb-1">
-                      <Cpu size={15} />
-                      Mechatronics
-                    </div>
-                    <p className="text-xs text-zinc-400 leading-snug">
-                      Analytical engineering, automation logic, and systems architecture.
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs font-mono uppercase mb-1">
-                      <Smartphone size={15} />
-                      Web & Mobile
-                    </div>
-                    <p className="text-xs text-zinc-400 leading-snug">
-                      Responsive web platforms, native mobile apps, and cloud services.
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-xs font-mono uppercase mb-1">
-                      <GraduationCap size={15} />
-                      Mentorship
-                    </div>
-                    <p className="text-xs text-zinc-400 leading-snug">
-                      Guiding young talent and teaching practical tech skills.
-                    </p>
-                  </div>
+                {/* Focus Badges */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-300">
+                    <Cpu size={14} className="text-blue-400" />
+                    Mechatronics Engineering
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-300">
+                    <Smartphone size={14} className="text-blue-400" />
+                    Web & Mobile Development
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-300">
+                    <GraduationCap size={14} className="text-blue-400" />
+                    Tech Mentorship
+                  </span>
                 </div>
 
                 {/* Quick Action Buttons */}
@@ -207,7 +186,10 @@ export default function PortfolioPage({ onGetStarted, onSelectProject }: Portfol
                   <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 bg-gradient-to-b from-blue-500/30 via-white/10 to-white/5 border border-blue-500/30 shadow-2xl">
                     <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-[#050811]">
                       <img
-                        src={founderPhoto}
+                        src={FOUNDER_IMAGE_URL}
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/founder.jpg';
+                        }}
                         alt="Ajibade Abdullateef - Founder of Tsmak Tech"
                         className="w-full h-full object-cover object-center"
                         referrerPolicy="no-referrer"
