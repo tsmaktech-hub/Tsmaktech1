@@ -20,6 +20,33 @@ interface HeroFireShowcaseProps {
   onNavigate: (page: Page, sectionId?: string) => void;
 }
 
+const HERO_SLIDES = [
+  {
+    id: 'studio',
+    badgeCategory: 'Tsmak Tech Studio',
+    badgeHighlight: 'Bespoke Systems',
+    headlinePrefix: 'Web Systems ',
+    headlineAccent: 'Engineered to Dominate.',
+    subtitle: 'Bespoke SaaS, attendance suites, and domain AI platforms — built with zero templates and high concurrency.'
+  },
+  {
+    id: 'academy',
+    badgeCategory: 'Tsmak Tech Academy',
+    badgeHighlight: 'Digital Skills for Youth',
+    headlinePrefix: 'Real Digital Skills ',
+    headlineAccent: 'Built for the Future.',
+    subtitle: 'Practical online programs empowering youth and beginners to master modern coding, web development, and digital craft.'
+  },
+  {
+    id: 'innovation',
+    badgeCategory: 'Next-Gen Engineering',
+    badgeHighlight: 'High Performance',
+    headlinePrefix: 'Intelligent Software ',
+    headlineAccent: 'Designed to Scale.',
+    subtitle: 'From domain AI tools to mission-critical portals — architected for reliability, speed, and real-world impact.'
+  }
+];
+
 const PREVIEWS = [
   {
     id: 'studio',
@@ -48,24 +75,29 @@ const PREVIEWS = [
 ];
 
 export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) {
-  const [activePreview, setActivePreview] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Automatically cycle between High-Velocity SaaS, Attendance Suite, and Islamic GPT AI
+  // Automatically cycle between the 3 headline/subtitle sets and corresponding preview mockups
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
-      setActivePreview((prev) => (prev + 1) % PREVIEWS.length);
-    }, 3800);
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4500);
 
     return () => clearInterval(timer);
   }, [isPaused]);
 
-  const preview = PREVIEWS[activePreview];
+  const currentSlide = HERO_SLIDES[activeSlide];
+  const preview = PREVIEWS[activeSlide % PREVIEWS.length];
 
   return (
-    <section className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section 
+      className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Background Radial Glow */}
       <div 
         className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none -z-10 opacity-40"
@@ -84,43 +116,61 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
           {/* Left Column: Heading, Pitch, Actions, Switcher */}
           <div className="md:col-span-6 lg:col-span-6 text-left flex flex-col justify-center">
-            {/* Streamlined Studio Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 mb-3.5 shadow-sm w-fit"
-            >
-              <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-blue-500/20 text-blue-400">
-                <Flame size={11} className="text-blue-400 fill-blue-400" />
+            
+            {/* Slide Navigation Indicator Pills */}
+            <div className="flex items-center gap-2 mb-3">
+              {HERO_SLIDES.map((slide, idx) => (
+                <button
+                  key={slide.id}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeSlide === idx 
+                      ? 'w-8 bg-blue-500 shadow-sm shadow-blue-500/50' 
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Slide ${idx + 1}: ${slide.headlinePrefix}${slide.headlineAccent}`}
+                />
+              ))}
+              <span className="text-[10px] font-mono text-zinc-500 ml-1.5">
+                0{activeSlide + 1} / 0{HERO_SLIDES.length}
               </span>
-              <span className="font-semibold text-white">Tsmak Tech Studio</span>
-              <span className="text-zinc-600">•</span>
-              <span className="text-blue-400 font-mono">Bespoke Systems</span>
-            </motion.div>
+            </div>
 
-            {/* Punchy Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-2xl sm:text-3xl md:text-3xl lg:text-[40px] xl:text-[44px] font-extrabold text-white tracking-tight leading-[1.12] mb-3 font-display"
-            >
-              Web Systems{' '}
-              <span className="text-blue-400">
-                Engineered to Dominate.
-              </span>
-            </motion.h1>
+            {/* Dynamic Content Container with min-height to prevent layout jumps */}
+            <div className="min-h-[195px] sm:min-h-[185px] md:min-h-[195px] lg:min-h-[210px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {/* Streamlined Category Badge */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 mb-3 shadow-sm w-fit">
+                    <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-blue-500/20 text-blue-400">
+                      <Flame size={11} className="text-blue-400 fill-blue-400" />
+                    </span>
+                    <span className="font-semibold text-white">{currentSlide.badgeCategory}</span>
+                    <span className="text-zinc-600">•</span>
+                    <span className="text-blue-400 font-mono">{currentSlide.badgeHighlight}</span>
+                  </div>
 
-            {/* Reduced & Punchy Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="text-xs sm:text-sm md:text-xs lg:text-sm text-zinc-400 max-w-lg mb-5 leading-relaxed font-sans"
-            >
-              Bespoke SaaS, attendance suites, and domain AI platforms — built with zero templates and high concurrency.
-            </motion.p>
+                  {/* Punchy Headline */}
+                  <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-[40px] xl:text-[44px] font-extrabold text-white tracking-tight leading-[1.12] mb-3 font-display">
+                    {currentSlide.headlinePrefix}
+                    <span className="text-blue-400">
+                      {currentSlide.headlineAccent}
+                    </span>
+                  </h1>
+
+                  {/* Reduced & Punchy Subtitle */}
+                  <p className="text-xs sm:text-sm md:text-xs lg:text-sm text-zinc-400 max-w-lg mb-4 leading-relaxed font-sans">
+                    {currentSlide.subtitle}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Direct Action Buttons - Clean & Simple */}
             <motion.div
