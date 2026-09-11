@@ -1,393 +1,560 @@
 import React, { useEffect, useRef } from 'react';
-
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  radius: number;
-  baseAlpha: number;
-  phase: number;
-  color: string;
-}
-
-interface EnergyRing {
-  x: number;
-  y: number;
-  radius: number;
-  maxRadius: number;
-  alpha: number;
-  speed: number;
-}
+import * as THREE from 'three';
 
 export default function AmbientBackground() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
+    // 1. Scene & Camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    camera.position.set(0, 0.8, 6.2);
 
-    let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    // 2. WebGL Renderer with capped pixel ratio for buttery 60fps & no lag
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+    container.appendChild(renderer.domElement);
 
-    // Scroll tracking state
-    let lastScrollY = window.scrollY;
-    let upwardEnergy = 0; // Charges gently when scrolling up
-    let downwardEnergy = 0; // Charges gently when scrolling down
-    let touchStartY = 0;
+    // 3. Lighting
+    const ambientLight = new THREE.AmbientLight(0x0f172a, 2.2);
+    scene.add(ambientLight);
 
-    // Subtle rings spawned during scroll evolution
-    const energyRings: EnergyRing[] = [];
+    // Main key light (cool white/cyan)
+    const keyLight = new THREE.DirectionalLight(0x93c5fd, 2.5);
+    keyLight.position.set(4, 5, 4);
+    scene.add(keyLight);
 
-    // Mouse tracking for subtle interactive ripple
-    const mouse = {
-      x: -1000,
-      y: -1000,
-      targetX: -1000,
-      targetY: -1000,
-      radius: 140,
+    // Fill light (deep blue/violet)
+    const fillLight = new THREE.DirectionalLight(0x6366f1, 1.8);
+    fillLight.position.set(-5, 2, -2);
+    scene.add(fillLight);
+
+    // Cyan rim light from bottom
+    const rimLight = new THREE.PointLight(0x38bdf8, 3.2, 10);
+    rimLight.position.set(0, -2, 2);
+    scene.add(rimLight);
+
+    // Screen glow point light (glows from the monitor down onto keyboard deck)
+    const screenGlowLight = new THREE.PointLight(0x38bdf8, 2.2, 4);
+    screenGlowLight.position.set(0, 0.8, -0.6);
+    scene.add(screenGlowLight);
+
+    // 4. Laptop Root Group
+    const laptopGroup = new THREE.Group();
+    scene.add(laptopGroup);
+
+    // Position laptop slightly below center for optimal background composition
+    laptopGroup.position.set(0, -0.2, 0);
+
+    // Material Definitions
+    const aluminumMaterial = new THREE.MeshStandardMaterial({
+      color: 0x1a1d24,
+      metalness: 0.88,
+      roughness: 0.28,
+    });
+
+    const darkAluminumMaterial = new THREE.MeshStandardMaterial({
+      color: 0x0d0f14,
+      metalness: 0.92,
+      roughness: 0.35,
+    });
+
+    const keyboardDeckMaterial = new THREE.MeshStandardMaterial({
+      color: 0x111318,
+      metalness: 0.6,
+      roughness: 0.45,
+    });
+
+    const keyMaterial = new THREE.MeshStandardMaterial({
+      color: 0x1e222d,
+      metalness: 0.4,
+      roughness: 0.3,
+      emissive: 0x1e293b,
+      emissiveIntensity: 0.2,
+    });
+
+    const keyAccentMaterial = new THREE.MeshStandardMaterial({
+      color: 0x2563eb,
+      metalness: 0.5,
+      roughness: 0.2,
+      emissive: 0x3b82f6,
+      emissiveIntensity: 0.4,
+    });
+
+    const trackpadMaterial = new THREE.MeshStandardMaterial({
+      color: 0x1c1f28,
+      metalness: 0.7,
+      roughness: 0.2,
+    });
+
+    // --- 4.A Laptop Base Chassis ---
+    const baseWidth = 3.6;
+    const baseDepth = 2.4;
+    const baseHeight = 0.12;
+
+    const baseGeometry = new THREE.BoxGeometry(baseWidth, baseHeight, baseDepth);
+    const baseMesh = new THREE.Mesh(baseGeometry, aluminumMaterial);
+    baseMesh.position.set(0, 0, 0);
+    laptopGroup.add(baseMesh);
+
+    // Base bottom chamfer / bevel rim
+    const bottomGeometry = new THREE.BoxGeometry(baseWidth * 0.96, baseHeight * 0.4, baseDepth * 0.96);
+    const bottomMesh = new THREE.Mesh(bottomGeometry, darkAluminumMaterial);
+    bottomMesh.position.set(0, -baseHeight * 0.6, 0);
+    laptopGroup.add(bottomMesh);
+
+    // Keyboard well indent
+    const wellGeometry = new THREE.BoxGeometry(baseWidth * 0.88, 0.02, baseDepth * 0.54);
+    const wellMesh = new THREE.Mesh(wellGeometry, keyboardDeckMaterial);
+    wellMesh.position.set(0, baseHeight / 2 + 0.005, -0.3);
+    laptopGroup.add(wellMesh);
+
+    // Individual Keyboard Keys Grid
+    const keyRows = 5;
+    const keyCols = 14;
+    const keyW = (baseWidth * 0.84) / keyCols;
+    const keyD = (baseDepth * 0.48) / keyRows;
+    const keyGap = 0.025;
+
+    const keysGroup = new THREE.Group();
+    keysGroup.position.set(0, baseHeight / 2 + 0.015, -0.3);
+
+    for (let r = 0; r < keyRows; r++) {
+      for (let c = 0; c < keyCols; c++) {
+        const isSpace = r === keyRows - 1 && c >= 4 && c <= 9;
+        if (isSpace && c !== 4) continue; // Single wide spacebar
+
+        const widthMultiplier = isSpace ? 6.0 : 1.0;
+        const kw = keyW * widthMultiplier - keyGap;
+        const kd = keyD - keyGap;
+
+        const kGeom = new THREE.BoxGeometry(kw, 0.025, kd);
+        const isSpecialKey = (r === 0 && c === 0) || (r === 4 && (c === 0 || c === keyCols - 1));
+        const kMesh = new THREE.Mesh(kGeom, isSpecialKey ? keyAccentMaterial : keyMaterial);
+
+        const xPos = isSpace
+          ? 0
+          : (c - (keyCols - 1) / 2) * keyW;
+        const zPos = (r - (keyRows - 1) / 2) * keyD;
+
+        kMesh.position.set(xPos, 0, zPos);
+        keysGroup.add(kMesh);
+      }
+    }
+    laptopGroup.add(keysGroup);
+
+    // Glass Trackpad
+    const trackpadW = 1.35;
+    const trackpadD = 0.85;
+    const trackpadGeom = new THREE.BoxGeometry(trackpadW, 0.015, trackpadD);
+    const trackpadMesh = new THREE.Mesh(trackpadGeom, trackpadMaterial);
+    trackpadMesh.position.set(0, baseHeight / 2 + 0.006, 0.65);
+    laptopGroup.add(trackpadMesh);
+
+    // Front lid notch
+    const notchGeom = new THREE.BoxGeometry(0.5, 0.04, 0.04);
+    const notchMesh = new THREE.Mesh(notchGeom, darkAluminumMaterial);
+    notchMesh.position.set(0, baseHeight / 2, baseDepth / 2 - 0.02);
+    laptopGroup.add(notchMesh);
+
+    // --- 4.B Laptop Screen / Lid Assembly (Rotates on Hinge) ---
+    const hingeGroup = new THREE.Group();
+    hingeGroup.position.set(0, baseHeight / 2, -baseDepth / 2 + 0.08);
+    laptopGroup.add(hingeGroup);
+
+    // Hinge cylinder
+    const hingeGeom = new THREE.CylinderGeometry(0.04, 0.04, baseWidth * 0.88, 16);
+    hingeGeom.rotateZ(Math.PI / 2);
+    const hingeMesh = new THREE.Mesh(hingeGeom, darkAluminumMaterial);
+    hingeMesh.position.set(0, 0, 0);
+    hingeGroup.add(hingeMesh);
+
+    const lidHeight = 2.35;
+    const lidThickness = 0.07;
+
+    const lidPivot = new THREE.Group();
+    hingeGroup.add(lidPivot);
+
+    // Base open angle: ~112 degrees (in radians, from flat)
+    lidPivot.rotation.x = -Math.PI * 0.62;
+
+    // Metallic back lid
+    const lidBackGeom = new THREE.BoxGeometry(baseWidth, lidHeight, lidThickness);
+    const lidBackMesh = new THREE.Mesh(lidBackGeom, aluminumMaterial);
+    lidBackMesh.position.set(0, lidHeight / 2, -lidThickness / 2);
+    lidPivot.add(lidBackMesh);
+
+    // Glowing Tsmak Tech Logo on back of lid
+    const logoGeom = new THREE.CircleGeometry(0.18, 24);
+    const logoMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.75,
+      side: THREE.DoubleSide,
+    });
+    const logoMesh = new THREE.Mesh(logoGeom, logoMat);
+    logoMesh.position.set(0, lidHeight / 2, -lidThickness - 0.002);
+    logoMesh.rotation.y = Math.PI;
+    lidPivot.add(logoMesh);
+
+    // Screen bezel (front)
+    const bezelGeom = new THREE.BoxGeometry(baseWidth * 0.98, lidHeight * 0.98, 0.02);
+    const bezelMesh = new THREE.Mesh(bezelGeom, darkAluminumMaterial);
+    bezelMesh.position.set(0, lidHeight / 2, 0.01);
+    lidPivot.add(bezelMesh);
+
+    // Webcam dot
+    const camGeom = new THREE.CircleGeometry(0.02, 16);
+    const camMat = new THREE.MeshBasicMaterial({ color: 0x0284c7 });
+    const camMesh = new THREE.Mesh(camGeom, camMat);
+    camMesh.position.set(0, lidHeight - 0.06, 0.022);
+    lidPivot.add(camMesh);
+
+    // Dynamic High-Tech Canvas Texture for the Display
+    const screenCanvas = document.createElement('canvas');
+    screenCanvas.width = 1024;
+    screenCanvas.height = 680;
+    const screenCtx = screenCanvas.getContext('2d')!;
+
+    const screenTexture = new THREE.CanvasTexture(screenCanvas);
+    screenTexture.generateMipmaps = true;
+    screenTexture.minFilter = THREE.LinearMipmapLinearFilter;
+
+    const screenMaterial = new THREE.MeshBasicMaterial({
+      map: screenTexture,
+    });
+
+    const screenGeom = new THREE.PlaneGeometry(baseWidth * 0.92, lidHeight * 0.88);
+    const screenMesh = new THREE.Mesh(screenGeom, screenMaterial);
+    screenMesh.position.set(0, lidHeight / 2 - 0.02, 0.023);
+    lidPivot.add(screenMesh);
+
+    // Draw IDE Screen Content
+    const drawScreenContent = (time: number) => {
+      screenCtx.fillStyle = '#0a0d14';
+      screenCtx.fillRect(0, 0, 1024, 680);
+
+      // Top Window Header / Tabs
+      screenCtx.fillStyle = '#111520';
+      screenCtx.fillRect(0, 0, 1024, 48);
+
+      // Window Control Dots
+      screenCtx.fillStyle = '#ef4444';
+      screenCtx.beginPath();
+      screenCtx.arc(28, 24, 6, 0, Math.PI * 2);
+      screenCtx.fill();
+
+      screenCtx.fillStyle = '#eab308';
+      screenCtx.beginPath();
+      screenCtx.arc(50, 24, 6, 0, Math.PI * 2);
+      screenCtx.fill();
+
+      screenCtx.fillStyle = '#22c55e';
+      screenCtx.beginPath();
+      screenCtx.arc(72, 24, 6, 0, Math.PI * 2);
+      screenCtx.fill();
+
+      // Active Editor Tab
+      screenCtx.fillStyle = '#171e2e';
+      screenCtx.fillRect(100, 8, 220, 40);
+      screenCtx.fillStyle = '#38bdf8';
+      screenCtx.font = 'bold 15px "Courier New", monospace';
+      screenCtx.fillText('QuantumEngine.ts', 125, 33);
+
+      // Secondary Tab
+      screenCtx.fillStyle = '#64748b';
+      screenCtx.font = '14px "Courier New", monospace';
+      screenCtx.fillText('TsmakCluster.rs', 350, 33);
+      screenCtx.fillText('AppRouter.tsx', 510, 33);
+
+      // Breadcrumb Bar
+      screenCtx.fillStyle = '#0f1422';
+      screenCtx.fillRect(0, 48, 1024, 32);
+      screenCtx.fillStyle = '#94a3b8';
+      screenCtx.font = '13px "Courier New", monospace';
+      screenCtx.fillText('src > core > distributed > neural-pipeline.ts', 24, 70);
+
+      // Code Lines with Syntax Colors
+      const codeLines = [
+        { num: '01', type: 'comment', text: '// TSMAK TECH NEXT-GEN CLOUD INFRASTRUCTURE' },
+        { num: '02', type: 'keyword', text: 'import { QuantumCore, NeuralCluster } from "@tsmak/studio";' },
+        { num: '03', type: 'keyword', text: 'import { RealtimeSync, EdgeMesh } from "@tsmak/protocol";' },
+        { num: '04', type: 'plain', text: '' },
+        { num: '05', type: 'keyword', text: 'export async function bootHypervisor(): Promise<SystemCluster> {' },
+        { num: '06', type: 'var', text: '  const studio = await QuantumCore.initialize({' },
+        { num: '07', type: 'prop', text: '    architecture: "high-throughput-reactive",' },
+        { num: '08', type: 'prop', text: '    redundancy: "active-active-failover",' },
+        { num: '09', type: 'prop', text: '    latencyBudgetMs: 4.8,' },
+        { num: '10', type: 'prop', text: '    security: "military-grade-aes256",' },
+        { num: '11', type: 'var', text: '  });' },
+        { num: '12', type: 'plain', text: '' },
+        { num: '13', type: 'keyword', text: '  const nodes = await studio.deployEdgeWorkers([' },
+        { num: '14', type: 'string', text: '    "frankfurt-eu-central", "virginia-us-east", "tokyo-ap-east"' },
+        { num: '15', type: 'keyword', text: '  ]);' },
+        { num: '16', type: 'plain', text: '' },
+        { num: '17', type: 'keyword', text: '  return studio.connectStream({ telemetry: true });' },
+        { num: '18', type: 'keyword', text: '}' },
+      ];
+
+      screenCtx.font = '16px "Courier New", monospace';
+      let y = 110;
+
+      for (let i = 0; i < codeLines.length; i++) {
+        const item = codeLines[i];
+        // Line number
+        screenCtx.fillStyle = '#475569';
+        screenCtx.fillText(item.num, 24, y);
+
+        // Highlight
+        if (item.type === 'comment') {
+          screenCtx.fillStyle = '#64748b';
+        } else if (item.type === 'keyword') {
+          screenCtx.fillStyle = '#38bdf8';
+        } else if (item.type === 'var') {
+          screenCtx.fillStyle = '#f8fafc';
+        } else if (item.type === 'prop') {
+          screenCtx.fillStyle = '#93c5fd';
+        } else if (item.type === 'string') {
+          screenCtx.fillStyle = '#34d399';
+        } else {
+          screenCtx.fillStyle = '#cbd5e1';
+        }
+
+        screenCtx.fillText(item.text, 68, y);
+        y += 26;
+      }
+
+      // Live Blinking Cursor on Active Line
+      const cursorAlpha = (Math.sin(time * 6) + 1) * 0.5;
+      screenCtx.fillStyle = `rgba(56, 189, 248, ${cursorAlpha})`;
+      screenCtx.fillRect(525, 110 + 17 * 26 - 15, 9, 18);
+
+      // Bottom Status / Telemetry Bar
+      screenCtx.fillStyle = '#1e293b';
+      screenCtx.fillRect(0, 642, 1024, 38);
+
+      screenCtx.fillStyle = '#22c55e';
+      screenCtx.beginPath();
+      screenCtx.arc(24, 661, 5, 0, Math.PI * 2);
+      screenCtx.fill();
+
+      screenCtx.fillStyle = '#f8fafc';
+      screenCtx.font = 'bold 13px "Courier New", monospace';
+      screenCtx.fillText('TSMAK-STUDIO ACTIVE', 38, 666);
+
+      screenCtx.fillStyle = '#94a3b8';
+      screenCtx.font = '12px "Courier New", monospace';
+      screenCtx.fillText('LATENCY: 4.2ms  •  FPS: 60.0  •  BRANCH: main', 220, 665);
+      screenCtx.fillText('UTF-8  •  TypeScript  •  Cloud Run Edge', 710, 665);
+
+      // Subtle cyber scanline sweep across screen
+      const scanY = (time * 120) % 680;
+      const grad = screenCtx.createLinearGradient(0, scanY - 30, 0, scanY + 30);
+      grad.addColorStop(0, 'rgba(56, 189, 248, 0)');
+      grad.addColorStop(0.5, 'rgba(56, 189, 248, 0.08)');
+      grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+      screenCtx.fillStyle = grad;
+      screenCtx.fillRect(0, scanY - 30, 1024, 60);
+
+      screenTexture.needsUpdate = true;
     };
+
+    // Initial screen render
+    drawScreenContent(0);
+
+    // --- 4.C Subtle Floating Holographic Elements around Laptop ---
+    const holoRingGeom = new THREE.RingGeometry(2.8, 2.84, 64);
+    const holoRingMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.16,
+      side: THREE.DoubleSide,
+    });
+    const holoRing = new THREE.Mesh(holoRingGeom, holoRingMat);
+    holoRing.rotation.x = Math.PI / 2;
+    holoRing.position.set(0, -0.4, 0);
+    scene.add(holoRing);
+
+    const outerRingGeom = new THREE.RingGeometry(3.6, 3.63, 64);
+    const outerRingMat = new THREE.MeshBasicMaterial({
+      color: 0x60a5fa,
+      transparent: true,
+      opacity: 0.1,
+      side: THREE.DoubleSide,
+    });
+    const outerRing = new THREE.Mesh(outerRingGeom, outerRingMat);
+    outerRing.rotation.x = Math.PI / 2;
+    outerRing.position.set(0, -0.45, 0);
+    scene.add(outerRing);
+
+    // Subtle floating tech particles around laptop
+    const particleCount = 45;
+    const particleGeom = new THREE.BufferGeometry();
+    const particlePositions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+      particlePositions[i * 3] = (Math.random() - 0.5) * 8;
+      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 5;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 5;
+    }
+    particleGeom.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x38bdf8,
+      size: 0.04,
+      transparent: true,
+      opacity: 0.45,
+    });
+    const particlePoints = new THREE.Points(particleGeom, particleMat);
+    scene.add(particlePoints);
+
+    // 5. Scroll & Mouse Tracking
+    let targetRotationY = -0.32;
+    let targetRotationX = 0.22;
+    let targetPositionY = -0.15;
+    let targetLidAngle = -Math.PI * 0.62;
+
+    let currentRotationY = targetRotationY;
+    let currentRotationX = targetRotationX;
+    let currentPositionY = targetPositionY;
+    let currentLidAngle = targetLidAngle;
+
+    let mouseX = 0;
+    let mouseY = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        touchStartY = e.touches[0].clientY;
-      }
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        const currentY = e.touches[0].clientY;
-        mouse.targetX = e.touches[0].clientX;
-        mouse.targetY = currentY;
-        const delta = currentY - touchStartY;
-        touchStartY = currentY;
-
-        if (delta > 6) {
-          // Swiping down (viewing top / scroll up)
-          triggerPulse('up', Math.min(delta * 0.012, 0.25));
-        } else if (delta < -6) {
-          // Swiping up (scroll down)
-          triggerPulse('down', Math.min(Math.abs(delta) * 0.012, 0.25));
-        }
-      }
-    };
-
-    const handleMouseLeave = () => {
-      mouse.targetX = -1000;
-      mouse.targetY = -1000;
-    };
-
-    const triggerPulse = (direction: 'up' | 'down', magnitude: number) => {
-      if (direction === 'up') {
-        upwardEnergy = Math.min(1.2, upwardEnergy + magnitude);
-        downwardEnergy = Math.max(0, downwardEnergy - magnitude * 0.5);
-      } else {
-        downwardEnergy = Math.min(1.2, downwardEnergy + magnitude);
-        upwardEnergy = Math.max(0, upwardEnergy - magnitude * 0.5);
-      }
-
-      // Spawn at most 2 gentle rings to avoid frame drops
-      if (energyRings.length < 2 && Math.random() > 0.65) {
-        energyRings.push({
-          x: width * (0.35 + Math.random() * 0.3),
-          y: direction === 'up' ? height * (0.6 + Math.random() * 0.2) : height * (0.2 + Math.random() * 0.2),
-          radius: 12,
-          maxRadius: Math.min(width, height) * 0.35,
-          alpha: 0.35,
-          speed: 1.8 + Math.random() * 1.0,
-        });
-      }
+      // Normalized coordinates (-1 to 1)
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     };
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
+      const scrollY = window.scrollY;
+      const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1000);
+      const scrollProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
 
-      if (delta < -3) {
-        // Scrolling UP - gentle impulse
-        const intensity = Math.min(Math.abs(delta) * 0.012, 0.3);
-        triggerPulse('up', intensity);
-      } else if (delta > 3) {
-        // Scrolling DOWN - gentle impulse
-        const intensity = Math.min(Math.abs(delta) * 0.012, 0.3);
-        triggerPulse('down', intensity);
-      }
+      // As you scroll down:
+      // - Laptop rotates smoothly on Y axis (showing dynamic 3D angles)
+      // - Tilts gently on X axis
+      // - Floats smoothly with parallax elevation
+      // - Screen angle flexes slightly like a responsive cyber device
+      targetRotationY = -0.35 + scrollProgress * 1.8;
+      targetRotationX = 0.2 + Math.sin(scrollProgress * Math.PI * 2) * 0.15;
+      targetPositionY = -0.15 - scrollProgress * 0.4;
+      targetLidAngle = -Math.PI * 0.62 - scrollProgress * 0.12;
     };
 
-    const handleWheel = (e: WheelEvent) => {
-      if (e.deltaY < -4) {
-        const intensity = Math.min(Math.abs(e.deltaY) * 0.01, 0.25);
-        triggerPulse('up', intensity);
-      } else if (e.deltaY > 4) {
-        const intensity = Math.min(Math.abs(e.deltaY) * 0.01, 0.25);
-        triggerPulse('down', intensity);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
+
+      // Adjust camera distance for mobile vs desktop for optimal framing
+      if (width < 640) {
+        camera.position.z = 7.8;
+      } else if (width < 1024) {
+        camera.position.z = 6.8;
+      } else {
+        camera.position.z = 5.8;
       }
+
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
     };
+
+    // Initial sizing
+    handleResize();
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('wheel', handleWheel, { passive: true });
-    document.addEventListener('mouseleave', handleMouseLeave);
-
-    // Initialize drifting constellation particles (optimized count for smooth 60fps)
-    const particleCount = Math.min(Math.floor((width * height) / 42000), 32);
-    const particles: Particle[] = [];
-    const colors = ['#60a5fa', '#38bdf8', '#93c5fd', '#ffffff', '#818cf8'];
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35 - 0.15, // gentle natural upward drift
-        radius: Math.random() * 1.4 + 0.8,
-        baseAlpha: Math.random() * 0.35 + 0.3,
-        phase: Math.random() * Math.PI * 2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-
-    // Resize handling
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-
     window.addEventListener('resize', handleResize, { passive: true });
 
-    let startTime = performance.now();
-    const SPACING = 48; // Optimized dot grid spacing for high performance & clean spacing
-    const mouseRadiusSq = mouse.radius * mouse.radius;
+    // 6. Animation Loop
+    let animationFrameId: number;
+    let lastScreenUpdate = 0;
 
-    // Main animation loop
-    const render = (now: number) => {
-      const elapsed = (now - startTime) * 0.001; // seconds
+    const animate = (time: number) => {
+      animationFrameId = requestAnimationFrame(animate);
 
-      // Smoothly and swiftly decay kinetic energies to prevent lingering lag
-      upwardEnergy = Math.max(0, upwardEnergy * 0.92);
-      downwardEnergy = Math.max(0, downwardEnergy * 0.92);
+      const elapsed = time * 0.001;
 
-      // Smooth mouse interpolation
-      mouse.x += (mouse.targetX - mouse.x) * 0.08;
-      mouse.y += (mouse.targetY - mouse.y) * 0.08;
+      // Gentle continuous floating hover oscillation
+      const floatHover = Math.sin(elapsed * 1.2) * 0.08;
+      const tiltHover = Math.cos(elapsed * 0.9) * 0.03;
 
-      ctx.clearRect(0, 0, width, height);
+      // Smooth mouse influence
+      const mouseInfluenceX = mouseX * 0.25;
+      const mouseInfluenceY = mouseY * 0.18;
 
-      // Total activity factor from scrolling in either direction
-      const totalFactor = Math.min(1.2, upwardEnergy + downwardEnergy);
-      const isAdvanced = totalFactor > 0.05;
+      // Smooth exponential lerp (prevents any sudden lag or jerkiness)
+      currentRotationY += (targetRotationY + mouseInfluenceX + tiltHover - currentRotationY) * 0.05;
+      currentRotationX += (targetRotationX - mouseInfluenceY - currentRotationX) * 0.05;
+      currentPositionY += (targetPositionY + floatHover - currentPositionY) * 0.05;
+      currentLidAngle += (targetLidAngle - currentLidAngle) * 0.05;
 
-      // Direction bias: +1 for pure UP, -1 for pure DOWN, 0 for balanced/idle
-      const directionBias = totalFactor > 0.001 ? (upwardEnergy - downwardEnergy) / totalFactor : 0;
-      const isAscending = directionBias > 0.15;
-      const isDescending = directionBias < -0.15;
+      laptopGroup.rotation.y = currentRotationY;
+      laptopGroup.rotation.x = currentRotationX;
+      laptopGroup.position.y = currentPositionY;
 
-      // Dynamic color theme based on direction
-      // Upward = Electric Cyan (#38bdf8), Downward = Cyber Indigo/Violet (#818cf8)
-      const dynamicThemeColor = isAscending
-        ? { r: 56, g: 189, b: 248 }
-        : isDescending
-        ? { r: 129, g: 140, b: 248 }
-        : { r: 96, g: 165, b: 250 };
+      lidPivot.rotation.x = currentLidAngle;
 
-      // 1. Render Dynamic Energy Rings (gentle and lightweight)
-      for (let k = energyRings.length - 1; k >= 0; k--) {
-        const ring = energyRings[k];
-        ring.radius += ring.speed * (1 + totalFactor * 0.3);
-        ring.alpha *= 0.94;
+      // Slow orbital rotation of tech rings
+      holoRing.rotation.z = elapsed * 0.15;
+      outerRing.rotation.z = -elapsed * 0.1;
 
-        if (ring.alpha <= 0.01 || ring.radius >= ring.maxRadius) {
-          energyRings.splice(k, 1);
-          continue;
-        }
-
-        ctx.beginPath();
-        ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${dynamicThemeColor.r}, ${dynamicThemeColor.g}, ${dynamicThemeColor.b}, ${ring.alpha * 0.35})`;
-        ctx.lineWidth = 1.0;
-        ctx.stroke();
+      // Update screen content periodically (every ~80ms) for smooth cursor & scanline without overloading canvas
+      if (time - lastScreenUpdate > 75) {
+        drawScreenContent(elapsed);
+        lastScreenUpdate = time;
       }
 
-      // 2. Infinite flowing grid dots with gentle, smooth scroll glide
-      const baseSpeedX = 4.5;
-      const baseSpeedY = 3.0;
-      // Controlled, smooth velocity boost (dampened to prevent sudden jumping)
-      const scrollWarpSpeed = (upwardEnergy * -7.0) + (downwardEnergy * 7.0);
-
-      const offsetX = (elapsed * baseSpeedX) % SPACING;
-      const offsetY = (elapsed * baseSpeedY + elapsed * scrollWarpSpeed) % SPACING;
-
-      const cols = Math.ceil(width / SPACING) + 2;
-      const rows = Math.ceil(height / SPACING) + 2;
-
-      // Gentle scanning pulse beam
-      const scanPeriod = height + 200;
-      const scanSpeed = 75 + totalFactor * 60;
-      const scanBeamY = isDescending
-        ? ((elapsed * scanSpeed) % scanPeriod) - 100
-        : (height - ((elapsed * scanSpeed) % scanPeriod)) + 100;
-
-      for (let i = -1; i < cols; i++) {
-        for (let j = -1; j < rows; j++) {
-          const x = i * SPACING + offsetX;
-          const y = j * SPACING + offsetY;
-
-          // Multi-frequency organic wave
-          const wave1 = Math.sin(x * 0.01 + y * 0.01 - elapsed * 1.4);
-          const wave2 = Math.cos(x * 0.015 - y * 0.012 + elapsed * 1.1);
-          const wave = (wave1 + wave2) * 0.5;
-
-          // Proximity to dynamic scan beam
-          const distToBeam = Math.abs(y - scanBeamY);
-          let beamFactor = 0;
-          if (distToBeam < 80) {
-            beamFactor = (1 - distToBeam / 80) * (0.2 + totalFactor * 0.4);
-          }
-
-          // Optimized mouse proximity check (avoids Math.sqrt unless within range)
-          const dx = x - mouse.x;
-          const dy = y - mouse.y;
-          const distSq = dx * dx + dy * dy;
-          let mouseFactor = 0;
-          if (distSq < mouseRadiusSq) {
-            const dist = Math.sqrt(distSq);
-            mouseFactor = (1 - dist / mouse.radius);
-          }
-
-          // Compute size and opacity with boost from scroll energy
-          const isAccentNode = (i % 4 === 0 && j % 4 === 0);
-          const baseAlpha = isAccentNode ? 0.32 : 0.12;
-          
-          const energyBoost = totalFactor * (isAccentNode ? 0.3 : 0.12);
-          const alpha = Math.min(1, baseAlpha + (wave + 1) * 0.5 * 0.18 + mouseFactor * 0.5 + beamFactor * 0.35 + energyBoost);
-          const radius = (isAccentNode ? 1.4 : 0.9) + (wave + 1) * 0.5 * 0.3 + mouseFactor * 1.0 + totalFactor * 0.3;
-
-          ctx.beginPath();
-          ctx.arc(x, y, radius, 0, Math.PI * 2);
-
-          if (isAccentNode || mouseFactor > 0.3 || beamFactor > 0.2) {
-            ctx.fillStyle = totalFactor > 0.2
-              ? `rgba(${dynamicThemeColor.r}, ${dynamicThemeColor.g}, ${dynamicThemeColor.b}, ${alpha})`
-              : `rgba(96, 165, 250, ${alpha})`;
-          } else {
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-          }
-          ctx.fill();
-
-          // Technical CAD crosshairs on accent nodes
-          if (isAccentNode && (wave > 0.3 || mouseFactor > 0.15 || isAdvanced)) {
-            const crossLength = 3 + totalFactor * 1.5;
-            ctx.strokeStyle = totalFactor > 0.2
-              ? `rgba(${dynamicThemeColor.r}, ${dynamicThemeColor.g}, ${dynamicThemeColor.b}, ${alpha * 0.8})`
-              : `rgba(96, 165, 250, ${alpha * 0.55})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(x - crossLength, y);
-            ctx.lineTo(x + crossLength, y);
-            ctx.moveTo(x, y - crossLength);
-            ctx.lineTo(x, y + crossLength);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // 3. Drifting infinite constellation particles with gentle, smooth directional drift
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-
-        // Smooth and gentle directional velocity (no sudden jumping)
-        const directionalVelocity = (upwardEnergy * -0.7) + (downwardEnergy * 0.7);
-        p.x += p.vx;
-        p.y += p.vy + directionalVelocity;
-
-        // Infinite boundary wrap
-        if (p.x < 0) p.x += width;
-        if (p.x > width) p.x -= width;
-        if (p.y < 0) {
-          p.y += height;
-          p.x = Math.random() * width;
-        }
-        if (p.y > height) {
-          p.y -= height;
-          p.x = Math.random() * width;
-        }
-
-        // Breathing pulse
-        const pulse = Math.sin(elapsed * 2.0 + p.phase);
-        const currentRadius = p.radius + pulse * 0.35 + totalFactor * 0.3;
-        const currentAlpha = Math.min(1, Math.max(0.2, p.baseAlpha + pulse * 0.12 + totalFactor * 0.25));
-
-        // Smooth photon trails during scroll (lightweight stroke without expensive gradient allocation)
-        if (totalFactor > 0.15) {
-          const trailLength = (6 + totalFactor * 10) * (isDescending ? -1 : 1);
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p.x, p.y + trailLength);
-          ctx.strokeStyle = `rgba(${dynamicThemeColor.r}, ${dynamicThemeColor.g}, ${dynamicThemeColor.b}, ${currentAlpha * 0.45})`;
-          ctx.lineWidth = p.radius * 0.8;
-          ctx.stroke();
-        }
-
-        // Draw particle core
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.6, currentRadius), 0, Math.PI * 2);
-        ctx.fillStyle = totalFactor > 0.2
-          ? `rgba(${dynamicThemeColor.r}, ${dynamicThemeColor.g}, ${dynamicThemeColor.b}, ${currentAlpha})`
-          : (p.color === '#ffffff' ? `rgba(255, 255, 255, ${currentAlpha})` : `rgba(96, 165, 250, ${currentAlpha})`);
-        ctx.fill();
-
-        // 4. Subtle constellation filaments between particles
-        const maxDist = 85 + totalFactor * 25;
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const distSq = dx * dx + dy * dy;
-
-          if (distSq < maxDist * maxDist) {
-            const distance = Math.sqrt(distSq);
-            const lineAlpha = (1 - distance / maxDist) * (0.18 + totalFactor * 0.15);
-            
-            ctx.strokeStyle = totalFactor > 0.2
-              ? `rgba(${dynamicThemeColor.r}, ${dynamicThemeColor.g}, ${dynamicThemeColor.b}, ${lineAlpha})`
-              : `rgba(96, 165, 250, ${lineAlpha})`;
-            ctx.lineWidth = 0.65;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(render);
+      renderer.render(scene, camera);
     };
 
-    animationFrameId = requestAnimationFrame(render);
+    animationFrameId = requestAnimationFrame(animate);
 
+    // 7. Cleanup on Unmount
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('wheel', handleWheel);
-      document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('resize', handleResize);
+
+      renderer.dispose();
+      baseGeometry.dispose();
+      bottomGeometry.dispose();
+      wellGeometry.dispose();
+      trackpadGeom.dispose();
+      notchGeom.dispose();
+      hingeGeom.dispose();
+      lidBackGeom.dispose();
+      logoGeom.dispose();
+      bezelGeom.dispose();
+      camGeom.dispose();
+      screenGeom.dispose();
+      screenTexture.dispose();
+      holoRingGeom.dispose();
+      outerRingGeom.dispose();
+      particleGeom.dispose();
+
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
@@ -396,33 +563,30 @@ export default function AmbientBackground() {
       {/* Deep charcoal background canvas */}
       <div className="absolute inset-0 bg-[#07090e]" />
 
-      {/* Infinite dynamic canvas dot matrix & constellation with increased opacity */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-90"
+      {/* 3D Laptop WebGL Canvas Container with high visibility */}
+      <div
+        ref={containerRef}
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-95 transition-opacity duration-700"
         style={{ willChange: 'transform' }}
       />
 
-      {/* Light balancing overlay for rich contrast */}
-      <div className="absolute inset-0 bg-[#07090e]/10 pointer-events-none" />
-
       {/* Ambient breathing lighting gradients for depth and atmosphere */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[950px] h-[550px] pointer-events-none opacity-35 transition-opacity duration-1000"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[950px] h-[550px] pointer-events-none opacity-40 transition-opacity duration-1000"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(37, 99, 235, 0.16) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(37, 99, 235, 0.22) 0%, transparent 70%)',
         }}
       />
       <div
-        className="absolute top-1/3 left-0 w-[550px] h-[550px] pointer-events-none opacity-20"
+        className="absolute top-1/3 left-0 w-[550px] h-[550px] pointer-events-none opacity-25"
         style={{
-          background: 'radial-gradient(circle at 10% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 10% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 60%)',
         }}
       />
       <div
-        className="absolute top-2/3 right-0 w-[600px] h-[600px] pointer-events-none opacity-20"
+        className="absolute top-2/3 right-0 w-[600px] h-[600px] pointer-events-none opacity-25"
         style={{
-          background: 'radial-gradient(circle at 90% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 90% 50%, rgba(37, 99, 235, 0.12) 0%, transparent 60%)',
         }}
       />
     </div>
