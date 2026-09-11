@@ -78,13 +78,13 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Automatically cycle between the 3 headline/subtitle sets and corresponding preview mockups
+  // Automatically cycle between the 3 headline/subtitle sets and corresponding preview mockups (6.5s delay)
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 4500);
+    }, 6500);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -116,25 +116,6 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
           {/* Left Column: Heading, Pitch, Actions, Switcher */}
           <div className="md:col-span-6 lg:col-span-6 text-left flex flex-col justify-center">
-            
-            {/* Slide Navigation Indicator Pills */}
-            <div className="flex items-center gap-2 mb-3">
-              {HERO_SLIDES.map((slide, idx) => (
-                <button
-                  key={slide.id}
-                  onClick={() => setActiveSlide(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSlide === idx 
-                      ? 'w-8 bg-blue-500 shadow-sm shadow-blue-500/50' 
-                      : 'w-2 bg-white/20 hover:bg-white/40'
-                  }`}
-                  aria-label={`Slide ${idx + 1}: ${slide.headlinePrefix}${slide.headlineAccent}`}
-                />
-              ))}
-              <span className="text-[10px] font-mono text-zinc-500 ml-1.5">
-                0{activeSlide + 1} / 0{HERO_SLIDES.length}
-              </span>
-            </div>
 
             {/* Dynamic Content Container with min-height to prevent layout jumps */}
             <div className="min-h-[195px] sm:min-h-[185px] md:min-h-[195px] lg:min-h-[210px] flex flex-col justify-center">
