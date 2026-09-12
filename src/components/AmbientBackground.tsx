@@ -510,8 +510,19 @@ export default function AmbientBackground() {
     currentRotationX = targetRotationX;
     currentPositionY = targetPositionY;
 
+    let isScrollTicking = false;
+    const onScrollDebounced = () => {
+      if (!isScrollTicking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          isScrollTicking = false;
+        });
+        isScrollTicking = true;
+      }
+    };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', onScrollDebounced, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
 
     // 6. Animation Loop
@@ -562,7 +573,7 @@ export default function AmbientBackground() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScrollDebounced);
       window.removeEventListener('resize', handleResize);
 
       renderer.dispose();

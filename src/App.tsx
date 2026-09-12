@@ -20,7 +20,8 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrolled = window.scrollY > 20;
+      setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
