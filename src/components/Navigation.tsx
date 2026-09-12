@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
 import { TsmakLogo } from './Logo';
 import { cn } from '../lib/utils';
-import { Page } from '../types';
+import { Page, TrackType } from '../types';
 
 interface NavigationProps {
   currentPage: Page;
-  onNavigate: (page: Page, sectionId?: string) => void;
+  onNavigate: (page: Page, sectionId?: string, track?: TrackType) => void;
   isScrolled: boolean;
 }
 
@@ -15,8 +15,8 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
-  const handleLinkClick = (page: Page, sectionId?: string) => {
-    onNavigate(page, sectionId);
+  const handleLinkClick = (page: Page, sectionId?: string, track?: TrackType) => {
+    onNavigate(page, sectionId, track);
     setIsMenuOpen(false);
     setIsServicesOpen(false);
   };
@@ -108,7 +108,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                     className="absolute top-full left-0 mt-3 w-56 p-2 rounded-2xl bg-[#0c101c] border border-white/10 shadow-xl z-50"
                   >
                     <button
-                      onClick={() => handleLinkClick('home', 'professional-services')}
+                      onClick={() => handleLinkClick('get-started', undefined, 'client')}
                       className="w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
                     >
                       <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
@@ -119,7 +119,7 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                       </div>
                     </button>
                     <button
-                      onClick={() => handleLinkClick('home', 'tutorials')}
+                      onClick={() => handleLinkClick('get-started', undefined, 'student')}
                       className="w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
                     >
                       <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
@@ -222,16 +222,16 @@ export default function Navigation({ currentPage, onNavigate, isScrolled }: Navi
                 Portfolio & Case Studies
               </button>
               <button
-                onClick={() => handleLinkClick('home', 'professional-services')}
+                onClick={() => handleLinkClick('get-started', undefined, 'client')}
                 className="text-left px-4 py-3 rounded-xl text-base font-semibold text-zinc-300 hover:bg-white/5"
               >
-                Hire Us (Studio)
+                Hire the Studio
               </button>
               <button
-                onClick={() => handleLinkClick('home', 'tutorials')}
+                onClick={() => handleLinkClick('get-started', undefined, 'student')}
                 className="text-left px-4 py-3 rounded-xl text-base font-semibold text-zinc-300 hover:bg-white/5"
               >
-                Curriculum & Tutorials
+                Engineering Academy
               </button>
               <button
                 onClick={() => handleLinkClick('about')}

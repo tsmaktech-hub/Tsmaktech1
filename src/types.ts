@@ -1,4 +1,5 @@
 export type Page = 'home' | 'portfolio' | 'about' | 'get-started';
+export type TrackType = 'client' | 'student';
 
 export interface Tutorial {
   id: string;

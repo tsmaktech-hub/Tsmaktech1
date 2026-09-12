@@ -17,7 +17,8 @@ import {
   ShieldCheck,
   GraduationCap,
   MapPin,
-  Phone
+  Phone,
+  Flame
 } from 'lucide-react';
 import { PROJECTS, STUDIO_METRICS } from '../constants';
 import { Project } from '../types';
@@ -25,7 +26,8 @@ import { TsmakLogo } from '../components/Logo';
 import TiltCard from '../components/TiltCard';
 import Carousel3D from '../components/Carousel3D';
 
-const FOUNDER_IMAGE_URL = 'https://lh3.googleusercontent.com/u/0/d/1RMbVzbxfhQT1SV6MejHoctam0kapyQOV';
+const FOUNDER_IMAGE_URL = 'https://lh3.googleusercontent.com/u/0/d/17YOOfA0spJ2wg1qmUnJZN_FUSSC6xQTv';
+const LOCAL_FOUNDER_IMAGE = '/images/ajibade_founder.png';
 
 interface PortfolioPageProps {
   onBackToHome?: () => void;
@@ -37,8 +39,8 @@ const TESTIMONIALS = [
   {
     id: 1,
     name: "Engr. Sarah Johnson",
-    role: "Director of Product, Nebula Group",
-    content: "Tsmak Tech delivered our multi-tenant attendance suite ahead of deadline. Their mastery of real-time state synchronization, clean role-based permissions, and tactile micro-interactions made our daily operations 85% faster.",
+    role: "Lead Researcher, Noor AI Initiative",
+    content: "Tsmak Tech delivered our Islamic knowledge and verified evidence platform ahead of deadline. Their mastery of sub-second semantic retrieval, clean Arabic calligraphy rendering, and reliable system architecture made our project an outstanding success.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
   },
@@ -179,47 +181,89 @@ export default function PortfolioPage({ onGetStarted, onSelectProject }: Portfol
                 </div>
               </div>
 
-              {/* Right Column: Picture Beside It (5 cols) */}
+              {/* Right Column: 3D Interactive Founder Showcase (5 cols) */}
               <div className="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
-                <div className="w-full max-w-sm relative">
-                  {/* Photo container with refined frame */}
-                  <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 bg-gradient-to-b from-blue-500/30 via-white/10 to-white/5 border border-blue-500/30 shadow-2xl">
-                    <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square bg-[#050811]">
+                <div className="w-full max-w-sm relative group">
+                  {/* Floating Ambient Glow */}
+                  <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/30 via-indigo-600/20 to-blue-500/30 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* 3D Tilt Card */}
+                  <TiltCard
+                    tiltAngle={10}
+                    glareColor="rgba(59, 130, 246, 0.25)"
+                    className="relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 bg-gradient-to-b from-[#111827] via-[#0c101d] to-[#060912] border border-blue-500/30 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] transition-all duration-300"
+                  >
+                    {/* Floating 3D Badge 1 (Top Right) */}
+                    <motion.div
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                      className="absolute -top-3 -right-2 sm:-right-3 px-3 py-1 rounded-full bg-blue-600 text-white font-mono text-[10px] sm:text-[11px] font-semibold flex items-center gap-1.5 shadow-xl border border-blue-400/40 backdrop-blur-md z-30"
+                    >
+                      <Sparkles size={11} className="text-blue-200" />
+                      <span>Lead Architect</span>
+                    </motion.div>
+
+                    {/* Window / Terminal Bar */}
+                    <div className="flex items-center justify-between px-2.5 py-1.5 border-b border-white/10 mb-2.5 bg-black/40 rounded-lg">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                        <span className="ml-1.5 text-[10px] font-mono text-zinc-400">tsmak.tech/founder</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[10px] font-mono text-blue-400 font-medium">
+                        <ShieldCheck size={12} />
+                        <span>Verified</span>
+                      </div>
+                    </div>
+
+                    {/* High-Resolution Portrait Photo with 3D Depth */}
+                    <div className="relative rounded-xl overflow-hidden aspect-square bg-[#050811] border border-white/10 shadow-inner group/photo">
                       <img
                         src={FOUNDER_IMAGE_URL}
                         onError={(e) => {
-                          e.currentTarget.src = '/images/founder.jpg';
+                          e.currentTarget.src = LOCAL_FOUNDER_IMAGE;
                         }}
                         alt="Ajibade Abdullateef - Founder of Tsmak Tech"
-                        className="w-full h-full object-cover object-center"
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/photo:scale-105"
                         referrerPolicy="no-referrer"
                       />
-                      {/* Subtle gradient overlay at bottom of photo */}
-                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#060a14] via-[#060a14]/60 to-transparent pointer-events-none" />
-                      
-                      <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-xs">
-                        <span className="font-mono text-white font-semibold flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                          Founder & Engineer
+
+                      {/* Subtle Dark Gradient Rim */}
+                      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#060a14] via-[#060a14]/70 to-transparent pointer-events-none" />
+
+                      {/* Floating In-Image Status Badge */}
+                      <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-xs z-10">
+                        <span className="font-mono text-white font-semibold flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-lg">
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                          </span>
+                          <span>Ajibade Abdullateef</span>
                         </span>
-                        <span className="text-[11px] text-zinc-300 font-mono bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
-                          Tsmak Tech
+                        <span className="text-[11px] text-blue-300 font-mono font-medium bg-blue-950/80 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-blue-400/30 shadow-lg">
+                          Founder
                         </span>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Trust Card beneath photo */}
-                  <div className="mt-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-semibold text-white">Ajibade Abdullateef</div>
-                      <div className="text-[11px] text-zinc-400 font-mono">Mechatronics Scholar & Full-Stack Developer</div>
+                    {/* Interactive 3D Status Deck beneath photo */}
+                    <div className="mt-3 p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                          <Cpu size={16} />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-white">Mechatronics Scholar</div>
+                          <div className="text-[10px] text-zinc-400 font-mono">Full-Stack & Mobile Systems</div>
+                        </div>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        Available
+                      </span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-blue-400 text-xs font-mono font-medium">
-                      <ShieldCheck size={16} />
-                      <span>Verified</span>
-                    </div>
-                  </div>
+                  </TiltCard>
                 </div>
               </div>
             </div>
@@ -374,7 +418,7 @@ export default function PortfolioPage({ onGetStarted, onSelectProject }: Portfol
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                          className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-700"
                           onError={(e) => {
                             e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2070";
                           }}

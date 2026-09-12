@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -14,18 +14,24 @@ import {
   Layers,
   Clock
 } from 'lucide-react';
+import { TrackType } from '../types';
 
 interface GetStartedPageProps {
   onBack?: () => void;
+  initialTrack?: TrackType;
 }
-
-type TrackType = 'client' | 'student';
 
 const WHATSAPP_NUMBER = "2347087445219";
 const COMMUNITY_LINK = "https://chat.whatsapp.com/IV6sRV0HRYU2vl7o8kYHea";
 
-export default function GetStartedPage({ onBack }: GetStartedPageProps) {
-  const [track, setTrack] = useState<TrackType>('client');
+export default function GetStartedPage({ onBack, initialTrack = 'client' }: GetStartedPageProps) {
+  const [track, setTrack] = useState<TrackType>(initialTrack);
+
+  useEffect(() => {
+    if (initialTrack) {
+      setTrack(initialTrack);
+    }
+  }, [initialTrack]);
   const [fullName, setFullName] = useState('');
   const [contact, setContact] = useState('');
   const [projectType, setProjectType] = useState('Web Application / SaaS');

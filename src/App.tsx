@@ -9,13 +9,14 @@ import HomePage from './pages/HomePage';
 import PortfolioPage from './pages/PortfolioPage';
 import AboutPage from './pages/AboutPage';
 import GetStartedPage from './pages/GetStartedPage';
-import { Project, Page } from './types';
+import { Project, Page, TrackType } from './types';
 import { MessageCircle } from 'lucide-react';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [getStartedTrack, setGetStartedTrack] = useState<TrackType>('client');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +26,10 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavigate = (page: Page, sectionId?: string) => {
+  const handleNavigate = (page: Page, sectionId?: string, track?: TrackType) => {
+    if (track) {
+      setGetStartedTrack(track);
+    }
     setCurrentPage(page);
 
     if (sectionId) {
@@ -112,7 +116,7 @@ export default function App() {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
-              <GetStartedPage onBack={() => handleNavigate('home')} />
+              <GetStartedPage onBack={() => handleNavigate('home')} initialTrack={getStartedTrack} />
             </motion.div>
           )}
         </AnimatePresence>

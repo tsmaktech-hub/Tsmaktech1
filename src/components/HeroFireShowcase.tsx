@@ -50,17 +50,17 @@ const HERO_SLIDES = [
 const PREVIEWS = [
   {
     id: 'studio',
-    label: 'High-Velocity SaaS',
-    tag: 'Webdesign on FIRE',
-    image: '/images/webdesign_on_fire.jpg',
-    metric: '99/100 Lighthouse Performance',
-    feature: 'React 19 • Next.js 15 • Cloud Run'
+    label: 'Noor AI Assistant',
+    tag: 'Verified Knowledge',
+    image: '/projects/noor-ai.png',
+    metric: 'Sub-second Knowledge Retrieval',
+    feature: 'Next.js • Quran & Hadith • Cloud Run'
   },
   {
     id: 'attendance',
     label: 'Attendance Suite',
     tag: 'Institutional Ops',
-    image: '/images/attendance_ui.jpg',
+    image: '/projects/lasustech.png',
     metric: '99.9% University Uptime',
     feature: 'PostgreSQL • Biometrics • Role Security'
   },
@@ -68,7 +68,7 @@ const PREVIEWS = [
     id: 'islamic-gpt',
     label: 'Islamic GPT AI',
     tag: 'Knowledge Vectors',
-    image: '/images/islamic_gpt_ui.jpg',
+    image: '/projects/tsmakislamicgpt.png',
     metric: 'Sub-second Semantic Lookup',
     feature: 'Gemini LLM • Quran & Hadith Retrieval'
   }
@@ -239,7 +239,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0.3, scale: 0.98 }}
                       transition={{ duration: 0.45, ease: 'easeOut' }}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                       referrerPolicy="no-referrer"
                     />
                   </AnimatePresence>
