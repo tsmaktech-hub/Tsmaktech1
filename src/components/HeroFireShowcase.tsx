@@ -20,75 +20,95 @@ interface HeroFireShowcaseProps {
   onNavigate: (page: Page, sectionId?: string) => void;
 }
 
-const HERO_SLIDES = [
-  {
-    id: 'studio',
-    badgeCategory: 'Tsmak Tech Studio',
-    badgeHighlight: 'Bespoke Systems',
-    headlinePrefix: 'Web Systems ',
-    headlineAccent: 'Engineered to Dominate.',
-    subtitle: 'Bespoke SaaS, attendance suites, and domain AI platforms — built with zero templates and high concurrency.'
-  },
-  {
-    id: 'academy',
-    badgeCategory: 'Tsmak Tech Academy',
-    badgeHighlight: 'Digital Skills for Youth',
-    headlinePrefix: 'Real Digital Skills ',
-    headlineAccent: 'Built for the Future.',
-    subtitle: 'Practical online programs empowering youth and beginners to master modern coding, web development, and digital craft.'
-  },
-  {
-    id: 'innovation',
-    badgeCategory: 'Next-Gen Engineering',
-    badgeHighlight: 'High Performance',
-    headlinePrefix: 'Intelligent Software ',
-    headlineAccent: 'Designed to Scale.',
-    subtitle: 'From domain AI tools to mission-critical portals — architected for reliability, speed, and real-world impact.'
-  }
-];
+interface WebsiteCreationStage {
+  id: string;
+  stepNumber: string;
+  stepLabel: string;
+  badgeCategory: string;
+  badgeHighlight: string;
+  headlinePrefix: string;
+  headlineAccent: string;
+  subtitle: string;
+  tag: string;
+  label: string;
+  image: string;
+  fallbackImage: string;
+  urlPath: string;
+  metric: string;
+  feature: string;
+  pillText: string;
+}
 
-const PREVIEWS = [
+const CREATION_STAGES: WebsiteCreationStage[] = [
   {
-    id: 'studio',
-    label: 'Noor AI Assistant',
-    tag: 'Verified Knowledge',
-    image: '/projects/noor-ai.png',
-    metric: 'Sub-second Knowledge Retrieval',
-    feature: 'Next.js • Quran & Hadith • Cloud Run'
+    id: 'stage-coding',
+    stepNumber: '01',
+    stepLabel: 'Coding & Programming',
+    badgeCategory: 'Tsmak Tech Studio',
+    badgeHighlight: 'Step 1 • Coding & Programming',
+    headlinePrefix: 'We Build Modern Websites ',
+    headlineAccent: 'Through Real Coding & Programming.',
+    subtitle: 'At Tsmak Tech, every great website begins with disciplined coding and clean architecture. We write robust, responsive code from scratch with zero lazy templates — turning your idea into a fast, scalable web system.',
+    tag: '01 • Clean Code',
+    label: 'Stage 1: Building websites through real coding and programming',
+    image: 'https://lh3.googleusercontent.com/u/0/d/1ymtHR9f0-Hi2aF60XcAU8B4p1KBUJBY4',
+    fallbackImage: '/images/stage1_coding.jpg',
+    urlPath: 'studio/coding-stage',
+    metric: 'Bespoke Architecture',
+    feature: 'HTML • CSS • TypeScript • React',
+    pillText: 'Pure Coding Stage'
   },
   {
-    id: 'attendance',
-    label: 'Attendance Suite',
-    tag: 'Institutional Ops',
-    image: '/projects/lasustech.png',
-    metric: '99.9% University Uptime',
-    feature: 'PostgreSQL • Biometrics • Role Security'
+    id: 'stage-mentorship',
+    stepNumber: '02',
+    stepLabel: 'Need a Mentor',
+    badgeCategory: 'Tsmak Tech Academy',
+    badgeHighlight: 'Step 2 • Hands-On Mentorship',
+    headlinePrefix: 'When Building Gets Tough, ',
+    headlineAccent: 'We Mentor You to Overcome Every Hurdle.',
+    subtitle: 'Creating a website can become tough when complex logic, bugs, or architectures arise. Through Tsmak Tech’s hands-on mentorship, an experienced engineer guides you 1-on-1 to explain solutions and solve hard problems.',
+    tag: '02 • Mentorship',
+    label: 'Stage 2: When building a website gets tough and you need a mentor',
+    image: 'https://lh3.googleusercontent.com/u/0/d/1O-0qgiP9tasNb8vCPbDKF3sb6pl1xdFd',
+    fallbackImage: '/images/stage2_mentorship.jpg',
+    urlPath: 'academy/mentorship-stage',
+    metric: '1-on-1 Expert Guidance',
+    feature: 'Debugging & Collaborative Logic',
+    pillText: 'Mentorship Stage'
   },
   {
-    id: 'islamic-gpt',
-    label: 'Islamic GPT AI',
-    tag: 'Knowledge Vectors',
-    image: '/projects/tsmakislamicgpt.png',
-    metric: 'Sub-second Semantic Lookup',
-    feature: 'Gemini LLM • Quran & Hadith Retrieval'
+    id: 'stage-finished',
+    stepNumber: '03',
+    stepLabel: 'Website Done',
+    badgeCategory: 'Tsmak Tech Delivery',
+    badgeHighlight: 'Step 3 • Finished & Live',
+    headlinePrefix: 'The Final Result: ',
+    headlineAccent: 'A Polished, Live Website Ready to Scale.',
+    subtitle: 'This is what we deliver — the final finished website, completely done, beautifully responsive across all screens, and launched live with high performance and zero errors for your brand or business.',
+    tag: '03 • Finished & Live',
+    label: 'Stage 3: The final website displayed when you have finished the website',
+    image: 'https://lh3.googleusercontent.com/u/0/d/1-8rFOqbMxRHqIXJ1yEVKCXOQXV-2b8yu',
+    fallbackImage: '/images/stage3_finished_site.png',
+    urlPath: 'delivery/finished-website',
+    metric: '100% Finished & Live',
+    feature: 'Production Ready • High Speed',
+    pillText: 'Finished Website'
   }
 ];
 
 export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Continuously cycle between the 3 headline/subtitle sets and corresponding preview mockups (6.5s delay)
-  // Keeps rotating non-stop even when scrolling up or down
+  // Continuously cycle between the 3 website creation stages (6.5s delay)
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+      setActiveSlide((prev) => (prev + 1) % CREATION_STAGES.length);
     }, 6500);
 
     return () => clearInterval(timer);
   }, []);
 
-  const currentSlide = HERO_SLIDES[activeSlide];
-  const preview = PREVIEWS[activeSlide % PREVIEWS.length];
+  const currentStage = CREATION_STAGES[activeSlide];
 
   return (
     <section 
@@ -114,10 +134,10 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
           <div className="md:col-span-6 lg:col-span-6 text-left flex flex-col justify-center">
 
             {/* Dynamic Content Container with min-height to prevent layout jumps */}
-            <div className="min-h-[195px] sm:min-h-[185px] md:min-h-[195px] lg:min-h-[210px] flex flex-col justify-center">
+            <div className="min-h-[220px] sm:min-h-[200px] md:min-h-[210px] lg:min-h-[225px] flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={currentSlide.id}
+                  key={currentStage.id}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -128,22 +148,22 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                     <span className="flex items-center justify-center w-3.5 h-3.5 rounded-full bg-blue-500/20 text-blue-400">
                       <Flame size={11} className="text-blue-400 fill-blue-400" />
                     </span>
-                    <span className="font-semibold text-white">{currentSlide.badgeCategory}</span>
+                    <span className="font-semibold text-white">{currentStage.badgeCategory}</span>
                     <span className="text-zinc-600">•</span>
-                    <span className="text-blue-400 font-mono">{currentSlide.badgeHighlight}</span>
+                    <span className="text-blue-400 font-mono">{currentStage.badgeHighlight}</span>
                   </div>
 
                   {/* Punchy Headline */}
                   <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-[40px] xl:text-[44px] font-extrabold text-white tracking-tight leading-[1.12] mb-3 font-display">
-                    {currentSlide.headlinePrefix}
+                    {currentStage.headlinePrefix}
                     <span className="text-blue-400">
-                      {currentSlide.headlineAccent}
+                      {currentStage.headlineAccent}
                     </span>
                   </h1>
 
                   {/* Reduced & Punchy Subtitle */}
                   <p className="text-xs sm:text-sm md:text-xs lg:text-sm text-zinc-400 max-w-lg mb-4 leading-relaxed font-sans">
-                    {currentSlide.subtitle}
+                    {currentStage.subtitle}
                   </p>
                 </motion.div>
               </AnimatePresence>
@@ -215,13 +235,13 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shrink-0" />
                     <div className="flex items-center gap-1.5 ml-1.5 sm:ml-2 px-2 py-0.5 rounded-md bg-black/40 border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 truncate max-w-[120px] sm:max-w-none">
                       <span className="text-blue-400 hidden sm:inline">https://</span>
-                      <span>tsmak.tech/systems/{preview.id}</span>
+                      <span>tsmak.tech/{currentStage.urlPath}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-1.5 shrink-0">
                     <span className="px-2 sm:px-2.5 py-0.5 rounded-full bg-white/[0.06] text-zinc-300 border border-white/10 text-[9px] sm:text-[10px] font-mono font-medium">
-                      {preview.tag}
+                      {currentStage.tag}
                     </span>
                   </div>
                 </div>
@@ -232,15 +252,18 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                 >
                   <AnimatePresence mode="wait">
                     <motion.img
-                      key={preview.id}
-                      src={preview.image}
-                      alt={preview.label}
+                      key={currentStage.id}
+                      src={currentStage.image}
+                      alt={currentStage.label}
                       initial={{ opacity: 0.3, scale: 1.02 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0.3, scale: 0.98 }}
                       transition={{ duration: 0.45, ease: 'easeOut' }}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-center"
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.src = currentStage.fallbackImage;
+                      }}
                     />
                   </AnimatePresence>
 
@@ -251,31 +274,31 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
                     className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/20 text-white text-[10px] sm:text-[11px] font-mono font-semibold flex items-center gap-1.5 shadow-xl"
                   >
                     <Flame size={11} className="text-sky-400 fill-sky-400" />
-                    <span>Bespoke Code</span>
+                    <span>{currentStage.pillText}</span>
                   </motion.div>
 
                   {/* Floating Live Pill 2 (Bottom Right) */}
                   <motion.div
-                    key={`metric-${preview.id}`}
+                    key={`metric-${currentStage.id}`}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35 }}
                     className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-blue-600 text-white text-[10px] sm:text-[11px] font-mono font-medium flex items-center gap-1.5 shadow-md"
                   >
                     <Zap size={11} />
-                    <span>{preview.metric}</span>
+                    <span>{currentStage.metric}</span>
                   </motion.div>
 
                   {/* Floating Live Pill 3 (Bottom Left) */}
                   <motion.div
-                    key={`feat-${preview.id}`}
+                    key={`feat-${currentStage.id}`}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35 }}
                     className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-zinc-300 text-[9px] sm:text-[10px] font-mono hidden sm:flex items-center gap-1.5 shadow-md"
                   >
                     <Cpu size={11} className="text-sky-400" />
-                    <span>{preview.feature}</span>
+                    <span>{currentStage.feature}</span>
                   </motion.div>
                 </div>
               </TiltCard>
