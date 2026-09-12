@@ -10,7 +10,8 @@
   html {
     color-scheme: dark;
     overflow-x: clip;
-    scrollbar-color: rgba(255, 255, 255, 0.25) #07090e;
+    overflow-y: auto;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
   }
   body {
     background-color: #060810;
@@ -18,7 +19,10 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: clip;
+    overflow: visible;
+  }
+  #root {
+    overflow: visible;
   }
 }
 
@@ -86,22 +90,25 @@
   animation-play-state: paused;
 }
 
-/* Normal, clean scrollbar line on the right */
+/* Single, clean scrollbar line on the right - transparent track removes the full-height background bar */
+html::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
+html::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track {
-  background: #07090e;
+  background: transparent !important;
 }
 
+html::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.22);
   border-radius: 9999px;
-  border: 2px solid #07090e;
 }
 
+html::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(37, 99, 235, 0.7);
 }

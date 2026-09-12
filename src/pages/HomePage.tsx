@@ -106,7 +106,7 @@ Format with clear bullet points and realistic timeframe. Max 120 words.`,
   };
 
   return (
-    <div className="relative w-full overflow-x-hidden">
+    <div className="relative w-full overflow-x-clip">
       {/* 1. Visual-First Hero with "Webdesign on FIRE" & Floating 3D Browser Mockup */}
       <HeroFireShowcase onNavigate={onNavigate} />
 
