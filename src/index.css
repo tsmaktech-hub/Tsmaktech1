@@ -10,8 +10,7 @@
   html {
     color-scheme: dark;
     overflow-x: clip;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-color: rgba(255, 255, 255, 0.25) #07090e;
   }
   body {
     background-color: #060810;
@@ -20,8 +19,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
   }
 }
 
@@ -89,16 +86,24 @@
   animation-play-state: paused;
 }
 
-/* Clean scrollbar suppression - removes the floating right line and ensures smooth responsive scroll */
+/* Normal, clean scrollbar line on the right */
 ::-webkit-scrollbar {
-  display: none;
-  width: 0px;
-  height: 0px;
+  width: 8px;
+  height: 8px;
 }
 
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+::-webkit-scrollbar-track {
+  background: #07090e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  border: 2px solid #07090e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.7);
 }
 
 /* Clean, simple button utilities without web3 glow or shine streaks */
