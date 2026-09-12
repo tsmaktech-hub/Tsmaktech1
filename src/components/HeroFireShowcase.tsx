@@ -45,10 +45,10 @@ const CREATION_STAGES: WebsiteCreationStage[] = [
     stepNumber: '01',
     stepLabel: 'Coding & Programming',
     badgeCategory: 'Tsmak Tech Studio',
-    badgeHighlight: 'Step 1 • Coding & Programming',
+    badgeHighlight: '01 • Pure Coding',
     headlinePrefix: 'We Build Modern Websites ',
-    headlineAccent: 'Through Real Coding & Programming.',
-    subtitle: 'At Tsmak Tech, every great website begins with disciplined coding and clean architecture. We write robust, responsive code from scratch with zero lazy templates — turning your idea into a fast, scalable web system.',
+    headlineAccent: 'Through Real Coding.',
+    subtitle: 'Every project starts at the source. At Tsmak Tech, we write clean, responsive code from scratch — turning your vision into a fast, bespoke digital system.',
     tag: '01 • Clean Code',
     label: 'Stage 1: Building websites through real coding and programming',
     image: 'https://lh3.googleusercontent.com/u/0/d/1ymtHR9f0-Hi2aF60XcAU8B4p1KBUJBY4',
@@ -56,35 +56,35 @@ const CREATION_STAGES: WebsiteCreationStage[] = [
     urlPath: 'studio/coding-stage',
     metric: 'Bespoke Architecture',
     feature: 'HTML • CSS • TypeScript • React',
-    pillText: 'Pure Coding Stage'
+    pillText: 'Pure Coding'
   },
   {
     id: 'stage-mentorship',
     stepNumber: '02',
     stepLabel: 'Need a Mentor',
     badgeCategory: 'Tsmak Tech Academy',
-    badgeHighlight: 'Step 2 • Hands-On Mentorship',
+    badgeHighlight: '02 • Hands-On Mentorship',
     headlinePrefix: 'When Building Gets Tough, ',
-    headlineAccent: 'We Mentor You to Overcome Every Hurdle.',
-    subtitle: 'Creating a website can become tough when complex logic, bugs, or architectures arise. Through Tsmak Tech’s hands-on mentorship, an experienced engineer guides you 1-on-1 to explain solutions and solve hard problems.',
+    headlineAccent: 'We Mentor You Through It.',
+    subtitle: 'Stuck on complex logic or tricky bugs? Through 1-on-1 mentorship, our experienced engineers guide you through the hard parts until everything clicks.',
     tag: '02 • Mentorship',
     label: 'Stage 2: When building a website gets tough and you need a mentor',
     image: 'https://lh3.googleusercontent.com/u/0/d/1O-0qgiP9tasNb8vCPbDKF3sb6pl1xdFd',
     fallbackImage: '/images/stage2_mentorship.jpg',
     urlPath: 'academy/mentorship-stage',
-    metric: '1-on-1 Expert Guidance',
-    feature: 'Debugging & Collaborative Logic',
-    pillText: 'Mentorship Stage'
+    metric: '1-on-1 Code Guidance',
+    feature: 'Debugging & Core Problem Solving',
+    pillText: 'Expert Mentorship'
   },
   {
     id: 'stage-finished',
     stepNumber: '03',
     stepLabel: 'Website Done',
     badgeCategory: 'Tsmak Tech Delivery',
-    badgeHighlight: 'Step 3 • Finished & Live',
+    badgeHighlight: '03 • Finished & Live',
     headlinePrefix: 'The Final Result: ',
-    headlineAccent: 'A Polished, Live Website Ready to Scale.',
-    subtitle: 'This is what we deliver — the final finished website, completely done, beautifully responsive across all screens, and launched live with high performance and zero errors for your brand or business.',
+    headlineAccent: 'A Polished Website, Built to Scale.',
+    subtitle: 'This is what we deliver — a completed, high-speed website launched live with flawless responsiveness and zero errors for your brand or business.',
     tag: '03 • Finished & Live',
     label: 'Stage 3: The final website displayed when you have finished the website',
     image: 'https://lh3.googleusercontent.com/u/0/d/1-8rFOqbMxRHqIXJ1yEVKCXOQXV-2b8yu',
@@ -134,7 +134,7 @@ export default function HeroFireShowcase({ onNavigate }: HeroFireShowcaseProps) 
           <div className="md:col-span-6 lg:col-span-6 text-left flex flex-col justify-center">
 
             {/* Dynamic Content Container with min-height to prevent layout jumps */}
-            <div className="min-h-[220px] sm:min-h-[200px] md:min-h-[210px] lg:min-h-[225px] flex flex-col justify-center">
+            <div className="min-h-[175px] sm:min-h-[160px] md:min-h-[165px] lg:min-h-[175px] flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentStage.id}
